@@ -22,6 +22,7 @@ void main() async {
   await Hive.openBox<dynamic>('lifeAims');
   await Hive.openBox<dynamic>('aimActions');
   await Hive.openBox<ProfileHive>('profile2');
+  await Hive.openBox<dynamic>('finance');
 
   runApp(
     GetMaterialApp(
