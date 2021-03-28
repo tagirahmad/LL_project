@@ -9,7 +9,7 @@ import 'package:l_l_app/app/modules/questionnaire/models/profile.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/year_aim.dart';
 import 'package:l_l_app/app/repositories/profile_repository.dart';
 
-class HiveService implements ProfileRepository {
+class HiveProfileService implements ProfileRepository {
   TextEditingController textEditingController = TextEditingController();
   final Box<dynamic> profile = Hive.box<dynamic>('profile');
   final Box<dynamic> yearAims = Hive.box<dynamic>('yearAims');

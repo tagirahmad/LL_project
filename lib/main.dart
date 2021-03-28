@@ -6,6 +6,7 @@ import 'package:l_l_app/app/constants/colors.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/action.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/profile_hive.dart';
 
+import 'app/modules/finace/model/finance_hive.dart';
 import 'app/modules/questionnaire/models/life_aim.dart';
 import 'app/modules/questionnaire/models/year_aim.dart';
 import 'app/routes/app_pages.dart';
@@ -17,12 +18,13 @@ void main() async {
   Hive.registerAdapter(LifeAimHiveAdapter());
   Hive.registerAdapter(AimActionHiveAdapter());
   Hive.registerAdapter(ProfileHiveAdapter());
+  Hive.registerAdapter<FinanceHive>(FinanceHiveAdapter());
   await Hive.openBox<dynamic>('profile');
   await Hive.openBox<dynamic>('yearAims');
   await Hive.openBox<dynamic>('lifeAims');
   await Hive.openBox<dynamic>('aimActions');
   await Hive.openBox<ProfileHive>('profile2');
-  await Hive.openBox<dynamic>('finance');
+  await Hive.openBox<FinanceHive>('finance');
 
   runApp(
     GetMaterialApp(

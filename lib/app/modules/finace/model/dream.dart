@@ -1,5 +1,5 @@
 class Dream {
-  const Dream({this.sum = 0});
+  Dream({this.sum = 0});
 
-  final int? sum;
+  late final int? sum;
 }

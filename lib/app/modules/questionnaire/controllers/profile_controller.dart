@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/profile.dart';
-import 'package:l_l_app/app/services/hive_service.dart';
+import 'package:l_l_app/app/services/hive_profile_service.dart';
 
 class ProfileController extends GetxController {
   static ProfileController get to => Get.find();
 
   final ImagePicker picker = ImagePicker();
   final Rx<Profile> userProfile = Profile().obs;
-  final HiveService hiveService = HiveService();
+  final HiveProfileService hiveProfileService = HiveProfileService();
 
   Future<void> pickImage() async {
     // ignore: omit_local_variable_types
@@ -17,8 +17,8 @@ class ProfileController extends GetxController {
 
     if (pickedFile != null) {
       userProfile.value!.profileImagePath = pickedFile.path;
-      await hiveService.putImagePath(pickedFile.path, userProfile);
-      await hiveService.profile.put('image', pickedFile.path);
+      await hiveProfileService.putImagePath(pickedFile.path, userProfile);
+      await hiveProfileService.profile.put('image', pickedFile.path);
     } else {
       print('No image selected.');
     }
@@ -26,22 +26,22 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() {
-    hiveService.getImageFromStore(userProfile);
-    hiveService.getNameFromStore(userProfile);
-    hiveService.getAgeFromStore(userProfile);
-    hiveService.getCityFromStore(userProfile);
-    hiveService.getYearAimsFromStore(userProfile);
-    hiveService.getLifeAimsFromStore(userProfile);
-    hiveService.getAimActionsFromStore(userProfile);
-    // hiveService.profile.clear();
-    // hiveService.yearAims.clear();
-    // hiveService.lifeAims.clear();
+    hiveProfileService.getImageFromStore(userProfile);
+    hiveProfileService.getNameFromStore(userProfile);
+    hiveProfileService.getAgeFromStore(userProfile);
+    hiveProfileService.getCityFromStore(userProfile);
+    hiveProfileService.getYearAimsFromStore(userProfile);
+    hiveProfileService.getLifeAimsFromStore(userProfile);
+    hiveProfileService.getAimActionsFromStore(userProfile);
+    // hiveProfileService.profile.clear();
+    // hiveProfileService.yearAims.clear();
+    // hiveProfileService.lifeAims.clear();
     super.onInit();
   }
 
   @override
   void onClose() {
-    hiveService.textEditingController.dispose();
+    hiveProfileService.textEditingController.dispose();
     super.onClose();
   }
 }

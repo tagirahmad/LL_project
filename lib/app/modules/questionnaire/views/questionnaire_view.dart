@@ -68,7 +68,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                   title: 'Имя',
                                   hintText: 'Введите Ваше имя',
                                   questionnaireType: QuestionnaireType.name,
-                                  onTapSave: p.hiveService.putName);
+                                  onTapSave: p.hiveProfileService.putName);
                             });
                       },
                       trailing: RoundButton(
@@ -81,7 +81,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                     title: 'Имя',
                                     hintText: 'Введите Ваше имя',
                                     questionnaireType: QuestionnaireType.name,
-                                    onTapSave: p.hiveService.putName);
+                                    onTapSave: p.hiveProfileService.putName);
                               });
                         },
                         iconPath: 'assets/images/dots.svg',
@@ -103,7 +103,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                   title: 'Возраст',
                                   hintText: 'Введите Ваш возраст',
                                   questionnaireType: QuestionnaireType.age,
-                                  onTapSave: p.hiveService.putAge);
+                                  onTapSave: p.hiveProfileService.putAge);
                             });
                       },
                       trailing: RoundButton(
@@ -116,7 +116,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                     title: 'Возраст',
                                     hintText: 'Введите Ваш возраст',
                                     questionnaireType: QuestionnaireType.age,
-                                    onTapSave: p.hiveService.putAge);
+                                    onTapSave: p.hiveProfileService.putAge);
                               });
                         },
                         iconPath: 'assets/images/dots.svg',
@@ -136,7 +136,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                   title: 'Город',
                                   hintText: 'Введите Ваш город',
                                   questionnaireType: QuestionnaireType.city,
-                                  onTapSave: p.hiveService.putCity);
+                                  onTapSave: p.hiveProfileService.putCity);
                             });
                       },
                       trailing: RoundButton(
@@ -149,7 +149,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                     title: 'Город',
                                     hintText: 'Введите Ваш город',
                                     questionnaireType: QuestionnaireType.city,
-                                    onTapSave: p.hiveService.putCity);
+                                    onTapSave: p.hiveProfileService.putCity);
                               });
                         },
                         iconPath: 'assets/images/dots.svg',
@@ -171,7 +171,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                 title: 'Цель',
                                 hintText: 'Ваша Цель',
                                 questionnaireType: QuestionnaireType.yearAim,
-                                onTapSave: p.hiveService.putYearAim);
+                                onTapSave: p.hiveProfileService.putYearAim);
                           });
                     },
                     items: const <Widget>[],
@@ -185,8 +185,8 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                 hintText: 'Ваша цель',
                                 questionnaireType: QuestionnaireType.yearAim,
                                 index: index,
-                                onUpdate: p.hiveService.updateYearAim,
-                                onDelete: p.hiveService.removeYearAimFromStore);
+                                onUpdate: p.hiveProfileService.updateYearAim,
+                                onDelete: p.hiveProfileService.removeYearAimFromStore);
                           });
                     },
                   ),
@@ -205,7 +205,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                 title: 'Цель',
                                 hintText: 'Ваша Цель',
                                 questionnaireType: QuestionnaireType.lifeAim,
-                                onTapSave: p.hiveService.putLifeAim);
+                                onTapSave: p.hiveProfileService.putLifeAim);
                           });
                     },
                     items: const <Widget>[],
@@ -219,8 +219,8 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                 hintText: 'Ваша цель',
                                 questionnaireType: QuestionnaireType.lifeAim,
                                 index: index,
-                                onUpdate: p.hiveService.updateLifeAim,
-                                onDelete: p.hiveService.removeLifeAimFromStore);
+                                onUpdate: p.hiveProfileService.updateLifeAim,
+                                onDelete: p.hiveProfileService.removeLifeAimFromStore);
                           });
                     },
                   ),
@@ -239,7 +239,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                 title: 'Действие',
                                 hintText: 'Действи для достижения целей',
                                 questionnaireType: QuestionnaireType.actions,
-                                onTapSave: p.hiveService.putAimAction);
+                                onTapSave: p.hiveProfileService.putAimAction);
                           });
                     },
                     items: const <Widget>[],
@@ -253,9 +253,9 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                                 hintText: 'Действи для достижения целей',
                                 questionnaireType: QuestionnaireType.actions,
                                 index: index,
-                                onUpdate: p.hiveService.updateAimAction,
+                                onUpdate: p.hiveProfileService.updateAimAction,
                                 onDelete:
-                                    p.hiveService.removeAimActionFromStore);
+                                    p.hiveProfileService.removeAimActionFromStore);
                           });
                     },
                   ),

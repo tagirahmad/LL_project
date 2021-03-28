@@ -1,5 +1,4 @@
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/aim.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/profile.dart';
 
 abstract class ProfileRepository {

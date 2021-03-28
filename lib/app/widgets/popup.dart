@@ -67,7 +67,7 @@ class Popup extends StatelessWidget {
     return AlertDialog(
       title: Text(title),
       content: TextField(
-        controller: ProfileController.to.hiveService.textEditingController
+        controller: ProfileController.to.hiveProfileService.textEditingController
           ..text = showInitialText(questionnaireType).toString(),
         decoration: InputDecoration(hintText: hintText),
         keyboardType: questionnaireType == QuestionnaireType.age
@@ -78,26 +78,26 @@ class Popup extends StatelessWidget {
         TextButton(
           onPressed: () {
             if (ProfileController
-                        .to.hiveService.textEditingController.value.text !=
+                        .to.hiveProfileService.textEditingController.value.text !=
                     null &&
                 ProfileController
-                        .to.hiveService.textEditingController.value.text !=
+                        .to.hiveProfileService.textEditingController.value.text !=
                     '') {
               if (index != null) {
                 onUpdate!(
                     ProfileController
-                        .to.hiveService.textEditingController.value.text,
+                        .to.hiveProfileService.textEditingController.value.text,
                     ProfileController.to.userProfile,
                     index!);
               } else {
                 onTapSave!(
                     ProfileController
-                        .to.hiveService.textEditingController.value.text,
+                        .to.hiveProfileService.textEditingController.value.text,
                     ProfileController.to.userProfile);
               }
               ProfileController.to.update();
               Navigator.of(context).pop();
-              ProfileController.to.hiveService.textEditingController.clear();
+              ProfileController.to.hiveProfileService.textEditingController.clear();
             }
           },
           child: const Text('Сохранить'),
@@ -108,15 +108,15 @@ class Popup extends StatelessWidget {
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.red)),
             onPressed: () {
               if (ProfileController
-                          .to.hiveService.textEditingController.value.text !=
+                          .to.hiveProfileService.textEditingController.value.text !=
                       null &&
                   ProfileController
-                          .to.hiveService.textEditingController.value.text !=
+                          .to.hiveProfileService.textEditingController.value.text !=
                       '') {
                 onDelete!(ProfileController.to.userProfile, index!);
                 ProfileController.to.update();
                 Navigator.of(context).pop();
-                ProfileController.to.hiveService.textEditingController.clear();
+                ProfileController.to.hiveProfileService.textEditingController.clear();
               }
             },
             child: const Text('Удалить'),
