@@ -6,7 +6,6 @@ import 'package:l_l_app/app/modules/questionnaire/models/aim.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/aim_action.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/life_aim.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/profile.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/profile_hive.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/year_aim.dart';
 import 'package:l_l_app/app/repositories/profile_repository.dart';
 
@@ -16,7 +15,6 @@ class HiveService implements ProfileRepository {
   final Box<dynamic> yearAims = Hive.box<dynamic>('yearAims');
   final Box<dynamic> lifeAims = Hive.box<dynamic>('lifeAims');
   final Box<dynamic> aimActions = Hive.box<dynamic>('aimActions');
-  final Box<ProfileHive> profile1 = Hive.box<ProfileHive>('profile1');
 
   @override
   void getAgeFromStore(Rx<Profile> userProfile) {
