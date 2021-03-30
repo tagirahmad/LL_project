@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:l_l_app/app/constants/dimensions.dart';
+import 'package:l_l_app/app/modules/finace/controllers/finance_controller.dart';
 import 'package:l_l_app/app/widgets/round_button.dart';
 
 class CardButton extends StatelessWidget {
@@ -7,12 +9,14 @@ class CardButton extends StatelessWidget {
       {Key? key,
       required this.color,
       required this.onPress,
-      required this.title})
+      required this.title,
+      required this.showSubtitle})
       : super(key: key);
 
   final Color color;
   final Function() onPress;
   final String title;
+  final String Function() showSubtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +45,13 @@ class CardButton extends StatelessWidget {
                           .copyWith(color: Colors.white),
                     ),
                     const SizedBox(height: Dimensions.SIDE_INDENT),
-                    Text(
-                      '        .руб',
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle1!
-                          .copyWith(color: Colors.white),
-                    ),
+                    Obx(() => Text(
+                          '${showSubtitle()} руб.',
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle1!
+                              .copyWith(color: Colors.white),
+                        )),
                     const SizedBox(height: Dimensions.SIDE_INDENT),
                   ],
                 )),

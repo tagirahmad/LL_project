@@ -1,6 +1,6 @@
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:l_l_app/app/modules/finace/model/finance.dart';
-import 'package:l_l_app/app/modules/finace/model/finance_hive.dart';
+// import 'package:l_l_app/app/modules/finace/model/finance_hive.dart';
 import 'package:l_l_app/app/modules/finace/model/income.dart';
 
 abstract class FinanceRepository {
@@ -16,6 +16,6 @@ abstract class FinanceRepository {
   // Future<void> putFund(String value, Rx<Finance> finance);
   // void getFundFromStore(Rx<Finance> finance);
 
-  Future<void> putFinance(Finance value, Rx<Finance> finance);
-  void getFinanceFromStore(Rx<Finance> finance);
+  Future<void> putFinance(Finance value);
+  Finance? getFinanceFromStore();
 }

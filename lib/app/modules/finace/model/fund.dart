@@ -1,5 +1,11 @@
-class Fund {
-  const Fund({required this.percents});
+import 'package:hive/hive.dart';
 
-  final int percents;
+part 'fund.g.dart';
+
+@HiveType(typeId: 7)
+class Fund {
+  Fund({this.percents = 10});
+
+  @HiveField(0)
+  int? percents;
 }
