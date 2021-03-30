@@ -5,7 +5,12 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.income != null &&
         controller.finance.value!.income!.wifeIncome != null) {
-      return controller.finance.value!.income!.wifeIncome.toString();
+      var sum = controller.finance.value!.income!.wifeIncome;
+      if (sum != 0) {
+        return sum.toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -15,7 +20,12 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.income != null &&
         controller.finance.value!.income!.husbandIncome != null) {
-      return controller.finance.value!.income!.husbandIncome.toString();
+      var sum = controller.finance.value!.income!.husbandIncome;
+      if (sum != 0) {
+        return sum.toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -25,7 +35,12 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.income != null &&
         controller.finance.value!.income!.additionalIncome != null) {
-      return controller.finance.value!.income!.additionalIncome.toString();
+      var sum = controller.finance.value!.income!.additionalIncome;
+      if (sum != 0) {
+        return sum.toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -35,7 +50,12 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.additionalPayments != null) {
-      return controller.finance.value!.expenses!.additionalPayments.toString();
+      var sum = controller.finance.value!.expenses!.additionalPayments;
+      if (sum != 0) {
+        return sum.toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -45,7 +65,12 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.entertainment != null) {
-      return controller.finance.value!.expenses!.entertainment.toString();
+      var sum = controller.finance.value!.expenses!.entertainment;
+      if (sum != 0) {
+        return sum.toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -55,7 +80,12 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.income != null &&
         controller.finance.value!.income!.additionalIncome != null) {
-      return controller.finance.value!.income!.additionalIncome.toString();
+      var sum = controller.finance.value!.income!.additionalIncome;
+      if (sum != 0) {
+        return sum.toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -65,7 +95,12 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.foodOut != null) {
-      return controller.finance.value!.expenses!.foodOut.toString();
+      var sum = controller.finance.value!.expenses!.foodOut;
+      if (sum != 0) {
+        return sum.toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -75,7 +110,12 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.housing != null) {
-      return controller.finance.value!.expenses!.housing.toString();
+      var sum = controller.finance.value!.expenses!.housing;
+      if (sum != 0) {
+        return controller.finance.value!.expenses!.housing.toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -85,7 +125,12 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.services != null) {
-      return controller.finance.value!.expenses!.services.toString();
+      var sum = controller.finance.value!.expenses!.services;
+      if (sum != 0) {
+        return controller.finance.value!.expenses!.services.toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -95,7 +140,12 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.transport != null) {
-      return controller.finance.value!.expenses!.transport.toString();
+      var sum = controller.finance.value!.expenses!.transport;
+      if (sum != 0) {
+        return controller.finance.value!.expenses!.transport.toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
@@ -105,7 +155,13 @@ class TextEditingControllerHelper {
       FinanceController controller) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.unexpectedExpenses != null) {
-      return controller.finance.value!.expenses!.unexpectedExpenses.toString();
+      var sum = controller.finance.value!.expenses!.unexpectedExpenses;
+      if (sum != 0) {
+        return controller.finance.value!.expenses!.unexpectedExpenses
+            .toString();
+      } else {
+        return '';
+      }
     } else {
       return '';
     }
