@@ -6,6 +6,7 @@ import 'package:l_l_app/app/constants/colors.dart';
 import 'package:l_l_app/app/modules/finace/model/expenses.dart';
 import 'package:l_l_app/app/modules/finace/model/fund.dart';
 import 'package:l_l_app/app/modules/finace/model/income.dart';
+import 'package:l_l_app/app/modules/finace/model/pocket.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/action.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/profile_hive.dart';
 
@@ -25,6 +26,7 @@ void main() async {
   Hive.registerAdapter<Income>(IncomeAdapter());
   Hive.registerAdapter<Fund>(FundAdapter());
   Hive.registerAdapter<Expenses>(ExpensesAdapter());
+  Hive.registerAdapter<PocketMoney>(PocketMoneyAdapter());
   await Hive.openBox<dynamic>('profile');
   await Hive.openBox<dynamic>('yearAims');
   await Hive.openBox<dynamic>('lifeAims');

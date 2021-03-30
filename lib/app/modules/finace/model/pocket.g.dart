@@ -1,43 +1,32 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'finance.dart';
+part of 'pocket.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class FinanceAdapter extends TypeAdapter<Finance> {
+class PocketMoneyAdapter extends TypeAdapter<PocketMoney> {
   @override
-  final int typeId = 5;
+  final int typeId = 9;
 
   @override
-  Finance read(BinaryReader reader) {
+  PocketMoney read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Finance(
-      dream: fields[2] as Dream?,
-      income: fields[0] as Income?,
-      expenses: fields[1] as Expenses?,
-      fund: fields[3] as Fund?,
-    )..pocketMoney = fields[4] as PocketMoney?;
+    return PocketMoney(
+      money: fields[0] as int?,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, Finance obj) {
+  void write(BinaryWriter writer, PocketMoney obj) {
     writer
-      ..writeByte(5)
-      ..writeByte(0)
-      ..write(obj.income)
       ..writeByte(1)
-      ..write(obj.expenses)
-      ..writeByte(2)
-      ..write(obj.dream)
-      ..writeByte(3)
-      ..write(obj.fund)
-      ..writeByte(4)
-      ..write(obj.pocketMoney);
+      ..writeByte(0)
+      ..write(obj.money);
   }
 
   @override
@@ -46,7 +35,7 @@ class FinanceAdapter extends TypeAdapter<Finance> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is FinanceAdapter &&
+      other is PocketMoneyAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

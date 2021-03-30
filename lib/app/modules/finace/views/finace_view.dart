@@ -13,12 +13,21 @@ import '../controllers/finance_controller.dart';
 class FinanceView extends GetView<FinanceController> {
   const FinanceView({Key? key}) : super(key: key);
 
-  String _showDropdownButtonValue(FinanceController controller) {
+  String _showFundDropdownButtonValue(FinanceController controller) {
     if (controller.finance.value!.fund != null &&
         controller.finance.value!.fund!.percents != null) {
       return controller.finance.value!.fund!.percents.toString() + '%';
     } else {
       return '10%';
+    }
+  }
+
+  String _showPocketDropdownButtonValue(FinanceController controller) {
+    if (controller.finance.value!.pocketMoney != null &&
+        controller.finance.value!.pocketMoney!.money != null) {
+      return controller.finance.value!.pocketMoney!.money.toString();
+    } else {
+      return '500';
     }
   }
 
@@ -172,8 +181,9 @@ class FinanceView extends GetView<FinanceController> {
                                         GetBuilder<FinanceController>(
                                           builder: (_) {
                                             return DropdownButton<String>(
-                                              value: _showDropdownButtonValue(
-                                                  controller),
+                                              value:
+                                                  _showFundDropdownButtonValue(
+                                                      controller),
                                               iconEnabledColor: Colors.white,
                                               iconSize: 24,
                                               elevation: 16,
@@ -220,10 +230,67 @@ class FinanceView extends GetView<FinanceController> {
                         ),
                         CardButton(
                           showSubtitle: () =>
-                              SumHelper.showSumIncomeFromController(controller),
+                              _showPocketDropdownButtonValue(controller),
                           color: AppColors.CYAN,
                           title: 'На карман',
-                          onPress: () {},
+                          onPress: () {
+                            showDialog<Widget>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return FinancePopup(
+                                    title: 'На карман',
+                                    backgroundColor: AppColors.CYAN,
+                                    content: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        GetBuilder<FinanceController>(
+                                          builder: (_) {
+                                            return DropdownButton<String>(
+                                              value:
+                                                  _showPocketDropdownButtonValue(
+                                                      controller),
+                                              iconEnabledColor: Colors.white,
+                                              iconSize: 24,
+                                              elevation: 16,
+                                              dropdownColor: AppColors.CYAN,
+                                              style: const TextStyle(
+                                                  color: Colors.white),
+                                              underline: Container(
+                                                height: 2,
+                                                color: Colors.white,
+                                              ),
+                                              onChanged: (String? newValue) {
+                                                controller.changePocketMoney(
+                                                    newValue!);
+                                              },
+                                              items: <String>[
+                                                '500',
+                                                '1000',
+                                                '2000'
+                                              ].map<DropdownMenuItem<String>>(
+                                                  (String value) {
+                                                return DropdownMenuItem<String>(
+                                                  value: value,
+                                                  child: Text(value),
+                                                );
+                                              }).toList(),
+                                            );
+                                          },
+                                        ),
+                                        Text(
+                                          'Всегда носи в своей сумке, кошельке 500/ 1000/ 2000/ или 5000 рублей. Но старайся их не тратить. Изредка покупай на них немного приятного себе - что стоит не дорого, но принесет  тебе радость. Конечно это должно быть безвредно. Это позволит тебе чувствовать себя увереннее, а еще эко- номнее - ведь ты не тратишь деньги впустую.',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle1!
+                                              .copyWith(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                });
+                          },
                         )
                       ],
                     ),
@@ -436,7 +503,7 @@ class FinanceView extends GetView<FinanceController> {
                           },
                         )
                       ],
-                    )
+                    ),
                   ]);
                 }))));
   }

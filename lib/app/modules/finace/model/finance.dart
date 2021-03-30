@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:l_l_app/app/modules/finace/model/pocket.dart';
 
 import 'dream.dart';
 import 'expenses.dart';
@@ -19,6 +20,9 @@ class Finance {
   Dream? dream;
   @HiveField(3)
   Fund? fund;
+
+  @HiveField(4)
+  PocketMoney? pocketMoney;
 
   // set income(Income? income) => this.income = income;
 }

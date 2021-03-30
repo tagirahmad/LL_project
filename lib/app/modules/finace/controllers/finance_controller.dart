@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:l_l_app/app/modules/finace/model/finance.dart';
 import 'package:l_l_app/app/modules/finace/model/fund.dart';
+import 'package:l_l_app/app/modules/finace/model/pocket.dart';
 import 'package:l_l_app/app/services/hive_finance_service.dart';
 
 class FinanceController extends GetxController {
@@ -84,6 +85,17 @@ class FinanceController extends GetxController {
 
     var finance = getFinance();
     finance.fund = fund;
+
+    setToFinance(hiveFinanceService, finance);
+    update();
+  }
+
+  void changePocketMoney(String value) {
+    var pocket = PocketMoney(money: int.parse(value));
+    this.finance.value!.pocketMoney = pocket;
+
+    var finance = getFinance();
+    finance.pocketMoney = pocket;
 
     setToFinance(hiveFinanceService, finance);
     update();
