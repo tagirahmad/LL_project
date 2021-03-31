@@ -1,47 +1,47 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'finance.dart';
+part of 'bank.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class FinanceAdapter extends TypeAdapter<Finance> {
+class BankAdapter extends TypeAdapter<Bank> {
   @override
-  final int typeId = 5;
+  final int typeId = 10;
 
   @override
-  Finance read(BinaryReader reader) {
+  Bank read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Finance(
-      dream: fields[2] as Dream?,
-      income: fields[0] as Income?,
-      expenses: fields[1] as Expenses?,
-      fund: fields[3] as Fund?,
-    )
-      ..pocketMoney = fields[4] as PocketMoney?
-      ..banks = (fields[5] as List?)?.cast<Bank>();
+    return Bank(
+      name: fields[0] as String,
+      balanceLessPayments: fields[2] as double,
+      totalDebt: fields[1] as double,
+      monthlyPaymentAmount: fields[3] as double,
+      paymentDate: fields[4] as DateTime?,
+      plusTomonthlyPaymentAmount: fields[5] as double,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, Finance obj) {
+  void write(BinaryWriter writer, Bank obj) {
     writer
       ..writeByte(6)
       ..writeByte(0)
-      ..write(obj.income)
+      ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.expenses)
+      ..write(obj.totalDebt)
       ..writeByte(2)
-      ..write(obj.dream)
+      ..write(obj.balanceLessPayments)
       ..writeByte(3)
-      ..write(obj.fund)
+      ..write(obj.monthlyPaymentAmount)
       ..writeByte(4)
-      ..write(obj.pocketMoney)
+      ..write(obj.paymentDate)
       ..writeByte(5)
-      ..write(obj.banks);
+      ..write(obj.plusTomonthlyPaymentAmount);
   }
 
   @override
@@ -50,7 +50,7 @@ class FinanceAdapter extends TypeAdapter<Finance> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is FinanceAdapter &&
+      other is BankAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

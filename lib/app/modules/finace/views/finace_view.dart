@@ -5,8 +5,10 @@ import 'package:l_l_app/app/constants/dimensions.dart';
 import 'package:l_l_app/app/modules/finace/helpers/on_text_changed_helper.dart';
 import 'package:l_l_app/app/modules/finace/helpers/sum_helper.dart';
 import 'package:l_l_app/app/modules/finace/helpers/text_editing_controller_helper.dart';
+import 'package:l_l_app/app/widgets/bank_card.dart';
 import 'package:l_l_app/app/widgets/card_button.dart';
 import 'package:l_l_app/app/widgets/finance_popup.dart';
+import 'package:l_l_app/app/widgets/round_button.dart';
 
 import '../controllers/finance_controller.dart';
 
@@ -504,6 +506,30 @@ class FinanceView extends GetView<FinanceController> {
                         )
                       ],
                     ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   children: [
+                    //     Text('1. ' + 'Банк наименование'),
+                    // RoundButton(
+                    //   onPressed: () {},
+                    //   iconPath: 'assets/images/dots.svg',
+                    //   color: AppColors.LIGHT_PURPLE,
+                    //   hasBorder: true,
+                    // )
+                    //   ],
+                    // )
+                    const BankCard(name: '1. ' 'Банк наименование'),
+                    // ListView.builder(
+                    //   physics: const NeverScrollableScrollPhysics(),
+                    //   itemBuilder: (BuildContext context, int length) {
+
+                    //   },
+                    // ),
+                    RoundButton(
+                        onPressed: () {},
+                        iconPath: 'assets/images/plus.svg',
+                        color: AppColors.LIGHT_PURPLE)
                   ]);
                 }))));
   }
