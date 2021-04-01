@@ -1,4 +1,5 @@
 import 'package:l_l_app/app/modules/finace/controllers/finance_controller.dart';
+import 'package:l_l_app/app/modules/finace/model/bank.dart';
 import 'package:l_l_app/app/modules/finace/model/expenses.dart';
 import 'package:l_l_app/app/modules/finace/model/income.dart';
 
@@ -117,6 +118,82 @@ class OnTextChangedHelper {
 
     finance.expenses ??= Expenses(unexpectedExpenses: 0);
     finance.expenses!.unexpectedExpenses = int.tryParse(text) ?? 0;
+
+    FinanceController.to
+        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+  }
+
+  static void onChangedBankName(String text, FinanceController controller,
+      {int? index}) {
+    var finance = controller.getFinance();
+
+    finance.banks ??= <Bank>[Bank(name: text)];
+    if (index != null) {
+      finance.banks![index].name = text;
+    }
+
+    FinanceController.to
+        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+  }
+
+  static void onChangedBalanceLessPayments(
+      String text, FinanceController controller,
+      {int? index}) {
+    var finance = controller.getFinance();
+
+    var parsedText = double.tryParse(text) ?? 0;
+
+    finance.banks ??= <Bank>[Bank(balanceLessPayments: parsedText)];
+    if (index != null) {
+      finance.banks![index].balanceLessPayments = parsedText;
+    }
+
+    FinanceController.to
+        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+  }
+
+  static void onChangedTotalDebt(String text, FinanceController controller,
+      {int? index}) {
+    var finance = controller.getFinance();
+
+    var parsedText = double.tryParse(text) ?? 0;
+
+    finance.banks ??= <Bank>[Bank(totalDebt: parsedText)];
+    if (index != null) {
+      finance.banks![index].totalDebt = parsedText;
+    }
+
+    FinanceController.to
+        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+  }
+
+  static void onChangedMonthlyPaymentAmount(
+      String text, FinanceController controller,
+      {int? index}) {
+    var finance = controller.getFinance();
+
+    var parsedText = double.tryParse(text) ?? 0;
+
+    finance.banks ??= <Bank>[Bank(monthlyPaymentAmount: parsedText)];
+    if (index != null) {
+      finance.banks![index].monthlyPaymentAmount = parsedText;
+    }
+
+    FinanceController.to
+        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+  }
+
+  static void onChangedPlusToMonthlyPaymentAmountt(
+      String text, FinanceController controller,
+      {int? index}) {
+    var finance = controller.getFinance();
+
+    var parsedText = double.tryParse(text) ?? 0;
+
+    finance.banks ??= <Bank>[Bank(plusToMonthlyPaymentAmount: parsedText)];
+    if (index != null) {
+      finance.banks![index].plusToMonthlyPaymentAmount = parsedText;
+    }
 
     FinanceController.to
         .setToFinance(FinanceController.to.hiveFinanceService, finance);

@@ -22,7 +22,7 @@ class BankAdapter extends TypeAdapter<Bank> {
       totalDebt: fields[1] as double,
       monthlyPaymentAmount: fields[3] as double,
       paymentDate: fields[4] as DateTime?,
-      plusTomonthlyPaymentAmount: fields[5] as double,
+      plusToMonthlyPaymentAmount: fields[5] as double,
     );
   }
 
@@ -41,7 +41,7 @@ class BankAdapter extends TypeAdapter<Bank> {
       ..writeByte(4)
       ..write(obj.paymentDate)
       ..writeByte(5)
-      ..write(obj.plusTomonthlyPaymentAmount);
+      ..write(obj.plusToMonthlyPaymentAmount);
   }
 
   @override

@@ -166,4 +166,93 @@ class TextEditingControllerHelper {
       return '';
     }
   }
+
+  static String showBankNameToTextEditingController(
+      FinanceController controller,
+      {int? index}) {
+    if (controller.finance.value!.banks != null &&
+        index != null &&
+        controller.finance.value!.banks![index].name != null) {
+      var name = controller.finance.value!.banks![index].name;
+
+      return name;
+    } else {
+      return '';
+    }
+  }
+
+  static String showBalanceLessPaymentsToTextEditingController(
+      FinanceController controller,
+      {int? index}) {
+    if (controller.finance.value!.banks != null &&
+        index != null &&
+        controller.finance.value!.banks![index].balanceLessPayments != null) {
+      var balance = controller.finance.value!.banks![index].balanceLessPayments;
+
+      if (balance != 0) {
+        return balance.toString();
+      } else {
+        return '';
+      }
+    } else {
+      return '';
+    }
+  }
+
+  static String showTotalDebtToTextEditingController(
+      FinanceController controller,
+      {int? index}) {
+    if (controller.finance.value!.banks != null &&
+        index != null &&
+        controller.finance.value!.banks![index].totalDebt != null) {
+      var totalDebt = controller.finance.value!.banks![index].totalDebt;
+
+      if (totalDebt != 0) {
+        return totalDebt.toString();
+      } else {
+        return '';
+      }
+    } else {
+      return '';
+    }
+  }
+
+  static String showMonthlyPaymentAmountToTextEditingController(
+      FinanceController controller,
+      {int? index}) {
+    if (controller.finance.value!.banks != null &&
+        index != null &&
+        controller.finance.value!.banks![index].monthlyPaymentAmount != null) {
+      var monthlyPaymentAmount =
+          controller.finance.value!.banks![index].monthlyPaymentAmount;
+
+      if (monthlyPaymentAmount != 0) {
+        return monthlyPaymentAmount.toString();
+      } else {
+        return '';
+      }
+    } else {
+      return '';
+    }
+  }
+
+  static String showPlusToMonthlyPaymentAmountToTextEditingController(
+      FinanceController controller,
+      {int? index}) {
+    if (controller.finance.value!.banks != null &&
+        index != null &&
+        controller.finance.value!.banks![index].plusToMonthlyPaymentAmount !=
+            null) {
+      var plusToMonthlyPaymentAmount =
+          controller.finance.value!.banks![index].plusToMonthlyPaymentAmount;
+
+      if (plusToMonthlyPaymentAmount != 0) {
+        return plusToMonthlyPaymentAmount.toString();
+      } else {
+        return '';
+      }
+    } else {
+      return '';
+    }
+  }
 }

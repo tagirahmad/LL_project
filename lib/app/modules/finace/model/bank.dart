@@ -10,7 +10,7 @@ class Bank {
       this.totalDebt = 0,
       this.monthlyPaymentAmount = 0,
       this.paymentDate,
-      this.plusTomonthlyPaymentAmount = 0});
+      this.plusToMonthlyPaymentAmount = 0});
 
   @HiveField(0)
   String name;
@@ -23,5 +23,5 @@ class Bank {
   @HiveField(4)
   DateTime? paymentDate;
   @HiveField(5)
-  double plusTomonthlyPaymentAmount;
+  double plusToMonthlyPaymentAmount;
 }

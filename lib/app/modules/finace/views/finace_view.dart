@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:l_l_app/app/constants/colors.dart';
 import 'package:l_l_app/app/constants/dimensions.dart';
+import 'package:l_l_app/app/modules/finace/helpers/clear_controllers.dart';
 import 'package:l_l_app/app/modules/finace/helpers/on_text_changed_helper.dart';
 import 'package:l_l_app/app/modules/finace/helpers/sum_helper.dart';
 import 'package:l_l_app/app/modules/finace/helpers/text_editing_controller_helper.dart';
@@ -506,31 +507,488 @@ class FinanceView extends GetView<FinanceController> {
                         )
                       ],
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    // Column(
                     //   children: [
-                    //     Text('1. ' + 'Банк наименование'),
-                    // RoundButton(
-                    //   onPressed: () {},
-                    //   iconPath: 'assets/images/dots.svg',
-                    //   color: AppColors.LIGHT_PURPLE,
-                    //   hasBorder: true,
-                    // )
-                    //   ],
-                    // )
-                    const BankCard(name: '1. ' 'Банк наименование'),
-                    // ListView.builder(
-                    //   physics: const NeverScrollableScrollPhysics(),
-                    //   itemBuilder: (BuildContext context, int length) {
-
-                    //   },
+                    //     ],
                     // ),
+                    const SizedBox(
+                      height: Dimensions.ITEM_INDENT,
+                    ),
+                    Text(
+                      'Добавить банк/долг',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: Dimensions.ITEM_INDENT,
+                    ),
+                    if (controller.finance.value!.banks != null)
+                      ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: controller.finance.value!.banks!.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return BankCard(
+                            name: '${index + 1}. '
+                                '${controller.finance.value!.banks![index].name}',
+                            onTap: () {
+                              showDialog<Widget>(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return FinancePopup(
+                                          backgroundColor:
+                                              AppColors.LIGHT_PURPLE,
+                                          title: '${index + 1}. '
+                                              '${controller.finance.value!.banks![index].name}',
+                                          actions: <Widget>[
+                                            TextButton(
+                                              style: ButtonStyle(
+                                                  foregroundColor:
+                                                      MaterialStateProperty.all<
+                                                          Color>(Colors.red)),
+                                              onPressed: () {
+                                                controller
+                                                    .removeBankFromStore(index);
+                                                ClearTextEditingControllers
+                                                    .clearBankTextEditingControllers(
+                                                        controller);
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text('Удалить'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              style: ButtonStyle(
+                                                  overlayColor:
+                                                      MaterialStateProperty
+                                                          .all<Color>(AppColors
+                                                              .LIGHT_BLUE)),
+                                              child: const Text('Закрыть',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                            ),
+                                          ],
+                                          content: SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                TextField(
+                                                  controller: FinanceController
+                                                      .to.bankName
+                                                    ..text =
+                                                        TextEditingControllerHelper
+                                                            .showBankNameToTextEditingController(
+                                                                controller,
+                                                                index: index),
+                                                  keyboardType:
+                                                      TextInputType.text,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                  autofocus: true,
+                                                  decoration:
+                                                      const InputDecoration(
+                                                          labelText:
+                                                              'Банк/долг',
+                                                          hintText:
+                                                              'Наименование',
+                                                          hintStyle: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                          labelStyle: TextStyle(
+                                                              color: Colors
+                                                                  .white)),
+                                                  onChanged: (String text) =>
+                                                      OnTextChangedHelper
+                                                          .onChangedBankName(
+                                                              text, controller,
+                                                              index: index),
+                                                ),
+                                                TextField(
+                                                  controller: FinanceController
+                                                      .to.totalDebt
+                                                    ..text =
+                                                        TextEditingControllerHelper
+                                                            .showTotalDebtToTextEditingController(
+                                                                controller,
+                                                                index: index),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                  decoration: const InputDecoration(
+                                                      labelText:
+                                                          'Общая сумма задолжности',
+                                                      hintText: 'руб',
+                                                      hintStyle: TextStyle(
+                                                          color: Colors.white),
+                                                      labelStyle: TextStyle(
+                                                          color: Colors.white)),
+                                                  onChanged: (String text) =>
+                                                      OnTextChangedHelper
+                                                          .onChangedTotalDebt(
+                                                              text, controller,
+                                                              index: index),
+                                                ),
+                                                TextField(
+                                                  controller: FinanceController
+                                                      .to.balanceLessPayments
+                                                    ..text =
+                                                        TextEditingControllerHelper
+                                                            .showBalanceLessPaymentsToTextEditingController(
+                                                                controller,
+                                                                index: index),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                  decoration: const InputDecoration(
+                                                      labelText:
+                                                          'Остаток за вычетом платежей',
+                                                      hintText: 'руб',
+                                                      hintStyle: TextStyle(
+                                                          color: Colors.white),
+                                                      labelStyle: TextStyle(
+                                                          color: Colors.white)),
+                                                  onChanged: (String text) =>
+                                                      OnTextChangedHelper
+                                                          .onChangedBalanceLessPayments(
+                                                              text, controller,
+                                                              index: index),
+                                                ),
+                                                TextField(
+                                                  controller: FinanceController
+                                                      .to.monthlyPaymentAmount
+                                                    ..text =
+                                                        TextEditingControllerHelper
+                                                            .showMonthlyPaymentAmountToTextEditingController(
+                                                                controller,
+                                                                index: index),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                  decoration: const InputDecoration(
+                                                      labelText:
+                                                          'Сумма ежемесячного платежа',
+                                                      hintText: 'руб',
+                                                      hintStyle: TextStyle(
+                                                          color: Colors.white),
+                                                      labelStyle: TextStyle(
+                                                          color: Colors.white)),
+                                                  onChanged: (String text) =>
+                                                      OnTextChangedHelper
+                                                          .onChangedMonthlyPaymentAmount(
+                                                              text, controller,
+                                                              index: index),
+                                                ),
+                                                const SizedBox(
+                                                  height:
+                                                      Dimensions.ITEM_INDENT +
+                                                          5,
+                                                ),
+                                                Text(
+                                                  'Дата платежа',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .subtitle1!
+                                                      .copyWith(
+                                                          color: Colors.white),
+                                                ),
+                                                const SizedBox(
+                                                  height:
+                                                      Dimensions.ITEM_INDENT,
+                                                ),
+                                                ElevatedButton(
+                                                    style: ButtonStyle(
+                                                        backgroundColor:
+                                                            MaterialStateProperty
+                                                                .all<Color>(
+                                                                    AppColors
+                                                                        .LIGHT_BLUE)),
+                                                    onPressed: () =>
+                                                        _selectDate(
+                                                            context, controller,
+                                                            index: index),
+                                                    child: Obx(() => Text(
+                                                        '${controller.finance.value!.banks![index].paymentDate?.day ?? 'День'}.${controller.finance.value!.banks![index].paymentDate?.month ?? 'месяц'}.${controller.finance.value!.banks![index].paymentDate?.year ?? 'год'}'))),
+                                                const SizedBox(
+                                                  height:
+                                                      Dimensions.ITEM_INDENT,
+                                                ),
+                                                Text(
+                                                  'Вам придет оповещение за 5 дней',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .subtitle2!
+                                                      .copyWith(
+                                                          color: Colors.white,
+                                                          fontStyle:
+                                                              FontStyle.italic),
+                                                ),
+                                                TextField(
+                                                  controller: FinanceController
+                                                      .to
+                                                      .plusToMonthlyPaymentAmount
+                                                    ..text =
+                                                        TextEditingControllerHelper
+                                                            .showPlusToMonthlyPaymentAmountToTextEditingController(
+                                                                controller,
+                                                                index: index),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                  decoration: const InputDecoration(
+                                                      labelText:
+                                                          'Плюс к ежемесячному платежу',
+                                                      hintText: 'руб',
+                                                      hintStyle: TextStyle(
+                                                          color: Colors.white),
+                                                      labelStyle: TextStyle(
+                                                          color: Colors.white)),
+                                                  onChanged: (String text) =>
+                                                      OnTextChangedHelper
+                                                          .onChangedPlusToMonthlyPaymentAmountt(
+                                                              text, controller,
+                                                              index: index),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      })
+                                  .then((value) => ClearTextEditingControllers
+                                      .clearBankTextEditingControllers(
+                                          controller));
+                            },
+                          );
+                        },
+                      )
+                    else
+                      const SizedBox(),
                     RoundButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showDialog<Widget>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return FinancePopup(
+                                  backgroundColor: AppColors.LIGHT_PURPLE,
+                                  // title: '${index + 1}. '
+                                  //     '${controller.finance.value!.banks![index].name}',
+                                  title: 'Данные о банке/долге',
+                                  content: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        TextField(
+                                          controller:
+                                              FinanceController.to.bankName,
+                                          keyboardType: TextInputType.text,
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                          autofocus: true,
+                                          decoration: const InputDecoration(
+                                              labelText: 'Банк/долг',
+                                              hintText: 'Наименование',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.white),
+                                              labelStyle: TextStyle(
+                                                  color: Colors.white)),
+                                          // onChanged: (String text) =>
+                                          //     OnTextChangedHelper
+                                          //         .onChangedBankName(
+                                          //             text, controller,
+                                          //             index: index),
+                                        ),
+                                        TextField(
+                                          controller:
+                                              FinanceController.to.totalDebt,
+                                          keyboardType: TextInputType.number,
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                          decoration: const InputDecoration(
+                                              labelText:
+                                                  'Общая сумма задолжности',
+                                              hintText: 'руб',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.white),
+                                              labelStyle: TextStyle(
+                                                  color: Colors.white)),
+                                          // onChanged: (String text) =>
+                                          //     OnTextChangedHelper
+                                          //         .onChangedTotalDebt(
+                                          //             text, controller,
+                                          //             index: index),
+                                        ),
+                                        TextField(
+                                          controller: FinanceController
+                                              .to.balanceLessPayments,
+                                          keyboardType: TextInputType.number,
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                          decoration: const InputDecoration(
+                                              labelText:
+                                                  'Остаток за вычетом платежей',
+                                              hintText: 'руб',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.white),
+                                              labelStyle: TextStyle(
+                                                  color: Colors.white)),
+                                          // onChanged: (String text) =>
+                                          //     OnTextChangedHelper
+                                          //         .onChangedBalanceLessPayments(
+                                          //             text, controller,
+                                          //             index: index),
+                                        ),
+                                        TextField(
+                                          controller: FinanceController
+                                              .to.monthlyPaymentAmount,
+                                          keyboardType: TextInputType.number,
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                          decoration: const InputDecoration(
+                                              labelText:
+                                                  'Сумма ежемесячного платежа',
+                                              hintText: 'руб',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.white),
+                                              labelStyle: TextStyle(
+                                                  color: Colors.white)),
+                                          // onChanged: (String text) =>
+                                          //     OnTextChangedHelper
+                                          //         .onChangedMonthlyPaymentAmount(
+                                          //             text, controller,
+                                          //             index: index),
+                                        ),
+                                        const SizedBox(
+                                          height: Dimensions.ITEM_INDENT + 5,
+                                        ),
+                                        Text(
+                                          'Дата платежа',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle1!
+                                              .copyWith(color: Colors.white),
+                                        ),
+                                        const SizedBox(
+                                          height: Dimensions.ITEM_INDENT,
+                                        ),
+                                        ElevatedButton(
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<
+                                                            Color>(
+                                                        AppColors.LIGHT_BLUE)),
+                                            onPressed: () => _selectDate(
+                                                context, controller),
+                                            child: Obx(() => Text(
+                                                '${controller.pickedDate.value?.day ?? 'День'}.${controller.pickedDate.value?.month ?? 'месяц'}.${controller.pickedDate.value?.year ?? 'год'}'))),
+                                        TextField(
+                                          controller: FinanceController
+                                              .to.plusToMonthlyPaymentAmount,
+                                          keyboardType: TextInputType.number,
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                          decoration: const InputDecoration(
+                                              labelText:
+                                                  'Плюс к ежемесячному платежу',
+                                              hintText: 'руб',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.white),
+                                              labelStyle: TextStyle(
+                                                  color: Colors.white)),
+                                          // onChanged: (String text) =>
+                                          //     OnTextChangedHelper
+                                          //         .onChangedPlusToMonthlyPaymentAmountt(
+                                          //             text, controller,
+                                          //             index: index),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        controller.saveBank(
+                                            controller.bankName,
+                                            controller.totalDebt,
+                                            controller.balanceLessPayments,
+                                            controller.monthlyPaymentAmount,
+                                            controller
+                                                .plusToMonthlyPaymentAmount);
+
+                                        ClearTextEditingControllers
+                                            .clearBankTextEditingControllers(
+                                                controller);
+                                        Navigator.of(context).pop();
+                                      },
+                                      style: ButtonStyle(
+                                          overlayColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  AppColors.LIGHT_BLUE)),
+                                      child: const Text('Сохранить',
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      style: ButtonStyle(
+                                          overlayColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  AppColors.LIGHT_BLUE)),
+                                      child: const Text('Закрыть',
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                    ),
+                                  ],
+                                );
+                              }).then((Widget?
+                                  value) =>
+                              ClearTextEditingControllers
+                                  .clearBankTextEditingControllers(controller));
+                        },
                         iconPath: 'assets/images/plus.svg',
                         color: AppColors.LIGHT_PURPLE)
                   ]);
                 }))));
+  }
+
+  Future<void> _selectDate(BuildContext context, FinanceController controller,
+      {int? index}) async {
+    DateTime showInitialDate() {
+      if (index != null) {
+        return controller.finance.value!.banks?[index].paymentDate ??
+            DateTime.now();
+      } else {
+        return DateTime.now();
+      }
+    }
+
+    var pickedDate = await showDatePicker(
+        context: context,
+        initialDate: showInitialDate(),
+        firstDate: DateTime(2015),
+        lastDate: DateTime(2050));
+    if (pickedDate != null &&
+        pickedDate != controller.pickedDate.value &&
+        index != null) {
+      controller.changePaymentDate(pickedDate, index: index);
+      // controller.finance.value!.banks![index].paymentDate = pickedDate;
+      controller.update();
+    } else {
+      // controller.finance.value!.banks![index].paymentDate = pickedDate;
+      controller.pickedDate.value = pickedDate;
+      controller.update();
+    }
   }
 }

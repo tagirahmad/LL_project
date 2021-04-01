@@ -6,11 +6,16 @@ class FinancePopup extends StatelessWidget {
       {Key? key,
       required this.title,
       required this.content,
-      required this.backgroundColor})
+      this.backgroundColor,
+      this.actions,
+      this.titleStyle})
       : super(key: key);
+
   final String title;
+  final TextStyle? titleStyle;
   final Widget content;
-  final Color backgroundColor;
+  final Color? backgroundColor;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +23,22 @@ class FinancePopup extends StatelessWidget {
       backgroundColor: backgroundColor,
       title: Text(
         title,
-        style: const TextStyle(color: Colors.white),
+        style: titleStyle ?? const TextStyle(color: Colors.white),
       ),
       content: content,
-      actions: <Widget>[
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          style: ButtonStyle(
-              overlayColor:
-                  MaterialStateProperty.all<Color>(AppColors.LIGHT_BLUE)),
-          child: const Text('Закрыть', style: TextStyle(color: Colors.white)),
-        ),
-      ],
+      actions: actions ??
+          <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ButtonStyle(
+                  overlayColor:
+                      MaterialStateProperty.all<Color>(AppColors.LIGHT_BLUE)),
+              child: Text('Закрыть',
+                  style: titleStyle ?? const TextStyle(color: Colors.white)),
+            ),
+          ],
     );
   }
 }
