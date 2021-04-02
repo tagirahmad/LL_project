@@ -78,9 +78,9 @@ class TextEditingControllerHelper {
 
   static String showFoodExpensesToTextEditingController(
       FinanceController controller) {
-    if (controller.finance.value!.income != null &&
-        controller.finance.value!.income!.additionalIncome != null) {
-      var sum = controller.finance.value!.income!.additionalIncome;
+    if (controller.finance.value!.expenses != null &&
+        controller.finance.value!.expenses! != null) {
+      var sum = controller.finance.value!.expenses!.food;
       if (sum != 0) {
         return sum.toString();
       } else {

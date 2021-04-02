@@ -152,10 +152,20 @@ class FinanceView extends GetView<FinanceController> {
                         ),
                         CardButton(
                           showSubtitle: () =>
-                              SumHelper.showSumIncomeFromController(controller),
+                              SumHelper.showSumOfDream(controller),
                           color: AppColors.LIGHT_YELLOW,
                           title: 'На мечту',
-                          onPress: () {},
+                          onPress: () {
+                            showDialog<Widget>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return FinancePopup(
+                                      title: 'Капитал',
+                                      backgroundColor: AppColors.LIGHT_PINK,
+                                      content:  Text(
+                                          'Всю оставшуюся сумму - за вычетом всех расходов, суммы на капитал, откладывай на мечту - цель, которая прописана в блоке Главное. Мечта помогает копить - накопления помогают мечтать. Мечтай масштабнее!', style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white),));
+                                });
+                          },
                         )
                       ],
                     ),
@@ -303,10 +313,62 @@ class FinanceView extends GetView<FinanceController> {
                       children: <Widget>[
                         CardButton(
                           showSubtitle: () =>
-                              SumHelper.showSumIncomeFromController(controller),
+                              SumHelper.showSumOfDebtPayments(controller),
                           color: AppColors.LIGHT_PURPLE,
                           title: 'Платежи',
-                          onPress: () {},
+                          onPress: () {
+                            showDialog<Widget>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return FinancePopup(
+                                    title: 'Платежи',
+                                    backgroundColor: AppColors.LIGHT_PURPLE,
+                                    content: SingleChildScrollView(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Text(
+                                            'В этом блоке собраны все платежи по кредитам и долгам.',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          SizedBox(
+                                            height: Dimensions.SIDE_INDENT,
+                                          ),
+                                          Text(
+                                              'Заполни пункты - каждый долг отдельно,начиная с самого маленького долга, заканчивая самым большим, плюсом можно добавлять блоки.',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2!
+                                                  .copyWith(
+                                                      color: Colors.white)),
+                                          const SizedBox(
+                                            height: Dimensions.SIDE_INDENT,
+                                          ),
+                                          Text(
+                                              'Дополнительную сумму к платежу начни выплачивать с самого маленького долга. Затем переходи к следующему, прибавляя доплнительную сумму и сумму платежа за предыдущий кредит. Тем самым ты будешь выплачивать кредиты в разы быстрее.',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2!
+                                                  .copyWith(
+                                                      color: Colors.white)),
+                                          const SizedBox(
+                                            height: Dimensions.SIDE_INDENT,
+                                          ),
+                                          Text(
+                                              'На самом блоке Платежи будет отображаться общая сумма из блоков Сумма ежемесячного платежа плюс Плюс к ежемесячному платежу, который ввел пользователь.',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2!
+                                                  .copyWith(
+                                                      color: Colors.white))
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                });
+                          },
                         ),
                         CardButton(
                           showSubtitle: () =>
@@ -717,6 +779,7 @@ class FinanceView extends GetView<FinanceController> {
                                                             index: index),
                                                     child: Obx(() => Text(
                                                         '${controller.finance.value!.banks![index].paymentDate?.day ?? 'День'}.${controller.finance.value!.banks![index].paymentDate?.month ?? 'месяц'}.${controller.finance.value!.banks![index].paymentDate?.year ?? 'год'}'))),
+                                                // '${controller.pickedDate.value?.day ?? 'День'}.${controller.pickedDate.value?.month ?? 'месяц'}.${controller.pickedDate.value?.year ?? 'год'}'))),
                                                 const SizedBox(
                                                   height:
                                                       Dimensions.ITEM_INDENT,
@@ -923,7 +986,8 @@ class FinanceView extends GetView<FinanceController> {
                                             controller.balanceLessPayments,
                                             controller.monthlyPaymentAmount,
                                             controller
-                                                .plusToMonthlyPaymentAmount);
+                                                .plusToMonthlyPaymentAmount,
+                                            controller.pickedDate.value!);
 
                                         ClearTextEditingControllers
                                             .clearBankTextEditingControllers(
@@ -965,7 +1029,7 @@ class FinanceView extends GetView<FinanceController> {
 
   Future<void> _selectDate(BuildContext context, FinanceController controller,
       {int? index}) async {
-    DateTime showInitialDate() {
+    DateTime _showInitialDate() {
       if (index != null) {
         return controller.finance.value!.banks?[index].paymentDate ??
             DateTime.now();
@@ -976,19 +1040,17 @@ class FinanceView extends GetView<FinanceController> {
 
     var pickedDate = await showDatePicker(
         context: context,
-        initialDate: showInitialDate(),
+        initialDate: _showInitialDate(),
         firstDate: DateTime(2015),
         lastDate: DateTime(2050));
+
     if (pickedDate != null &&
         pickedDate != controller.pickedDate.value &&
         index != null) {
       controller.changePaymentDate(pickedDate, index: index);
-      // controller.finance.value!.banks![index].paymentDate = pickedDate;
-      controller.update();
+      // controller.pickedDate.value = pickedDate;
     } else {
-      // controller.finance.value!.banks![index].paymentDate = pickedDate;
       controller.pickedDate.value = pickedDate;
-      controller.update();
     }
   }
 }

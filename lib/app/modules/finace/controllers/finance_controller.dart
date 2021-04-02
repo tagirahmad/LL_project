@@ -26,13 +26,10 @@ class FinanceController extends GetxController {
   late TextEditingController totalDebt;
   late TextEditingController balanceLessPayments;
   late TextEditingController monthlyPaymentAmount;
-  late DateTime paymentDate;
   late TextEditingController plusToMonthlyPaymentAmount;
-
   Rx<DateTime> pickedDate = DateTime.now().obs;
 
   Rx<Finance> finance = Finance().obs;
-  // Rx<Fund> fundPercent = Fund().obs;
   final HiveFinanceService hiveFinanceService = HiveFinanceService();
 
   @override
@@ -53,7 +50,6 @@ class FinanceController extends GetxController {
     totalDebt = TextEditingController();
     balanceLessPayments = TextEditingController();
     monthlyPaymentAmount = TextEditingController();
-    // paymentDate = TextEditingController();
     plusToMonthlyPaymentAmount = TextEditingController();
     // hiveFinanceService.financeBox.clear();
     super.onInit();
@@ -84,6 +80,7 @@ class FinanceController extends GetxController {
     hiveFinanceService.putFinance(finance);
     this.finance.value = finance;
     update();
+    // refresh();
   }
 
   Finance getFinance() {
@@ -139,7 +136,8 @@ class FinanceController extends GetxController {
       TextEditingController totalDebt,
       TextEditingController balanceLessPayments,
       TextEditingController monthlyPaymentAmount,
-      TextEditingController plusToMonthlyPaymentAmount) {
+      TextEditingController plusToMonthlyPaymentAmount,
+      DateTime paymentDate) {
     var finance = getFinance();
 
     // if (finance.banks != null) {
@@ -154,7 +152,8 @@ class FinanceController extends GetxController {
         monthlyPaymentAmount: double.tryParse(monthlyPaymentAmount.text) ?? 0,
         plusToMonthlyPaymentAmount:
             double.tryParse(plusToMonthlyPaymentAmount.text) ?? 0,
-        totalDebt: double.tryParse(totalDebt.text) ?? 0));
+        totalDebt: double.tryParse(totalDebt.text) ?? 0,
+        paymentDate: paymentDate));
     finance.banks = banks;
     setToFinance(hiveFinanceService, finance);
   }

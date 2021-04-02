@@ -12,7 +12,12 @@ part 'finance.g.dart';
 @HiveType(typeId: 5)
 class Finance {
   Finance(
-      {this.dream, this.income, this.expenses, this.fund, List<Bank>? banks})
+      {this.dream,
+      this.income,
+      this.expenses,
+      this.fund,
+      List<Bank>? banks,
+      this.pocketMoney})
       : banks = banks ?? <Bank>[Bank()];
 
   @HiveField(0)

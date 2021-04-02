@@ -24,4 +24,6 @@ class Bank {
   DateTime? paymentDate;
   @HiveField(5)
   double plusToMonthlyPaymentAmount;
+
+  double get sum => monthlyPaymentAmount + plusToMonthlyPaymentAmount;
 }
