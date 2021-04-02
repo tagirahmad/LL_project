@@ -10,6 +10,7 @@ import 'package:l_l_app/app/modules/finace/model/income.dart';
 import 'package:l_l_app/app/modules/finace/model/pocket.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/action.dart';
 import 'package:l_l_app/app/modules/questionnaire/models/profile_hive.dart';
+import 'package:l_l_app/app/services/local_notifications.dart';
 
 import 'app/modules/finace/model/finance.dart';
 import 'app/modules/questionnaire/models/life_aim.dart';
@@ -33,8 +34,9 @@ void main() async {
   await Hive.openBox<dynamic>('yearAims');
   await Hive.openBox<dynamic>('lifeAims');
   await Hive.openBox<dynamic>('aimActions');
-  await Hive.openBox<ProfileHive>('profile2');
   await Hive.openBox<Finance>('finance');
+
+  await LocalNotifications().init();
 
   runApp(
     GetMaterialApp(

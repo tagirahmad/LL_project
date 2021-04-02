@@ -5,6 +5,8 @@ import 'package:l_l_app/app/modules/finace/model/finance.dart';
 import 'package:l_l_app/app/modules/finace/model/fund.dart';
 import 'package:l_l_app/app/modules/finace/model/pocket.dart';
 import 'package:l_l_app/app/services/hive_finance_service.dart';
+import 'package:l_l_app/app/services/local_notifications.dart';
+import 'package:l_l_app/app/services/subscription_status.dart';
 
 class FinanceController extends GetxController {
   static FinanceController get to => Get.find();
@@ -31,6 +33,7 @@ class FinanceController extends GetxController {
 
   Rx<Finance> finance = Finance().obs;
   final HiveFinanceService hiveFinanceService = HiveFinanceService();
+  RxBool subscriptionStatus = false.obs;
 
   @override
   void onInit() {
@@ -52,6 +55,7 @@ class FinanceController extends GetxController {
     monthlyPaymentAmount = TextEditingController();
     plusToMonthlyPaymentAmount = TextEditingController();
     // hiveFinanceService.financeBox.clear();
+    subscriptionStatus.value = SubscriptionStatus.subscriptionStatus();
     super.onInit();
   }
 
@@ -77,8 +81,12 @@ class FinanceController extends GetxController {
   }
 
   void setToFinance(HiveFinanceService hiveFinanceService, Finance finance) {
-    hiveFinanceService.putFinance(finance);
-    this.finance.value = finance;
+    var isPurchased = SubscriptionStatus.subscriptionStatus();
+    if (isPurchased) {
+      hiveFinanceService.putFinance(finance);
+      this.finance.value = finance;
+    }
+
     update();
     // refresh();
   }
@@ -90,8 +98,8 @@ class FinanceController extends GetxController {
       finance.value = fromStore;
       return fromStore;
     } else {
-      finance.value = Finance();
-      return Finance();
+      finance.value = Finance(fund: Fund(), pocketMoney: PocketMoney());
+      return Finance(fund: Fund(), pocketMoney: PocketMoney());
     }
   }
 
@@ -156,6 +164,12 @@ class FinanceController extends GetxController {
         paymentDate: paymentDate));
     finance.banks = banks;
     setToFinance(hiveFinanceService, finance);
+    if (subscriptionStatus.value! == true) {
+      LocalNotifications()
+          .showNotificationPeriodically(banks.length - 1,
+              'Не забудьте оплатить долг/кредит!', paymentDate)
+          .then((value) => value);
+    }
   }
 
   void removeBankFromStore(int index) {
@@ -164,6 +178,9 @@ class FinanceController extends GetxController {
     banks.removeAt(index);
     finance.banks = banks;
     setToFinance(hiveFinanceService, finance);
+    if (subscriptionStatus.value! == true) {
+      LocalNotifications().cancelNotification(index);
+    }
   }
 }
 

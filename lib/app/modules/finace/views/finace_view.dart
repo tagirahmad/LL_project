@@ -6,6 +6,7 @@ import 'package:l_l_app/app/modules/finace/helpers/clear_controllers.dart';
 import 'package:l_l_app/app/modules/finace/helpers/on_text_changed_helper.dart';
 import 'package:l_l_app/app/modules/finace/helpers/sum_helper.dart';
 import 'package:l_l_app/app/modules/finace/helpers/text_editing_controller_helper.dart';
+import 'package:l_l_app/app/services/subscription_status.dart';
 import 'package:l_l_app/app/widgets/bank_card.dart';
 import 'package:l_l_app/app/widgets/card_button.dart';
 import 'package:l_l_app/app/widgets/finance_popup.dart';
@@ -59,6 +60,20 @@ class FinanceView extends GetView<FinanceController> {
                 child: GetBuilder<FinanceController>(
                     builder: (FinanceController controller) {
                   return Column(children: <Widget>[
+                    if (!controller.subscriptionStatus.value!)
+                      Column(
+                        children: const <Widget>[
+                          Text(
+                            'В бесплатной версии данные не сохраняются, а уведомления не приходят.',
+                            style: TextStyle(fontStyle: FontStyle.italic),
+                          ),
+                          SizedBox(
+                            height: Dimensions.ITEM_INDENT,
+                          ),
+                        ],
+                      )
+                    else
+                      const SizedBox(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -162,8 +177,13 @@ class FinanceView extends GetView<FinanceController> {
                                   return FinancePopup(
                                       title: 'Капитал',
                                       backgroundColor: AppColors.LIGHT_PINK,
-                                      content:  Text(
-                                          'Всю оставшуюся сумму - за вычетом всех расходов, суммы на капитал, откладывай на мечту - цель, которая прописана в блоке Главное. Мечта помогает копить - накопления помогают мечтать. Мечтай масштабнее!', style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white),));
+                                      content: Text(
+                                        'Всю оставшуюся сумму - за вычетом всех расходов, суммы на капитал, откладывай на мечту - цель, которая прописана в блоке Главное. Мечта помогает копить - накопления помогают мечтать. Мечтай масштабнее!',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle1!
+                                            .copyWith(color: Colors.white),
+                                      ));
                                 });
                           },
                         )
