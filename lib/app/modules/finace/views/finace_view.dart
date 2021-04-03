@@ -302,7 +302,8 @@ class FinanceView extends GetView<FinanceController> {
                                               items: <String>[
                                                 '500',
                                                 '1000',
-                                                '2000'
+                                                '2000',
+                                                '5000'
                                               ].map<DropdownMenuItem<String>>(
                                                   (value) {
                                                 return DropdownMenuItem<String>(
