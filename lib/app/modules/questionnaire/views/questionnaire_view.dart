@@ -53,9 +53,15 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                     ListTile(
                       title: Text(
                         'Имя',
-                        style: Theme.of(context).textTheme.headline6!,
                       ),
-                      subtitle: Text(p.userProfile.value?.name ?? ''),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(
+                            top: Dimensions.ITEM_INDENT - 5),
+                        child: Text(
+                          p.userProfile.value?.name ?? '',
+                          style: Theme.of(context).textTheme.headline6!,
+                        ),
+                      ),
                       onTap: () {
                         showDialog<Widget>(
                             context: context,
@@ -86,11 +92,17 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                     ListTile(
                       title: Text(
                         'Возраст',
-                        style: Theme.of(context).textTheme.headline6!,
                       ),
-                      subtitle: Text((p.userProfile.value?.age != null
-                          ? p.userProfile.value?.age.toString()
-                          : '')!),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(
+                            top: Dimensions.SIDE_INDENT - 5),
+                        child: Text(
+                          (p.userProfile.value?.age != null
+                              ? p.userProfile.value?.age.toString()
+                              : '')!,
+                          style: Theme.of(context).textTheme.headline6!,
+                        ),
+                      ),
                       onTap: () {
                         showDialog<Widget>(
                             context: context,
@@ -121,9 +133,12 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                     ListTile(
                       title: Text(
                         'Город проживания',
-                        style: Theme.of(context).textTheme.headline6!,
                       ),
-                      subtitle: Text(p.userProfile.value?.city ?? ''),
+                      subtitle: Padding(
+                          padding: const EdgeInsets.only(
+                              top: Dimensions.SIDE_INDENT - 5),
+                          child: Text(p.userProfile.value?.city ?? '',
+                              style: Theme.of(context).textTheme.headline6!)),
                       onTap: () {
                         showDialog<Widget>(
                             context: context,
