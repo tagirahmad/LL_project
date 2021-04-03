@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/constants/colors.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
-import 'package:l_l_app/app/modules/questionnaire/controllers/profile_controller.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/aim.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/questionnaire_type.dart';
-import 'package:l_l_app/app/widgets/popup.dart';
-import 'package:l_l_app/app/widgets/profile_image.dart';
-import 'package:l_l_app/app/widgets/questionnaire_container.dart';
-import 'package:l_l_app/app/widgets/questionnaire_field.dart';
-import 'package:l_l_app/app/widgets/round_button.dart';
 
+import '../../../constants/colors.dart';
+import '../../../constants/dimensions.dart';
+import '../../../widgets/popup.dart';
+import '../../../widgets/profile_image.dart';
+import '../../../widgets/questionnaire_container.dart';
+import '../../../widgets/round_button.dart';
+import '../controllers/profile_controller.dart';
 import '../controllers/questionnaire_controller.dart';
+import '../models/questionnaire_type.dart';
 
 class QuestionnaireView extends GetView<QuestionnaireController> {
   const QuestionnaireView({Key? key}) : super(key: key);
@@ -21,7 +18,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
               title: Text(
@@ -39,8 +36,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(Dimensions.SIDE_INDENT),
-            child:
-                GetBuilder<ProfileController>(builder: (ProfileController p) {
+            child: GetBuilder<ProfileController>(builder: (p) {
               return Column(
                 children: <Widget>[
                   ProfileImage(
@@ -63,7 +59,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                       onTap: () {
                         showDialog<Widget>(
                             context: context,
-                            builder: (BuildContext context) {
+                            builder: (context) {
                               return Popup(
                                   title: 'Имя',
                                   hintText: 'Введите Ваше имя',
@@ -76,7 +72,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                         onPressed: () {
                           showDialog<Widget>(
                               context: context,
-                              builder: (BuildContext context) {
+                              builder: (context) {
                                 return Popup(
                                     title: 'Имя',
                                     hintText: 'Введите Ваше имя',
@@ -98,7 +94,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                       onTap: () {
                         showDialog<Widget>(
                             context: context,
-                            builder: (BuildContext context) {
+                            builder: (context) {
                               return Popup(
                                   title: 'Возраст',
                                   hintText: 'Введите Ваш возраст',
@@ -111,7 +107,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                         onPressed: () {
                           showDialog<Widget>(
                               context: context,
-                              builder: (BuildContext context) {
+                              builder: (context) {
                                 return Popup(
                                     title: 'Возраст',
                                     hintText: 'Введите Ваш возраст',
@@ -131,7 +127,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                       onTap: () {
                         showDialog<Widget>(
                             context: context,
-                            builder: (BuildContext context) {
+                            builder: (context) {
                               return Popup(
                                   title: 'Город',
                                   hintText: 'Введите Ваш город',
@@ -144,7 +140,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                         onPressed: () {
                           showDialog<Widget>(
                               context: context,
-                              builder: (BuildContext context) {
+                              builder: (context) {
                                 return Popup(
                                     title: 'Город',
                                     hintText: 'Введите Ваш город',
@@ -166,7 +162,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                     onAddPressed: () {
                       showDialog<Widget>(
                           context: context,
-                          builder: (BuildContext context) {
+                          builder: (context) {
                             return Popup(
                                 title: 'Цель',
                                 hintText: 'Ваша Цель',
@@ -176,17 +172,18 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                     },
                     items: const <Widget>[],
                     aims: p.userProfile.value!.yearAims,
-                    onFieldPressed: (int index) {
+                    onFieldPressed: (index) {
                       showDialog<Widget>(
                           context: context,
-                          builder: (BuildContext context) {
+                          builder: (context) {
                             return Popup(
                                 title: 'Цель',
                                 hintText: 'Ваша цель',
                                 questionnaireType: QuestionnaireType.yearAim,
                                 index: index,
                                 onUpdate: p.hiveProfileService.updateYearAim,
-                                onDelete: p.hiveProfileService.removeYearAimFromStore);
+                                onDelete: p
+                                    .hiveProfileService.removeYearAimFromStore);
                           });
                     },
                   ),
@@ -200,7 +197,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                     onAddPressed: () {
                       showDialog<Widget>(
                           context: context,
-                          builder: (BuildContext context) {
+                          builder: (context) {
                             return Popup(
                                 title: 'Цель',
                                 hintText: 'Ваша Цель',
@@ -210,17 +207,18 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                     },
                     items: const <Widget>[],
                     aims: p.userProfile.value!.lifeAims,
-                    onFieldPressed: (int index) {
+                    onFieldPressed: (index) {
                       showDialog<Widget>(
                           context: context,
-                          builder: (BuildContext context) {
+                          builder: (context) {
                             return Popup(
                                 title: 'Цель',
                                 hintText: 'Ваша цель',
                                 questionnaireType: QuestionnaireType.lifeAim,
                                 index: index,
                                 onUpdate: p.hiveProfileService.updateLifeAim,
-                                onDelete: p.hiveProfileService.removeLifeAimFromStore);
+                                onDelete: p
+                                    .hiveProfileService.removeLifeAimFromStore);
                           });
                     },
                   ),
@@ -234,7 +232,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                     onAddPressed: () {
                       showDialog<Widget>(
                           context: context,
-                          builder: (BuildContext context) {
+                          builder: (context) {
                             return Popup(
                                 title: 'Действие',
                                 hintText: 'Действие для достижения целей',
@@ -244,18 +242,18 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                     },
                     items: const <Widget>[],
                     aimActions: p.userProfile.value!.aimActions,
-                    onFieldPressed: (int index) {
+                    onFieldPressed: (index) {
                       showDialog<Widget>(
                           context: context,
-                          builder: (BuildContext context) {
+                          builder: (context) {
                             return Popup(
                                 title: 'Действие',
                                 hintText: 'Действие для достижения целей',
                                 questionnaireType: QuestionnaireType.actions,
                                 index: index,
                                 onUpdate: p.hiveProfileService.updateAimAction,
-                                onDelete:
-                                    p.hiveProfileService.removeAimActionFromStore);
+                                onDelete: p.hiveProfileService
+                                    .removeAimActionFromStore);
                           });
                     },
                   ),

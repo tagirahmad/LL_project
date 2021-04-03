@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/modules/finace/model/bank.dart';
-import 'package:l_l_app/app/modules/finace/model/finance.dart';
-import 'package:l_l_app/app/modules/finace/model/fund.dart';
-import 'package:l_l_app/app/modules/finace/model/pocket.dart';
-import 'package:l_l_app/app/services/hive_finance_service.dart';
-import 'package:l_l_app/app/services/local_notifications.dart';
-import 'package:l_l_app/app/services/subscription_status.dart';
+
+import '../../../services/hive_finance_service.dart';
+import '../../../services/local_notifications.dart';
+import '../../../services/subscription_status.dart';
+import '../model/bank.dart';
+import '../model/finance.dart';
+import '../model/fund.dart';
+import '../model/pocket.dart';
 
 class FinanceController extends GetxController {
   static FinanceController get to => Get.find();
@@ -94,13 +95,13 @@ class FinanceController extends GetxController {
   Finance getFinance() {
     var fromStore = hiveFinanceService.getFinanceFromStore();
 
-    if (fromStore != null) {
-      finance.value = fromStore;
-      return fromStore;
-    } else {
-      finance.value = Finance(fund: Fund(), pocketMoney: PocketMoney());
-      return Finance(fund: Fund(), pocketMoney: PocketMoney());
-    }
+    // if (fromStore != null) {
+    finance.value = fromStore;
+    return fromStore;
+    // } else {
+    //   finance.value = Finance(fund: Fund(), pocketMoney: PocketMoney());
+    //   return Finance(fund: Fund(), pocketMoney: PocketMoney());
+    // }
   }
 
   void changeFundPercent(String value) {
@@ -183,11 +184,3 @@ class FinanceController extends GetxController {
     }
   }
 }
-
-// Bank(
-//           name: bankName.text,
-//           balanceLessPayments: double.tryParse(balanceLessPayments.text) ?? 0,
-//           monthlyPaymentAmount: double.tryParse(monthlyPaymentAmount.text) ?? 0,
-//           plusToMonthlyPaymentAmount:
-//               double.tryParse(plusToMonthlyPaymentAmount.text) ?? 0,
-//           totalDebt: double.tryParse(totalDebt.text) ?? 0)

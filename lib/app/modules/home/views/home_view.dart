@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/constants/colors.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
-import 'package:l_l_app/app/widgets/main_content.dart';
 
+import '../../../constants/colors.dart';
+import '../../../constants/dimensions.dart';
+import '../../../widgets/main_content.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -14,7 +14,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
               title: Text('Курс на достаток и свободу',

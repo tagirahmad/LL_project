@@ -1,4 +1,4 @@
-import 'package:l_l_app/app/modules/finace/controllers/finance_controller.dart';
+import '../controllers/finance_controller.dart';
 
 class ClearTextEditingControllers {
   static void clearBankTextEditingControllers(FinanceController controller) {

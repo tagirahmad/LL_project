@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/aim.dart';
+import 'aim.dart';
 
 part 'profile_hive.g.dart';
 

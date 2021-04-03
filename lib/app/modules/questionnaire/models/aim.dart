@@ -13,5 +13,6 @@ class LifeAim extends Aim {
 class YearAim extends Aim {
   YearAim({required this.aim}) : super(aim: aim);
 
+  @override
   final String aim;
 }

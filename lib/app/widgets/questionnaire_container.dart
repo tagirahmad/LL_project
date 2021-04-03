@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:l_l_app/app/constants/colors.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
-import 'package:l_l_app/app/modules/questionnaire/controllers/profile_controller.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/aim.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/aim_action.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/questionnaire_type.dart';
-import 'package:l_l_app/app/widgets/round_button.dart';
+
+import '../constants/dimensions.dart';
+import '../modules/questionnaire/controllers/profile_controller.dart';
+import '../modules/questionnaire/models/aim.dart';
+import '../modules/questionnaire/models/aim_action.dart';
+import '../modules/questionnaire/models/questionnaire_type.dart';
+import 'round_button.dart';
 
 class QuestionnaireContainer extends StatelessWidget {
   const QuestionnaireContainer(
@@ -70,7 +70,7 @@ class QuestionnaireContainer extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: aims!.length,
-                itemBuilder: (BuildContext context, int index) {
+                itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(aims![index].aim.toString()),
                     dense: true,
@@ -95,7 +95,7 @@ class QuestionnaireContainer extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: aimActions!.length,
-                itemBuilder: (BuildContext context, int index) {
+                itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(aimActions![index].action.toString()),
                     dense: true,

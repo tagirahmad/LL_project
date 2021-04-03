@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/constants/colors.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
-import 'package:l_l_app/app/modules/finace/helpers/clear_controllers.dart';
-import 'package:l_l_app/app/modules/finace/helpers/on_text_changed_helper.dart';
-import 'package:l_l_app/app/modules/finace/helpers/sum_helper.dart';
-import 'package:l_l_app/app/modules/finace/helpers/text_editing_controller_helper.dart';
-import 'package:l_l_app/app/services/subscription_status.dart';
-import 'package:l_l_app/app/widgets/bank_card.dart';
-import 'package:l_l_app/app/widgets/card_button.dart';
-import 'package:l_l_app/app/widgets/finance_popup.dart';
-import 'package:l_l_app/app/widgets/round_button.dart';
 
+import '../../../constants/colors.dart';
+import '../../../constants/dimensions.dart';
+import '../../../widgets/bank_card.dart';
+import '../../../widgets/card_button.dart';
+import '../../../widgets/finance_popup.dart';
+import '../../../widgets/round_button.dart';
 import '../controllers/finance_controller.dart';
+import '../helpers/clear_controllers.dart';
+import '../helpers/on_text_changed_helper.dart';
+import '../helpers/sum_helper.dart';
+import '../helpers/text_editing_controller_helper.dart';
 
 class FinanceView extends GetView<FinanceController> {
   const FinanceView({Key? key}) : super(key: key);
@@ -20,7 +19,7 @@ class FinanceView extends GetView<FinanceController> {
   String _showFundDropdownButtonValue(FinanceController controller) {
     if (controller.finance.value!.fund != null &&
         controller.finance.value!.fund!.percents != null) {
-      return controller.finance.value!.fund!.percents.toString() + '%';
+      return '${controller.finance.value!.fund!.percents}%';
     } else {
       return '10%';
     }
@@ -39,8 +38,7 @@ class FinanceView extends GetView<FinanceController> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: NestedScrollView(
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
               return <Widget>[
                 SliverAppBar(
                   title: Text(
@@ -57,13 +55,13 @@ class FinanceView extends GetView<FinanceController> {
             },
             body: SingleChildScrollView(
                 padding: const EdgeInsets.all(Dimensions.SIDE_INDENT),
-                child: GetBuilder<FinanceController>(
-                    builder: (FinanceController controller) {
+                child: GetBuilder<FinanceController>(builder: (controller) {
                   return Column(children: <Widget>[
                     if (!controller.subscriptionStatus.value!)
                       Column(
                         children: const <Widget>[
                           Text(
+                            // ignore: lines_longer_than_80_chars
                             'В бесплатной версии данные не сохраняются, а уведомления не приходят.',
                             style: TextStyle(fontStyle: FontStyle.italic),
                           ),
@@ -85,7 +83,7 @@ class FinanceView extends GetView<FinanceController> {
                           onPress: () {
                             showDialog<Widget>(
                                 context: context,
-                                builder: (BuildContext context) {
+                                builder: (context) {
                                   return FinancePopup(
                                     title: 'Доходы',
                                     backgroundColor: AppColors.LIGHT_GREEN,
@@ -98,6 +96,7 @@ class FinanceView extends GetView<FinanceController> {
                                           controller: FinanceController
                                               .to.husbandIncomeController
                                             ..text = TextEditingControllerHelper
+                                                // ignore: lines_longer_than_80_chars
                                                 .showHusbandIncomeToTextEditingController(
                                                     controller),
                                           autofocus: true,
@@ -111,7 +110,7 @@ class FinanceView extends GetView<FinanceController> {
                                                   color: Colors.white),
                                               labelStyle: TextStyle(
                                                   color: Colors.white)),
-                                          onChanged: (String text) =>
+                                          onChanged: (text) =>
                                               OnTextChangedHelper
                                                   .onChangedHusbandIncome(
                                                       text, controller),
@@ -120,6 +119,7 @@ class FinanceView extends GetView<FinanceController> {
                                           controller: FinanceController
                                               .to.wifeIncomeController
                                             ..text = TextEditingControllerHelper
+                                                // ignore: lines_longer_than_80_chars
                                                 .showWifeIncomeToTextEditingController(
                                                     controller),
                                           keyboardType: TextInputType.number,
@@ -132,7 +132,7 @@ class FinanceView extends GetView<FinanceController> {
                                                   color: Colors.white),
                                               labelStyle: TextStyle(
                                                   color: Colors.white)),
-                                          onChanged: (String text) =>
+                                          onChanged: (text) =>
                                               OnTextChangedHelper
                                                   .onChangedWifeIncome(
                                                       text, controller),
@@ -141,6 +141,7 @@ class FinanceView extends GetView<FinanceController> {
                                           controller: FinanceController
                                               .to.additionalIncomeController
                                             ..text = TextEditingControllerHelper
+                                                // ignore: lines_longer_than_80_chars
                                                 .showAdditionalIncomeToTextEditingController(
                                                     controller),
                                           keyboardType: TextInputType.number,
@@ -154,7 +155,7 @@ class FinanceView extends GetView<FinanceController> {
                                                   color: Colors.white),
                                               labelStyle: TextStyle(
                                                   color: Colors.white)),
-                                          onChanged: (String text) =>
+                                          onChanged: (text) =>
                                               OnTextChangedHelper
                                                   .onChangedAdditionalIncome(
                                                       text, controller),
@@ -173,7 +174,7 @@ class FinanceView extends GetView<FinanceController> {
                           onPress: () {
                             showDialog<Widget>(
                                 context: context,
-                                builder: (BuildContext context) {
+                                builder: (context) {
                                   return FinancePopup(
                                       title: 'Капитал',
                                       backgroundColor: AppColors.LIGHT_PINK,
@@ -202,7 +203,7 @@ class FinanceView extends GetView<FinanceController> {
                           onPress: () {
                             showDialog<Widget>(
                                 context: context,
-                                builder: (BuildContext context) {
+                                builder: (context) {
                                   return FinancePopup(
                                     title: 'Капитал',
                                     backgroundColor: AppColors.LIGHT_PINK,
@@ -228,7 +229,7 @@ class FinanceView extends GetView<FinanceController> {
                                                 height: 2,
                                                 color: Colors.white,
                                               ),
-                                              onChanged: (String? newValue) {
+                                              onChanged: (newValue) {
                                                 controller.changeFundPercent(
                                                     newValue!);
                                               },
@@ -239,7 +240,7 @@ class FinanceView extends GetView<FinanceController> {
                                                 '40%',
                                                 '50%'
                                               ].map<DropdownMenuItem<String>>(
-                                                  (String value) {
+                                                  (value) {
                                                 return DropdownMenuItem<String>(
                                                   value: value,
                                                   child: Text(value),
@@ -269,7 +270,7 @@ class FinanceView extends GetView<FinanceController> {
                           onPress: () {
                             showDialog<Widget>(
                                 context: context,
-                                builder: (BuildContext context) {
+                                builder: (context) {
                                   return FinancePopup(
                                     title: 'На карман',
                                     backgroundColor: AppColors.CYAN,
@@ -294,7 +295,7 @@ class FinanceView extends GetView<FinanceController> {
                                                 height: 2,
                                                 color: Colors.white,
                                               ),
-                                              onChanged: (String? newValue) {
+                                              onChanged: (newValue) {
                                                 controller.changePocketMoney(
                                                     newValue!);
                                               },
@@ -303,7 +304,7 @@ class FinanceView extends GetView<FinanceController> {
                                                 '1000',
                                                 '2000'
                                               ].map<DropdownMenuItem<String>>(
-                                                  (String value) {
+                                                  (value) {
                                                 return DropdownMenuItem<String>(
                                                   value: value,
                                                   child: Text(value),
@@ -339,7 +340,7 @@ class FinanceView extends GetView<FinanceController> {
                           onPress: () {
                             showDialog<Widget>(
                                 context: context,
-                                builder: (BuildContext context) {
+                                builder: (context) {
                                   return FinancePopup(
                                     title: 'Платежи',
                                     backgroundColor: AppColors.LIGHT_PURPLE,
@@ -398,7 +399,7 @@ class FinanceView extends GetView<FinanceController> {
                           onPress: () {
                             showDialog<Widget>(
                                 context: context,
-                                builder: (BuildContext context) {
+                                builder: (context) {
                                   return FinancePopup(
                                     title: 'Расходы',
                                     backgroundColor: AppColors.LIGHT_BLUE,
@@ -426,7 +427,7 @@ class FinanceView extends GetView<FinanceController> {
                                                     color: Colors.white),
                                                 labelStyle: TextStyle(
                                                     color: Colors.white)),
-                                            onChanged: (String text) =>
+                                            onChanged: (text) =>
                                                 OnTextChangedHelper
                                                     .onChangedHousingExpenses(
                                                         text, controller),
@@ -447,7 +448,7 @@ class FinanceView extends GetView<FinanceController> {
                                                     color: Colors.white),
                                                 labelStyle: TextStyle(
                                                     color: Colors.white)),
-                                            onChanged: (String text) =>
+                                            onChanged: (text) =>
                                                 OnTextChangedHelper
                                                     .onChangedFoodExpenses(
                                                         text, controller),
@@ -468,7 +469,7 @@ class FinanceView extends GetView<FinanceController> {
                                                     color: Colors.white),
                                                 labelStyle: TextStyle(
                                                     color: Colors.white)),
-                                            onChanged: (String text) =>
+                                            onChanged: (text) =>
                                                 OnTextChangedHelper
                                                     .onChangedTransportExpenses(
                                                         text, controller),
@@ -489,7 +490,7 @@ class FinanceView extends GetView<FinanceController> {
                                                     color: Colors.white),
                                                 labelStyle: TextStyle(
                                                     color: Colors.white)),
-                                            onChanged: (String text) =>
+                                            onChanged: (text) =>
                                                 OnTextChangedHelper
                                                     .onChangedFoodOutExpenses(
                                                         text, controller),
@@ -510,7 +511,7 @@ class FinanceView extends GetView<FinanceController> {
                                                     color: Colors.white),
                                                 labelStyle: TextStyle(
                                                     color: Colors.white)),
-                                            onChanged: (String text) =>
+                                            onChanged: (text) =>
                                                 OnTextChangedHelper
                                                     .onChangedServicesExpenses(
                                                         text, controller),
@@ -531,10 +532,9 @@ class FinanceView extends GetView<FinanceController> {
                                                     color: Colors.white),
                                                 labelStyle: TextStyle(
                                                     color: Colors.white)),
-                                            onChanged: (String text) =>
-                                                OnTextChangedHelper
-                                                    .onChangedEntertainmentExpenses(
-                                                        text, controller),
+                                            onChanged: (text) => OnTextChangedHelper
+                                                .onChangedEntertainmentExpenses(
+                                                    text, controller),
                                           ),
                                           TextField(
                                             controller: FinanceController
@@ -553,10 +553,9 @@ class FinanceView extends GetView<FinanceController> {
                                                     color: Colors.white),
                                                 labelStyle: TextStyle(
                                                     color: Colors.white)),
-                                            onChanged: (String text) =>
-                                                OnTextChangedHelper
-                                                    .onChangedAdditionalPaymentsExpenses(
-                                                        text, controller),
+                                            onChanged: (text) => OnTextChangedHelper
+                                                .onChangedAdditionalPaymentsExpenses(
+                                                    text, controller),
                                           ),
                                           TextField(
                                             controller: FinanceController
@@ -575,7 +574,7 @@ class FinanceView extends GetView<FinanceController> {
                                                     color: Colors.white),
                                                 labelStyle: TextStyle(
                                                     color: Colors.white)),
-                                            onChanged: (String text) =>
+                                            onChanged: (text) =>
                                                 OnTextChangedHelper
                                                     .onChangedUnexpectedExpenses(
                                                         text, controller),
@@ -611,14 +610,14 @@ class FinanceView extends GetView<FinanceController> {
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: controller.finance.value!.banks!.length,
-                        itemBuilder: (BuildContext context, int index) {
+                        itemBuilder: (context, index) {
                           return BankCard(
                             name: '${index + 1}. '
                                 '${controller.finance.value!.banks![index].name}',
                             onTap: () {
                               showDialog<Widget>(
                                       context: context,
-                                      builder: (BuildContext context) {
+                                      builder: (context) {
                                         return FinancePopup(
                                           backgroundColor:
                                               AppColors.LIGHT_PURPLE,
@@ -685,7 +684,7 @@ class FinanceView extends GetView<FinanceController> {
                                                           labelStyle: TextStyle(
                                                               color: Colors
                                                                   .white)),
-                                                  onChanged: (String text) =>
+                                                  onChanged: (text) =>
                                                       OnTextChangedHelper
                                                           .onChangedBankName(
                                                               text, controller,
@@ -737,7 +736,7 @@ class FinanceView extends GetView<FinanceController> {
                                                           color: Colors.white),
                                                       labelStyle: TextStyle(
                                                           color: Colors.white)),
-                                                  onChanged: (String text) =>
+                                                  onChanged: (text) =>
                                                       OnTextChangedHelper
                                                           .onChangedBalanceLessPayments(
                                                               text, controller,
@@ -763,7 +762,7 @@ class FinanceView extends GetView<FinanceController> {
                                                           color: Colors.white),
                                                       labelStyle: TextStyle(
                                                           color: Colors.white)),
-                                                  onChanged: (String text) =>
+                                                  onChanged: (text) =>
                                                       OnTextChangedHelper
                                                           .onChangedMonthlyPaymentAmount(
                                                               text, controller,
@@ -835,7 +834,7 @@ class FinanceView extends GetView<FinanceController> {
                                                           color: Colors.white),
                                                       labelStyle: TextStyle(
                                                           color: Colors.white)),
-                                                  onChanged: (String text) =>
+                                                  onChanged: (text) =>
                                                       OnTextChangedHelper
                                                           .onChangedPlusToMonthlyPaymentAmountt(
                                                               text, controller,
@@ -858,187 +857,194 @@ class FinanceView extends GetView<FinanceController> {
                     RoundButton(
                         onPressed: () {
                           showDialog<Widget>(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return FinancePopup(
-                                  backgroundColor: AppColors.LIGHT_PURPLE,
-                                  // title: '${index + 1}. '
-                                  //     '${controller.finance.value!.banks![index].name}',
-                                  title: 'Данные о банке/долге',
-                                  content: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        TextField(
-                                          controller:
-                                              FinanceController.to.bankName,
-                                          keyboardType: TextInputType.text,
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                          autofocus: true,
-                                          decoration: const InputDecoration(
-                                              labelText: 'Банк/долг',
-                                              hintText: 'Наименование',
-                                              hintStyle: TextStyle(
+                                  context: context,
+                                  builder: (context) {
+                                    return FinancePopup(
+                                      backgroundColor: AppColors.LIGHT_PURPLE,
+                                      // title: '${index + 1}. '
+                                      //     '${controller.finance.value!.banks![index].name}',
+                                      title: 'Данные о банке/долге',
+                                      content: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            TextField(
+                                              controller:
+                                                  FinanceController.to.bankName,
+                                              keyboardType: TextInputType.text,
+                                              style: const TextStyle(
                                                   color: Colors.white),
-                                              labelStyle: TextStyle(
-                                                  color: Colors.white)),
-                                          // onChanged: (String text) =>
-                                          //     OnTextChangedHelper
-                                          //         .onChangedBankName(
-                                          //             text, controller,
-                                          //             index: index),
-                                        ),
-                                        TextField(
-                                          controller:
-                                              FinanceController.to.totalDebt,
-                                          keyboardType: TextInputType.number,
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                          decoration: const InputDecoration(
-                                              labelText:
-                                                  'Общая сумма задолжности',
-                                              hintText: 'руб',
-                                              hintStyle: TextStyle(
+                                              autofocus: true,
+                                              decoration: const InputDecoration(
+                                                  labelText: 'Банк/долг',
+                                                  hintText: 'Наименование',
+                                                  hintStyle: TextStyle(
+                                                      color: Colors.white),
+                                                  labelStyle: TextStyle(
+                                                      color: Colors.white)),
+                                              // onChanged: (String text) =>
+                                              //     OnTextChangedHelper
+                                              //         .onChangedBankName(
+                                              //             text, controller,
+                                              //             index: index),
+                                            ),
+                                            TextField(
+                                              controller: FinanceController
+                                                  .to.totalDebt,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              style: const TextStyle(
                                                   color: Colors.white),
-                                              labelStyle: TextStyle(
-                                                  color: Colors.white)),
-                                          // onChanged: (String text) =>
-                                          //     OnTextChangedHelper
-                                          //         .onChangedTotalDebt(
-                                          //             text, controller,
-                                          //             index: index),
-                                        ),
-                                        TextField(
-                                          controller: FinanceController
-                                              .to.balanceLessPayments,
-                                          keyboardType: TextInputType.number,
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                          decoration: const InputDecoration(
-                                              labelText:
-                                                  'Остаток за вычетом платежей',
-                                              hintText: 'руб',
-                                              hintStyle: TextStyle(
+                                              decoration: const InputDecoration(
+                                                  labelText:
+                                                      'Общая сумма задолжности',
+                                                  hintText: 'руб',
+                                                  hintStyle: TextStyle(
+                                                      color: Colors.white),
+                                                  labelStyle: TextStyle(
+                                                      color: Colors.white)),
+                                              // onChanged: (String text) =>
+                                              //     OnTextChangedHelper
+                                              //         .onChangedTotalDebt(
+                                              //             text, controller,
+                                              //             index: index),
+                                            ),
+                                            TextField(
+                                              controller: FinanceController
+                                                  .to.balanceLessPayments,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              style: const TextStyle(
                                                   color: Colors.white),
-                                              labelStyle: TextStyle(
-                                                  color: Colors.white)),
-                                          // onChanged: (String text) =>
-                                          //     OnTextChangedHelper
-                                          //         .onChangedBalanceLessPayments(
-                                          //             text, controller,
-                                          //             index: index),
-                                        ),
-                                        TextField(
-                                          controller: FinanceController
-                                              .to.monthlyPaymentAmount,
-                                          keyboardType: TextInputType.number,
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                          decoration: const InputDecoration(
-                                              labelText:
-                                                  'Сумма ежемесячного платежа',
-                                              hintText: 'руб',
-                                              hintStyle: TextStyle(
+                                              decoration: const InputDecoration(
+                                                  labelText:
+                                                      'Остаток за вычетом платежей',
+                                                  hintText: 'руб',
+                                                  hintStyle: TextStyle(
+                                                      color: Colors.white),
+                                                  labelStyle: TextStyle(
+                                                      color: Colors.white)),
+                                              // onChanged: (String text) =>
+                                              //     OnTextChangedHelper
+                                              //         .onChangedBalanceLessPayments(
+                                              //             text, controller,
+                                              //             index: index),
+                                            ),
+                                            TextField(
+                                              controller: FinanceController
+                                                  .to.monthlyPaymentAmount,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              style: const TextStyle(
                                                   color: Colors.white),
-                                              labelStyle: TextStyle(
-                                                  color: Colors.white)),
-                                          // onChanged: (String text) =>
-                                          //     OnTextChangedHelper
-                                          //         .onChangedMonthlyPaymentAmount(
-                                          //             text, controller,
-                                          //             index: index),
-                                        ),
-                                        const SizedBox(
-                                          height: Dimensions.ITEM_INDENT + 5,
-                                        ),
-                                        Text(
-                                          'Дата платежа',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle1!
-                                              .copyWith(color: Colors.white),
-                                        ),
-                                        const SizedBox(
-                                          height: Dimensions.ITEM_INDENT,
-                                        ),
-                                        ElevatedButton(
-                                            style: ButtonStyle(
-                                                backgroundColor:
-                                                    MaterialStateProperty.all<
-                                                            Color>(
-                                                        AppColors.LIGHT_BLUE)),
-                                            onPressed: () => _selectDate(
-                                                context, controller),
-                                            child: Obx(() => Text(
-                                                '${controller.pickedDate.value?.day ?? 'День'}.${controller.pickedDate.value?.month ?? 'месяц'}.${controller.pickedDate.value?.year ?? 'год'}'))),
-                                        TextField(
-                                          controller: FinanceController
-                                              .to.plusToMonthlyPaymentAmount,
-                                          keyboardType: TextInputType.number,
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                          decoration: const InputDecoration(
-                                              labelText:
-                                                  'Плюс к ежемесячному платежу',
-                                              hintText: 'руб',
-                                              hintStyle: TextStyle(
+                                              decoration: const InputDecoration(
+                                                  labelText:
+                                                      'Сумма ежемесячного платежа',
+                                                  hintText: 'руб',
+                                                  hintStyle: TextStyle(
+                                                      color: Colors.white),
+                                                  labelStyle: TextStyle(
+                                                      color: Colors.white)),
+                                              // onChanged: (String text) =>
+                                              //     OnTextChangedHelper
+                                              //         .onChangedMonthlyPaymentAmount(
+                                              //             text, controller,
+                                              //             index: index),
+                                            ),
+                                            const SizedBox(
+                                              height:
+                                                  Dimensions.ITEM_INDENT + 5,
+                                            ),
+                                            Text(
+                                              'Дата платежа',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle1!
+                                                  .copyWith(
+                                                      color: Colors.white),
+                                            ),
+                                            const SizedBox(
+                                              height: Dimensions.ITEM_INDENT,
+                                            ),
+                                            ElevatedButton(
+                                                style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateProperty
+                                                            .all<Color>(AppColors
+                                                                .LIGHT_BLUE)),
+                                                onPressed: () => _selectDate(
+                                                    context, controller),
+                                                child: Obx(() => Text(
+                                                    '${controller.pickedDate.value?.day ?? 'День'}.${controller.pickedDate.value?.month ?? 'месяц'}.${controller.pickedDate.value?.year ?? 'год'}'))),
+                                            TextField(
+                                              controller: FinanceController.to
+                                                  .plusToMonthlyPaymentAmount,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              style: const TextStyle(
                                                   color: Colors.white),
-                                              labelStyle: TextStyle(
+                                              decoration: const InputDecoration(
+                                                  labelText:
+                                                      'Плюс к ежемесячному платежу',
+                                                  hintText: 'руб',
+                                                  hintStyle: TextStyle(
+                                                      color: Colors.white),
+                                                  labelStyle: TextStyle(
+                                                      color: Colors.white)),
+                                              // onChanged: (String text) =>
+                                              //     OnTextChangedHelper
+                                              //         .onChangedPlusToMonthlyPaymentAmountt(
+                                              //             text, controller,
+                                              //             index: index),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            controller.saveBank(
+                                                controller.bankName,
+                                                controller.totalDebt,
+                                                controller.balanceLessPayments,
+                                                controller.monthlyPaymentAmount,
+                                                controller
+                                                    .plusToMonthlyPaymentAmount,
+                                                controller.pickedDate.value!);
+
+                                            ClearTextEditingControllers
+                                                .clearBankTextEditingControllers(
+                                                    controller);
+                                            Navigator.of(context).pop();
+                                          },
+                                          style: ButtonStyle(
+                                              overlayColor:
+                                                  MaterialStateProperty.all<
+                                                          Color>(
+                                                      AppColors.LIGHT_BLUE)),
+                                          child: const Text('Сохранить',
+                                              style: TextStyle(
                                                   color: Colors.white)),
-                                          // onChanged: (String text) =>
-                                          //     OnTextChangedHelper
-                                          //         .onChangedPlusToMonthlyPaymentAmountt(
-                                          //             text, controller,
-                                          //             index: index),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          style: ButtonStyle(
+                                              overlayColor:
+                                                  MaterialStateProperty.all<
+                                                          Color>(
+                                                      AppColors.LIGHT_BLUE)),
+                                          child: const Text('Закрыть',
+                                              style: TextStyle(
+                                                  color: Colors.white)),
                                         ),
                                       ],
-                                    ),
-                                  ),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () {
-                                        controller.saveBank(
-                                            controller.bankName,
-                                            controller.totalDebt,
-                                            controller.balanceLessPayments,
-                                            controller.monthlyPaymentAmount,
-                                            controller
-                                                .plusToMonthlyPaymentAmount,
-                                            controller.pickedDate.value!);
-
-                                        ClearTextEditingControllers
-                                            .clearBankTextEditingControllers(
-                                                controller);
-                                        Navigator.of(context).pop();
-                                      },
-                                      style: ButtonStyle(
-                                          overlayColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  AppColors.LIGHT_BLUE)),
-                                      child: const Text('Сохранить',
-                                          style:
-                                              TextStyle(color: Colors.white)),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      style: ButtonStyle(
-                                          overlayColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  AppColors.LIGHT_BLUE)),
-                                      child: const Text('Закрыть',
-                                          style:
-                                              TextStyle(color: Colors.white)),
-                                    ),
-                                  ],
-                                );
-                              }).then((Widget?
-                                  value) =>
-                              ClearTextEditingControllers
+                                    );
+                                  })
+                              .then((value) => ClearTextEditingControllers
                                   .clearBankTextEditingControllers(controller));
                         },
                         iconPath: 'assets/images/plus.svg',

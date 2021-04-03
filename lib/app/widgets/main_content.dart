@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
-import 'package:l_l_app/app/routes/app_pages.dart';
 
+import '../constants/dimensions.dart';
+import '../routes/app_pages.dart';
 import 'main_content_item.dart';
 
 class MainContent extends StatelessWidget {

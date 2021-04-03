@@ -1,5 +1,4 @@
-import 'package:l_l_app/app/modules/finace/controllers/finance_controller.dart';
-import 'package:l_l_app/app/modules/finace/model/bank.dart';
+import '../controllers/finance_controller.dart';
 
 class SumHelper {
   static String showSumIncomeFromController(FinanceController controller) {
@@ -65,7 +64,7 @@ class SumHelper {
   static String showSumOfDream(FinanceController controller) {
     var banks = controller.finance.value!.banks;
     var incomes = controller.finance.value!.income?.sum;
-    double payments = 0.0;
+    var payments = 0.0;
     var expenses = controller.finance.value!.expenses?.sum;
     var pocketMoney = controller.finance.value!.pocketMoney?.money;
     var fund = double.tryParse(showFundSumAccordingToIncome(controller));

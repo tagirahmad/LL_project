@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:l_l_app/app/modules/questionnaire/controllers/profile_controller.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/profile.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/questionnaire_type.dart';
+import '../modules/questionnaire/controllers/profile_controller.dart';
+import '../modules/questionnaire/models/profile.dart';
+import '../modules/questionnaire/models/questionnaire_type.dart';
 
 class Popup extends StatelessWidget {
   const Popup(
@@ -67,8 +67,9 @@ class Popup extends StatelessWidget {
     return AlertDialog(
       title: Text(title),
       content: TextField(
-        controller: ProfileController.to.hiveProfileService.textEditingController
-          ..text = showInitialText(questionnaireType).toString(),
+        controller:
+            ProfileController.to.hiveProfileService.textEditingController
+              ..text = showInitialText(questionnaireType).toString(),
         decoration: InputDecoration(hintText: hintText),
         keyboardType: questionnaireType == QuestionnaireType.age
             ? TextInputType.number
@@ -77,11 +78,11 @@ class Popup extends StatelessWidget {
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            if (ProfileController
-                        .to.hiveProfileService.textEditingController.value.text !=
+            if (ProfileController.to.hiveProfileService.textEditingController
+                        .value.text !=
                     null &&
-                ProfileController
-                        .to.hiveProfileService.textEditingController.value.text !=
+                ProfileController.to.hiveProfileService.textEditingController
+                        .value.text !=
                     '') {
               if (index != null) {
                 onUpdate!(
@@ -97,7 +98,8 @@ class Popup extends StatelessWidget {
               }
               ProfileController.to.update();
               Navigator.of(context).pop();
-              ProfileController.to.hiveProfileService.textEditingController.clear();
+              ProfileController.to.hiveProfileService.textEditingController
+                  .clear();
             }
           },
           child: const Text('Сохранить'),
@@ -107,16 +109,17 @@ class Popup extends StatelessWidget {
             style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.red)),
             onPressed: () {
-              if (ProfileController
-                          .to.hiveProfileService.textEditingController.value.text !=
+              if (ProfileController.to.hiveProfileService.textEditingController
+                          .value.text !=
                       null &&
-                  ProfileController
-                          .to.hiveProfileService.textEditingController.value.text !=
+                  ProfileController.to.hiveProfileService.textEditingController
+                          .value.text !=
                       '') {
                 onDelete!(ProfileController.to.userProfile, index!);
                 ProfileController.to.update();
                 Navigator.of(context).pop();
-                ProfileController.to.hiveProfileService.textEditingController.clear();
+                ProfileController.to.hiveProfileService.textEditingController
+                    .clear();
               }
             },
             child: const Text('Удалить'),

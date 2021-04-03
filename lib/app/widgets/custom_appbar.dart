@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: prefer_mixin
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   CustomAppBar(Key? key, this.widget)
       : preferredSize = const Size.fromHeight(150.0),

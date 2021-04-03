@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:l_l_app/app/constants/colors.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/questionnaire_type.dart';
+
+import '../constants/colors.dart';
+import '../constants/dimensions.dart';
+import '../modules/questionnaire/models/questionnaire_type.dart';
 
 class QuestionnaireField extends StatelessWidget {
   const QuestionnaireField(

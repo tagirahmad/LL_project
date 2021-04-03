@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:l_l_app/app/constants/colors.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
+
+import '../constants/colors.dart';
+import '../constants/dimensions.dart';
 
 class ProfileImage extends StatelessWidget {
   const ProfileImage({Key? key, required this.onTap, required this.imagePath})
@@ -29,9 +30,8 @@ class ProfileImage extends StatelessWidget {
         child: CircleAvatar(
           radius: Dimensions.CIRCLE_RADIUS,
           backgroundColor: Colors.transparent,
-          backgroundImage: imagePath == null
-              ? null
-              : FileImage(File(imagePath!)),
+          backgroundImage:
+              imagePath == null ? null : FileImage(File(imagePath!)),
           foregroundColor: Colors.black,
           child: imagePath == null
               ? const Text(

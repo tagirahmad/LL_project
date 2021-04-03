@@ -1,5 +1,5 @@
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/profile.dart';
+import '../modules/questionnaire/models/profile.dart';
 
 abstract class ProfileRepository {
   Future<void> putName(String name, Rx<Profile> userProfile);
@@ -29,5 +29,6 @@ abstract class ProfileRepository {
   Future<void> putAimAction(String aimAction, Rx<Profile> userProfile);
   void getAimActionsFromStore(Rx<Profile> userProfile);
   void removeAimActionFromStore(Rx<Profile> userProfile, int index);
-  Future<void> updateAimAction(String aimAction, Rx<Profile> userProfile, int index);
+  Future<void> updateAimAction(
+      String aimAction, Rx<Profile> userProfile, int index);
 }

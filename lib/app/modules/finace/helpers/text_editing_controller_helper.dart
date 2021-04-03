@@ -1,4 +1,4 @@
-import 'package:l_l_app/app/modules/finace/controllers/finance_controller.dart';
+import '../controllers/finance_controller.dart';
 
 class TextEditingControllerHelper {
   static String showWifeIncomeToTextEditingController(
@@ -78,8 +78,7 @@ class TextEditingControllerHelper {
 
   static String showFoodExpensesToTextEditingController(
       FinanceController controller) {
-    if (controller.finance.value!.expenses != null &&
-        controller.finance.value!.expenses! != null) {
+    if (controller.finance.value!.expenses != null) {
       var sum = controller.finance.value!.expenses!.food;
       if (sum != 0) {
         return sum.toString();
@@ -170,9 +169,7 @@ class TextEditingControllerHelper {
   static String showBankNameToTextEditingController(
       FinanceController controller,
       {int? index}) {
-    if (controller.finance.value!.banks != null &&
-        index != null &&
-        controller.finance.value!.banks![index].name != null) {
+    if (controller.finance.value!.banks != null && index != null) {
       var name = controller.finance.value!.banks![index].name;
 
       return name;
@@ -184,9 +181,7 @@ class TextEditingControllerHelper {
   static String showBalanceLessPaymentsToTextEditingController(
       FinanceController controller,
       {int? index}) {
-    if (controller.finance.value!.banks != null &&
-        index != null &&
-        controller.finance.value!.banks![index].balanceLessPayments != null) {
+    if (controller.finance.value!.banks != null && index != null) {
       var balance = controller.finance.value!.banks![index].balanceLessPayments;
 
       if (balance != 0) {
@@ -202,9 +197,7 @@ class TextEditingControllerHelper {
   static String showTotalDebtToTextEditingController(
       FinanceController controller,
       {int? index}) {
-    if (controller.finance.value!.banks != null &&
-        index != null &&
-        controller.finance.value!.banks![index].totalDebt != null) {
+    if (controller.finance.value!.banks != null && index != null) {
       var totalDebt = controller.finance.value!.banks![index].totalDebt;
 
       if (totalDebt != 0) {
@@ -220,9 +213,7 @@ class TextEditingControllerHelper {
   static String showMonthlyPaymentAmountToTextEditingController(
       FinanceController controller,
       {int? index}) {
-    if (controller.finance.value!.banks != null &&
-        index != null &&
-        controller.finance.value!.banks![index].monthlyPaymentAmount != null) {
+    if (controller.finance.value!.banks != null && index != null) {
       var monthlyPaymentAmount =
           controller.finance.value!.banks![index].monthlyPaymentAmount;
 
@@ -239,10 +230,7 @@ class TextEditingControllerHelper {
   static String showPlusToMonthlyPaymentAmountToTextEditingController(
       FinanceController controller,
       {int? index}) {
-    if (controller.finance.value!.banks != null &&
-        index != null &&
-        controller.finance.value!.banks![index].plusToMonthlyPaymentAmount !=
-            null) {
+    if (controller.finance.value!.banks != null && index != null) {
       var plusToMonthlyPaymentAmount =
           controller.finance.value!.banks![index].plusToMonthlyPaymentAmount;
 

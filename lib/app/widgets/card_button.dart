@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
-import 'package:l_l_app/app/modules/finace/controllers/finance_controller.dart';
-import 'package:l_l_app/app/widgets/round_button.dart';
+
+import '../constants/dimensions.dart';
+import 'round_button.dart';
 
 class CardButton extends StatelessWidget {
   const CardButton(

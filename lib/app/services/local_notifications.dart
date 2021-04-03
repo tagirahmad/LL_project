@@ -7,15 +7,12 @@ class LocalNotifications {
       FlutterLocalNotificationsPlugin();
 
   Future<void> init() async {
-    // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    //     FlutterLocalNotificationsPlugin();
     tz.initializeTimeZones();
-    const AndroidInitializationSettings initializationSettingsAndroid =
+    const initializationSettingsAndroid =
         AndroidInitializationSettings('app_icon');
-    final IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings();
+    final initializationSettingsIOS = IOSInitializationSettings();
 
-    final InitializationSettings initializationSettings =
+    final initializationSettings =
         InitializationSettings(
             android: initializationSettingsAndroid,
             iOS: initializationSettingsIOS);
@@ -24,20 +21,16 @@ class LocalNotifications {
 
   Future<void> showNotificationPeriodically(int id, String title, DateTime date,
       {String? body}) async {
-    AndroidNotificationDetails androidPlatformChannelSpecifics =
-        const AndroidNotificationDetails(
-            'remindDebt', 'remindDebt', 'Напоминание о долге');
+    var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
+        'remindDebt', 'remindDebt', 'Напоминание о долге');
 
-    const IOSNotificationDetails iOSPlatformChannelSpecifics =
+    const iOSPlatformChannelSpecifics =
         IOSNotificationDetails(subtitle: 'remindDebt');
 
-    NotificationDetails platformChannelSpecifics = NotificationDetails(
+    var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
 
-    // await flutterLocalNotificationsPlugin.periodicallyShow(
-    //     id, title, body, RepeatInterval.everyMinute, platformChannelSpecifics,
-    //     androidAllowWhileIdle: true);
     await flutterLocalNotificationsPlugin.zonedSchedule(
         id,
         title,

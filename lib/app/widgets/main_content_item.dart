@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:l_l_app/app/constants/colors.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
+
+import '../constants/colors.dart';
+import '../constants/dimensions.dart';
 
 class MainContentItem extends StatelessWidget {
   const MainContentItem(

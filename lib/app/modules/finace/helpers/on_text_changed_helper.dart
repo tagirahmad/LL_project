@@ -1,7 +1,7 @@
-import 'package:l_l_app/app/modules/finace/controllers/finance_controller.dart';
-import 'package:l_l_app/app/modules/finace/model/bank.dart';
-import 'package:l_l_app/app/modules/finace/model/expenses.dart';
-import 'package:l_l_app/app/modules/finace/model/income.dart';
+import '../controllers/finance_controller.dart';
+import '../model/bank.dart';
+import '../model/expenses.dart';
+import '../model/income.dart';
 
 class OnTextChangedHelper {
   static void onChangedHusbandIncome(

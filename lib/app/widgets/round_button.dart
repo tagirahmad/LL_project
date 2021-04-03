@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
+import '../constants/dimensions.dart';
 
 class RoundButton extends StatelessWidget {
   const RoundButton(

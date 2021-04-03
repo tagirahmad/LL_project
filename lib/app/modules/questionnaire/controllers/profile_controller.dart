@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/profile.dart';
-import 'package:l_l_app/app/services/hive_profile_service.dart';
+import '../../../services/hive_profile_service.dart';
+
+import '../models/profile.dart';
 
 class ProfileController extends GetxController {
   static ProfileController get to => Get.find();

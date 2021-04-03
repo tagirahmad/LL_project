@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:l_l_app/app/constants/colors.dart';
-import 'package:l_l_app/app/constants/dimensions.dart';
-import 'package:l_l_app/app/widgets/round_button.dart';
+
+import '../constants/colors.dart';
+import '../constants/dimensions.dart';
+import 'round_button.dart';
 
 class BankCard extends StatelessWidget {
   const BankCard({Key? key, required this.name, required this.onTap})

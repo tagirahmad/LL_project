@@ -1,4 +1,4 @@
-import 'package:l_l_app/app/modules/questionnaire/models/aim.dart';
+import 'aim.dart';
 
 import 'aim_action.dart';
 

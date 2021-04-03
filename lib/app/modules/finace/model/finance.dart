@@ -1,11 +1,11 @@
 import 'package:hive/hive.dart';
-import 'package:l_l_app/app/modules/finace/model/bank.dart';
-import 'package:l_l_app/app/modules/finace/model/pocket.dart';
 
+import 'bank.dart';
 import 'dream.dart';
 import 'expenses.dart';
 import 'fund.dart';
 import 'income.dart';
+import 'pocket.dart';
 
 part 'finance.g.dart';
 

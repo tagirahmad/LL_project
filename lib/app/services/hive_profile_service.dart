@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:hive/hive.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/action.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/aim.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/aim_action.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/life_aim.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/profile.dart';
-import 'package:l_l_app/app/modules/questionnaire/models/year_aim.dart';
-import 'package:l_l_app/app/repositories/profile_repository.dart';
+
+import '../modules/questionnaire/models/action.dart';
+import '../modules/questionnaire/models/aim.dart';
+import '../modules/questionnaire/models/aim_action.dart';
+import '../modules/questionnaire/models/life_aim.dart';
+import '../modules/questionnaire/models/profile.dart';
+import '../modules/questionnaire/models/year_aim.dart';
+import '../repositories/profile_repository.dart';
 
 class HiveProfileService implements ProfileRepository {
   TextEditingController textEditingController = TextEditingController();

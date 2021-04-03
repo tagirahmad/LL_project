@@ -1,8 +1,9 @@
 import 'package:hive/hive.dart';
-import 'package:l_l_app/app/modules/finace/model/finance.dart';
-import 'package:l_l_app/app/modules/finace/model/fund.dart';
-import 'package:l_l_app/app/modules/finace/model/pocket.dart';
-import 'package:l_l_app/app/repositories/finance_repository.dart';
+
+import '../modules/finace/model/finance.dart';
+import '../modules/finace/model/fund.dart';
+import '../modules/finace/model/pocket.dart';
+import '../repositories/finance_repository.dart';
 
 class HiveFinanceService implements FinanceRepository {
   final Box<Finance> financeBox = Hive.box<Finance>('finance');

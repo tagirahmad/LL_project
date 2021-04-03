@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:l_l_app/app/constants/colors.dart';
+import '../constants/colors.dart';
 
 class FinancePopup extends StatelessWidget {
   const FinancePopup(
