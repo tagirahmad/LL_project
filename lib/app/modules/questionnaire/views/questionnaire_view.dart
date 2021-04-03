@@ -237,7 +237,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                           builder: (BuildContext context) {
                             return Popup(
                                 title: 'Действие',
-                                hintText: 'Действи для достижения целей',
+                                hintText: 'Действие для достижения целей',
                                 questionnaireType: QuestionnaireType.actions,
                                 onTapSave: p.hiveProfileService.putAimAction);
                           });
@@ -250,7 +250,7 @@ class QuestionnaireView extends GetView<QuestionnaireController> {
                           builder: (BuildContext context) {
                             return Popup(
                                 title: 'Действие',
-                                hintText: 'Действи для достижения целей',
+                                hintText: 'Действие для достижения целей',
                                 questionnaireType: QuestionnaireType.actions,
                                 index: index,
                                 onUpdate: p.hiveProfileService.updateAimAction,
