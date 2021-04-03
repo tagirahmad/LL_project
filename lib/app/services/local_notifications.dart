@@ -3,6 +3,14 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class LocalNotifications {
+  static final LocalNotifications _singleton = LocalNotifications._internal();
+
+  factory LocalNotifications() {
+    return _singleton;
+  }
+
+  LocalNotifications._internal();
+
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
@@ -12,10 +20,8 @@ class LocalNotifications {
         AndroidInitializationSettings('app_icon');
     final initializationSettingsIOS = IOSInitializationSettings();
 
-    final initializationSettings =
-        InitializationSettings(
-            android: initializationSettingsAndroid,
-            iOS: initializationSettingsIOS);
+    final initializationSettings = InitializationSettings(
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
