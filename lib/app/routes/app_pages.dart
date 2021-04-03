@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:l_l_app/app/modules/work/views/work_article_view.dart';
 
 import '../modules/additional_income/bindings/additional_income_binding.dart';
 import '../modules/additional_income/views/additional_income_view.dart';
@@ -36,6 +37,11 @@ class AppPages {
     GetPage(
       name: _Paths.WORK,
       page: () => const WorkView(),
+      binding: WorkBinding(),
+    ),
+    GetPage(
+      name: _Paths.WORK_ARTICLE,
+      page: () => WorkArticleView(),
       binding: WorkBinding(),
     ),
     GetPage(

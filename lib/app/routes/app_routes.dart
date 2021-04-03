@@ -6,6 +6,7 @@ abstract class Routes {
   static const String FINACE = _Paths.FINACE;
   static const String QUESTIONNAIRE = _Paths.QUESTIONNAIRE;
   static const String WORK = _Paths.WORK;
+  static const String WORK_ARTICLE = _Paths.WORK_ARTICLE;
   static const String ADDITIONAL_INCOME = _Paths.ADDITIONAL_INCOME;
 }
 
@@ -14,5 +15,6 @@ abstract class _Paths {
   static const String FINACE = '/finace';
   static const String QUESTIONNAIRE = '/questionnaire';
   static const String WORK = '/work';
+  static const String WORK_ARTICLE = '/work_article';
   static const String ADDITIONAL_INCOME = '/additional-income';
 }
