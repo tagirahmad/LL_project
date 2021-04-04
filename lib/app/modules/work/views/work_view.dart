@@ -40,7 +40,10 @@ class WorkView extends GetView<WorkController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    SvgPicture.asset('assets/images/woman.svg', cacheColorFilter: true,),
+                    SvgPicture.asset(
+                      'assets/images/woman.svg',
+                      cacheColorFilter: true,
+                    ),
                     const SizedBox(height: Dimensions.ITEM_INDENT),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +59,12 @@ class WorkView extends GetView<WorkController> {
                             iconPath: 'assets/images/star.svg'),
                         WorkCard(
                             color: AppColors.LIGHT_YELLOW,
-                            onPress: () {},
+                            onPress: () {
+                              Get.toNamed('/work_article',
+                                  arguments: Article(
+                                      text: findWorkArticle,
+                                      title: 'Поиск работы'));
+                            },
                             title: 'Поиск работы',
                             iconPath: 'assets/images/find.svg')
                       ],
