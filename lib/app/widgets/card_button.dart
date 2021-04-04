@@ -10,13 +10,13 @@ class CardButton extends StatelessWidget {
       required this.color,
       required this.onPress,
       required this.title,
-      required this.showSubtitle})
+      this.showSubtitle})
       : super(key: key);
 
   final Color color;
   final Function() onPress;
   final String title;
-  final String Function() showSubtitle;
+  final String Function()? showSubtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +36,26 @@ class CardButton extends StatelessWidget {
                 padding: const EdgeInsets.all(Dimensions.SIDE_INDENT),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       title,
+                      textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme
                           .subtitle1!
                           .copyWith(color: Colors.white),
                     ),
                     const SizedBox(height: Dimensions.SIDE_INDENT),
-                    Obx(() => Text(
-                          '${showSubtitle()} руб.',
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle1!
-                              .copyWith(color: Colors.white),
-                        )),
+                    showSubtitle != null
+                        ? Obx(() => Text(
+                              '${showSubtitle!()} руб.',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1!
+                                  .copyWith(color: Colors.white),
+                            ))
+                        : const SizedBox(),
                     const SizedBox(height: Dimensions.SIDE_INDENT),
                   ],
                 )),

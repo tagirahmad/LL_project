@@ -16,5 +16,5 @@ abstract class _Paths {
   static const String QUESTIONNAIRE = '/questionnaire';
   static const String WORK = '/work';
   static const String WORK_ARTICLE = '/work_article';
-  static const String ADDITIONAL_INCOME = '/additional-income';
+  static const String ADDITIONAL_INCOME = '/additional_income';
 }

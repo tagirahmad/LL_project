@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:l_l_app/app/routes/app_pages.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
@@ -51,7 +52,7 @@ class WorkView extends GetView<WorkController> {
                         WorkCard(
                             color: AppColors.LIGHT_GREEN,
                             onPress: () {
-                              Get.toNamed('/work_article',
+                              Get.toNamed(Routes.WORK_ARTICLE,
                                   arguments: Article(
                                       text: cvArticle, title: 'Резюме'));
                             },
@@ -60,7 +61,7 @@ class WorkView extends GetView<WorkController> {
                         WorkCard(
                             color: AppColors.LIGHT_YELLOW,
                             onPress: () {
-                              Get.toNamed('/work_article',
+                              Get.toNamed(Routes.WORK_ARTICLE,
                                   arguments: Article(
                                       text: findWorkArticle,
                                       title: 'Поиск работы'));
@@ -77,7 +78,7 @@ class WorkView extends GetView<WorkController> {
                         WorkCard(
                             color: AppColors.LIGHT_PINK,
                             onPress: () {
-                              Get.toNamed('/work_article',
+                              Get.toNamed(Routes.WORK_ARTICLE,
                                   arguments: Article(
                                       text: reviewArticle,
                                       title: 'Собеседование'));

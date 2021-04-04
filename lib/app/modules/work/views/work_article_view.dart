@@ -5,6 +5,8 @@ import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
 
 class WorkArticleView extends GetView {
+  const WorkArticleView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
