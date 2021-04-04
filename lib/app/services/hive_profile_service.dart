@@ -130,7 +130,7 @@ class HiveProfileService implements ProfileRepository {
 
   @override
   void getLifeAimsFromStore(Rx<Profile> userProfile) {
-    var el = yearAims.values;
+    var el = lifeAims.values;
     var elements = <LifeAim>[];
     for (var item in el) {
       elements.add(LifeAim(aim: item.aim.toString()));
@@ -148,7 +148,7 @@ class HiveProfileService implements ProfileRepository {
   @override
   void removeLifeAimFromStore(Rx<Profile> userProfile, int index) {
     lifeAims.deleteAt(index);
-    userProfile.value!.yearAims!.removeAt(index);
+    userProfile.value!.lifeAims!.removeAt(index);
   }
 
   @override
