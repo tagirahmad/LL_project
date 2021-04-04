@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:l_l_app/app/modules/app/bindings/app_binding.dart';
+import 'package:l_l_app/app/modules/app/views/app_view.dart';
 import 'package:l_l_app/app/modules/work/views/work_article_view.dart';
 
 import '../modules/additional_income/bindings/additional_income_binding.dart';
@@ -48,6 +50,11 @@ class AppPages {
       name: _Paths.ADDITIONAL_INCOME,
       page: () => const AdditionalIncomeView(),
       binding: AdditionalIncomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.APP,
+      page: () => const AppView(),
+      binding: AppBinding(),
     ),
   ];
 }

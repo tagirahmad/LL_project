@@ -41,7 +41,7 @@ class MainContent extends StatelessWidget {
           MainContentItem(
             icon: 'assets/images/cart.svg',
             text: 'Приложение',
-            onTap: () {},
+            onTap: () => Get.toNamed<dynamic>(Routes.APP),
           ),
         ],
       ),

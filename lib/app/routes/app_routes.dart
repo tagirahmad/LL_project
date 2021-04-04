@@ -8,6 +8,7 @@ abstract class Routes {
   static const String WORK = _Paths.WORK;
   static const String WORK_ARTICLE = _Paths.WORK_ARTICLE;
   static const String ADDITIONAL_INCOME = _Paths.ADDITIONAL_INCOME;
+  static const String APP = _Paths.APP;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const String WORK = '/work';
   static const String WORK_ARTICLE = '/work_article';
   static const String ADDITIONAL_INCOME = '/additional_income';
+  static const String APP = '/app';
 }
