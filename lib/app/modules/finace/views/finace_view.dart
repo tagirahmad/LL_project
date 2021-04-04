@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:l_l_app/app/constants/finance_articles.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
@@ -179,7 +180,7 @@ class FinanceView extends GetView<FinanceController> {
                                       title: 'Капитал',
                                       backgroundColor: AppColors.LIGHT_PINK,
                                       content: Text(
-                                        'Всю оставшуюся сумму - за вычетом всех расходов, суммы на капитал, откладывай на мечту - цель, которая прописана в блоке Главное. Мечта помогает копить - накопления помогают мечтать. Мечтай масштабнее!',
+                                        dreamArticle,
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1!
@@ -250,7 +251,7 @@ class FinanceView extends GetView<FinanceController> {
                                           },
                                         ),
                                         Text(
-                                          'С каждого своего дохода и дохода семьи откладывай минимум 10% - это неприкосновенный запас, который нельзя тратить.',
+                                          fundArticle,
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1!
@@ -315,7 +316,7 @@ class FinanceView extends GetView<FinanceController> {
                                           },
                                         ),
                                         Text(
-                                          'Всегда носи в своей сумке, кошельке 500/ 1000/ 2000/ или 5000 рублей. Но старайся их не тратить. Изредка покупай на них немного приятного себе - что стоит не дорого, но принесет  тебе радость. Конечно это должно быть безвредно. Это позволит тебе чувствовать себя увереннее, а еще эко- номнее - ведь ты не тратишь деньги впустую.',
+                                          pocketArticle,
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1!
@@ -346,47 +347,11 @@ class FinanceView extends GetView<FinanceController> {
                                     title: 'Платежи',
                                     backgroundColor: AppColors.LIGHT_PURPLE,
                                     content: SingleChildScrollView(
-                                      child: Column(
-                                        children: <Widget>[
-                                          Text(
-                                            'В этом блоке собраны все платежи по кредитам и долгам.',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .subtitle2!
-                                                .copyWith(color: Colors.white),
-                                          ),
-                                          SizedBox(
-                                            height: Dimensions.SIDE_INDENT,
-                                          ),
-                                          Text(
-                                              'Заполни пункты - каждый долг отдельно,начиная с самого маленького долга, заканчивая самым большим, плюсом можно добавлять блоки.',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle2!
-                                                  .copyWith(
-                                                      color: Colors.white)),
-                                          const SizedBox(
-                                            height: Dimensions.SIDE_INDENT,
-                                          ),
-                                          Text(
-                                              'Дополнительную сумму к платежу начни выплачивать с самого маленького долга. Затем переходи к следующему, прибавляя доплнительную сумму и сумму платежа за предыдущий кредит. Тем самым ты будешь выплачивать кредиты в разы быстрее.',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle2!
-                                                  .copyWith(
-                                                      color: Colors.white)),
-                                          const SizedBox(
-                                            height: Dimensions.SIDE_INDENT,
-                                          ),
-                                          Text(
-                                              'На самом блоке Платежи будет отображаться общая сумма из блоков Сумма ежемесячного платежа плюс Плюс к ежемесячному платежу, который ввел пользователь.',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle2!
-                                                  .copyWith(
-                                                      color: Colors.white))
-                                        ],
-                                      ),
+                                      child: Text(paymentArticle,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle2!
+                                              .copyWith(color: Colors.white)),
                                     ),
                                   );
                                 });
