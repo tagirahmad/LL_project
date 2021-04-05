@@ -1,34 +1,36 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile_hive.dart';
+part of 'profile.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ProfileHiveAdapter extends TypeAdapter<ProfileHive> {
+class ProfileAdapter extends TypeAdapter<Profile> {
   @override
   final int typeId = 1;
 
   @override
-  ProfileHive read(BinaryReader reader) {
+  Profile read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ProfileHive()
-      ..name = fields[0] as String
-      ..age = fields[1] as int
-      ..city = fields[2] as String
-      ..profileImagePath = fields[3] as String
-      ..yearAims = (fields[4] as List).cast<YearAim>()
-      ..lifeAims = (fields[5] as List).cast<LifeAim>();
+    return Profile(
+      name: fields[0] as String?,
+      age: fields[1] as int?,
+      city: fields[2] as String?,
+      lifeAims: (fields[5] as List?)?.cast<LifeAim>(),
+      yearAims: (fields[4] as List?)?.cast<YearAim>(),
+      aimActions: (fields[6] as List?)?.cast<AimAction>(),
+      profileImagePath: fields[3] as String?,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, ProfileHive obj) {
+  void write(BinaryWriter writer, Profile obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -40,7 +42,9 @@ class ProfileHiveAdapter extends TypeAdapter<ProfileHive> {
       ..writeByte(4)
       ..write(obj.yearAims)
       ..writeByte(5)
-      ..write(obj.lifeAims);
+      ..write(obj.lifeAims)
+      ..writeByte(6)
+      ..write(obj.aimActions);
   }
 
   @override
@@ -49,7 +53,7 @@ class ProfileHiveAdapter extends TypeAdapter<ProfileHive> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ProfileHiveAdapter &&
+      other is ProfileAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

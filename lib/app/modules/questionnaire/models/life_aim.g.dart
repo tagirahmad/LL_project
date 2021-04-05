@@ -6,21 +6,23 @@ part of 'life_aim.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class LifeAimHiveAdapter extends TypeAdapter<LifeAimHive> {
+class LifeAimAdapter extends TypeAdapter<LifeAim> {
   @override
-  final int typeId = 3;
+  final int typeId = 2;
 
   @override
-  LifeAimHive read(BinaryReader reader) {
+  LifeAim read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return LifeAimHive()..aim = fields[0] as String;
+    return LifeAim(
+      aim: fields[0] as String,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, LifeAimHive obj) {
+  void write(BinaryWriter writer, LifeAim obj) {
     writer
       ..writeByte(1)
       ..writeByte(0)
@@ -33,7 +35,7 @@ class LifeAimHiveAdapter extends TypeAdapter<LifeAimHive> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LifeAimHiveAdapter &&
+      other is LifeAimAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

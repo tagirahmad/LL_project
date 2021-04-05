@@ -1,26 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'action.dart';
+part of 'aim_action.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class AimActionHiveAdapter extends TypeAdapter<AimActionHive> {
+class AimActionAdapter extends TypeAdapter<AimAction> {
   @override
   final int typeId = 4;
 
   @override
-  AimActionHive read(BinaryReader reader) {
+  AimAction read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return AimActionHive()..action = fields[0] as String;
+    return AimAction(
+      action: fields[0] as String,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, AimActionHive obj) {
+  void write(BinaryWriter writer, AimAction obj) {
     writer
       ..writeByte(1)
       ..writeByte(0)
@@ -33,7 +35,7 @@ class AimActionHiveAdapter extends TypeAdapter<AimActionHive> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AimActionHiveAdapter &&
+      other is AimActionAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

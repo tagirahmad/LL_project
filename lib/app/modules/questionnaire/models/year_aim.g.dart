@@ -6,21 +6,23 @@ part of 'year_aim.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class YearAimHiveAdapter extends TypeAdapter<YearAimHive> {
+class YearAimAdapter extends TypeAdapter<YearAim> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
-  YearAimHive read(BinaryReader reader) {
+  YearAim read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return YearAimHive()..aim = fields[0] as String;
+    return YearAim(
+      aim: fields[0] as String,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, YearAimHive obj) {
+  void write(BinaryWriter writer, YearAim obj) {
     writer
       ..writeByte(1)
       ..writeByte(0)
@@ -33,7 +35,7 @@ class YearAimHiveAdapter extends TypeAdapter<YearAimHive> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is YearAimHiveAdapter &&
+      other is YearAimAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

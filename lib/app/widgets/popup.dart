@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import '../modules/questionnaire/controllers/profile_controller.dart';
-import '../modules/questionnaire/models/profile.dart';
 import '../modules/questionnaire/models/questionnaire_type.dart';
 
 class Popup extends StatelessWidget {
@@ -12,39 +10,41 @@ class Popup extends StatelessWidget {
       this.onTapSave,
       required this.questionnaireType,
       this.index,
-      this.onUpdate,
-      this.onDelete})
+      // this.onUpdate,
+      this.onDelete,
+      this.onChanged})
       : super(key: key);
 
   final String title;
   final String hintText;
-  final Function(String keyboardValue, Rx<Profile> profile)? onTapSave;
+  final Function(
+          String textEditingController, QuestionnaireType questionnaireType)?
+      onTapSave;
   final QuestionnaireType questionnaireType;
   final int? index;
-  final Function(String keyboardValue, Rx<Profile> profile, int index)?
-      onUpdate;
-  final Function(Rx<Profile> userProfile, int index)? onDelete;
+  // final Function(String keyboardValue, Rx<Profile> profile, int index)?
+  //     onUpdate;
+  final VoidCallback? onDelete;
+  final Function(String?)? onChanged;
 
   dynamic? showInitialText(QuestionnaireType questionnaireType) {
     switch (questionnaireType) {
       case QuestionnaireType.name:
-        return ProfileController.to.userProfile.value!.name ?? '';
+        return ProfileController.to.profile.value!.name ?? '';
       case QuestionnaireType.age:
-        return ProfileController.to.userProfile.value!.age ?? '';
+        return ProfileController.to.profile.value!.age ?? '';
       case QuestionnaireType.city:
-        return ProfileController.to.userProfile.value!.city ?? '';
+        return ProfileController.to.profile.value!.city ?? '';
       case QuestionnaireType.yearAim:
         if (index != null) {
-          return ProfileController
-                  .to.userProfile.value!.yearAims?[index!].aim ??
+          return ProfileController.to.profile.value!.yearAims?[index!].aim ??
               '';
         } else {
           return '';
         }
       case QuestionnaireType.lifeAim:
         if (index != null) {
-          return ProfileController
-                  .to.userProfile.value!.lifeAims?[index!].aim ??
+          return ProfileController.to.profile.value!.lifeAims?[index!].aim ??
               '';
         } else {
           return '';
@@ -52,7 +52,7 @@ class Popup extends StatelessWidget {
       case QuestionnaireType.actions:
         if (index != null) {
           return ProfileController
-                  .to.userProfile.value!.aimActions?[index!].action ??
+                  .to.profile.value!.aimActions?[index!].action ??
               '';
         } else {
           return '';
@@ -67,39 +67,25 @@ class Popup extends StatelessWidget {
     return AlertDialog(
       title: Text(title),
       content: TextField(
-        controller:
-            ProfileController.to.hiveProfileService.textEditingController
-              ..text = showInitialText(questionnaireType).toString(),
+        controller: ProfileController.to.textEditingController
+          ..text = showInitialText(questionnaireType).toString(),
         decoration: InputDecoration(hintText: hintText),
         keyboardType: questionnaireType == QuestionnaireType.age
             ? TextInputType.number
             : TextInputType.name,
+        onChanged: onChanged,
       ),
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            if (ProfileController.to.hiveProfileService.textEditingController
-                        .value.text !=
-                    null &&
-                ProfileController.to.hiveProfileService.textEditingController
-                        .value.text !=
-                    '') {
-              if (index != null) {
-                onUpdate!(
-                    ProfileController
-                        .to.hiveProfileService.textEditingController.value.text,
-                    ProfileController.to.userProfile,
-                    index!);
-              } else {
-                onTapSave!(
-                    ProfileController
-                        .to.hiveProfileService.textEditingController.value.text,
-                    ProfileController.to.userProfile);
+            if (ProfileController.to.textEditingController.value.text != null &&
+                ProfileController.to.textEditingController.value.text != '') {
+              if (onTapSave != null) {
+                onTapSave!(ProfileController.to.textEditingController.text,
+                    questionnaireType);
               }
-              ProfileController.to.update();
               Navigator.of(context).pop();
-              ProfileController.to.hiveProfileService.textEditingController
-                  .clear();
+              ProfileController.to.textEditingController.clear();
             }
           },
           child: const Text('Сохранить'),
@@ -109,17 +95,12 @@ class Popup extends StatelessWidget {
             style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.red)),
             onPressed: () {
-              if (ProfileController.to.hiveProfileService.textEditingController
-                          .value.text !=
+              if (ProfileController.to.textEditingController.value.text !=
                       null &&
-                  ProfileController.to.hiveProfileService.textEditingController
-                          .value.text !=
-                      '') {
-                onDelete!(ProfileController.to.userProfile, index!);
-                ProfileController.to.update();
+                  ProfileController.to.textEditingController.value.text != '') {
+                onDelete!();
                 Navigator.of(context).pop();
-                ProfileController.to.hiveProfileService.textEditingController
-                    .clear();
+                ProfileController.to.textEditingController.clear();
               }
             },
             child: const Text('Удалить'),
@@ -128,6 +109,7 @@ class Popup extends StatelessWidget {
           const SizedBox(),
         TextButton(
           onPressed: () {
+            ProfileController.to.textEditingController.clear();
             Navigator.of(context).pop();
           },
           child: const Text('Закрыть'),

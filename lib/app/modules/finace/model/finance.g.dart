@@ -22,7 +22,8 @@ class FinanceAdapter extends TypeAdapter<Finance> {
       expenses: fields[1] as Expenses?,
       fund: fields[3] as Fund?,
       banks: (fields[5] as List?)?.cast<Bank>(),
-    )..pocketMoney = fields[4] as PocketMoney?;
+      pocketMoney: fields[4] as PocketMoney?,
+    );
   }
 
   @override
