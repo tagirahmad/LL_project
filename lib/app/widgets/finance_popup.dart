@@ -35,7 +35,7 @@ class FinancePopup extends StatelessWidget {
               style: ButtonStyle(
                   overlayColor:
                       MaterialStateProperty.all<Color>(AppColors.LIGHT_BLUE)),
-              child: Text('Закрыть',
+              child: Text('ОК',
                   style: titleStyle ?? const TextStyle(color: Colors.white)),
             ),
           ],
