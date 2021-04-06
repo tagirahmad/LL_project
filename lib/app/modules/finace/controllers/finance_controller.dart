@@ -27,7 +27,7 @@ class FinanceController extends GetxController {
 
   late TextEditingController bankName;
   late TextEditingController totalDebt;
-  late TextEditingController balanceLessPayments;
+  // late TextEditingController balanceLessPayments;
   late TextEditingController monthlyPaymentAmount;
   late TextEditingController plusToMonthlyPaymentAmount;
   Rx<DateTime> pickedDate = DateTime.now().obs;
@@ -52,7 +52,7 @@ class FinanceController extends GetxController {
     unexpectedExpensesController = TextEditingController();
     bankName = TextEditingController();
     totalDebt = TextEditingController();
-    balanceLessPayments = TextEditingController();
+    // balanceLessPayments = TextEditingController();
     monthlyPaymentAmount = TextEditingController();
     plusToMonthlyPaymentAmount = TextEditingController();
     // hiveFinanceService.financeBox.clear();
@@ -75,7 +75,7 @@ class FinanceController extends GetxController {
     unexpectedExpensesController.dispose();
     bankName.dispose();
     totalDebt.dispose();
-    balanceLessPayments.dispose();
+    // balanceLessPayments.dispose();
     monthlyPaymentAmount.dispose();
     plusToMonthlyPaymentAmount.dispose();
     super.onClose();
@@ -143,7 +143,7 @@ class FinanceController extends GetxController {
   void saveBank(
       TextEditingController bankName,
       TextEditingController totalDebt,
-      TextEditingController balanceLessPayments,
+      // TextEditingController balanceLessPayments,
       TextEditingController monthlyPaymentAmount,
       TextEditingController plusToMonthlyPaymentAmount,
       DateTime paymentDate) {
@@ -157,7 +157,7 @@ class FinanceController extends GetxController {
 
     banks.add(Bank(
         name: bankName.text,
-        balanceLessPayments: double.tryParse(balanceLessPayments.text) ?? 0,
+        // balanceLessPayments: double.tryParse(balanceLessPayments.text) ?? 0,
         monthlyPaymentAmount: double.tryParse(monthlyPaymentAmount.text) ?? 0,
         plusToMonthlyPaymentAmount:
             double.tryParse(plusToMonthlyPaymentAmount.text) ?? 0,

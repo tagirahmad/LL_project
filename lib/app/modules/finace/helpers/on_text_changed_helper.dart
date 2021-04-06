@@ -136,21 +136,21 @@ class OnTextChangedHelper {
         .setToFinance(FinanceController.to.hiveFinanceService, finance);
   }
 
-  static void onChangedBalanceLessPayments(
-      String text, FinanceController controller,
-      {int? index}) {
-    var finance = controller.getFinance();
+  // static void onChangedBalanceLessPayments(
+  //     String text, FinanceController controller,
+  //     {int? index}) {
+  //   var finance = controller.getFinance();
 
-    var parsedText = double.tryParse(text) ?? 0;
+  //   var parsedText = double.tryParse(text) ?? 0;
 
-    finance.banks ??= <Bank>[Bank(balanceLessPayments: parsedText)];
-    if (index != null) {
-      finance.banks![index].balanceLessPayments = parsedText;
-    }
+  //   finance.banks ??= <Bank>[Bank(balanceLessPayments: parsedText)];
+  //   if (index != null) {
+  //     finance.banks![index].balanceLessPayments = parsedText;
+  //   }
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
-  }
+  //   FinanceController.to
+  //       .setToFinance(FinanceController.to.hiveFinanceService, finance);
+  // }
 
   static void onChangedTotalDebt(String text, FinanceController controller,
       {int? index}) {

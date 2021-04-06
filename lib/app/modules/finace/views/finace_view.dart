@@ -682,32 +682,32 @@ class FinanceView extends GetView<FinanceController> {
                                                               text, controller,
                                                               index: index),
                                                 ),
-                                                TextField(
-                                                  controller: FinanceController
-                                                      .to.balanceLessPayments
-                                                    ..text =
-                                                        TextEditingControllerHelper
-                                                            .showBalanceLessPaymentsToTextEditingController(
-                                                                controller,
-                                                                index: index),
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                  style: const TextStyle(
-                                                      color: Colors.white),
-                                                  decoration: const InputDecoration(
-                                                      labelText:
-                                                          'Остаток за вычетом платежей',
-                                                      hintText: 'руб',
-                                                      hintStyle: TextStyle(
-                                                          color: Colors.white),
-                                                      labelStyle: TextStyle(
-                                                          color: Colors.white)),
-                                                  onChanged: (text) =>
-                                                      OnTextChangedHelper
-                                                          .onChangedBalanceLessPayments(
-                                                              text, controller,
-                                                              index: index),
-                                                ),
+                                                // TextField(
+                                                //   controller: FinanceController
+                                                //       .to.balanceLessPayments
+                                                //     ..text =
+                                                //         TextEditingControllerHelper
+                                                //             .showBalanceLessPaymentsToTextEditingController(
+                                                //                 controller,
+                                                //                 index: index),
+                                                //   keyboardType:
+                                                //       TextInputType.number,
+                                                //   style: const TextStyle(
+                                                //       color: Colors.white),
+                                                //   decoration: const InputDecoration(
+                                                //       labelText:
+                                                //           'Остаток за вычетом платежей',
+                                                //       hintText: 'руб',
+                                                //       hintStyle: TextStyle(
+                                                //           color: Colors.white),
+                                                //       labelStyle: TextStyle(
+                                                //           color: Colors.white)),
+                                                //   onChanged: (text) =>
+                                                //       OnTextChangedHelper
+                                                //           .onChangedBalanceLessPayments(
+                                                //               text, controller,
+                                                //               index: index),
+                                                // ),
                                                 TextField(
                                                   controller: FinanceController
                                                       .to.monthlyPaymentAmount
@@ -882,26 +882,26 @@ class FinanceView extends GetView<FinanceController> {
                                           //             text, controller,
                                           //             index: index),
                                         ),
-                                        TextField(
-                                          controller: FinanceController
-                                              .to.balanceLessPayments,
-                                          keyboardType: TextInputType.number,
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                          decoration: const InputDecoration(
-                                              labelText:
-                                                  'Остаток за вычетом платежей',
-                                              hintText: 'руб',
-                                              hintStyle: TextStyle(
-                                                  color: Colors.white),
-                                              labelStyle: TextStyle(
-                                                  color: Colors.white)),
-                                          // onChanged: (String text) =>
-                                          //     OnTextChangedHelper
-                                          //         .onChangedBalanceLessPayments(
-                                          //             text, controller,
-                                          //             index: index),
-                                        ),
+                                        // TextField(
+                                        //   controller: FinanceController
+                                        //       .to.balanceLessPayments,
+                                        //   keyboardType: TextInputType.number,
+                                        //   style: const TextStyle(
+                                        //       color: Colors.white),
+                                        //   decoration: const InputDecoration(
+                                        //       labelText:
+                                        //           'Остаток за вычетом платежей',
+                                        //       hintText: 'руб',
+                                        //       hintStyle: TextStyle(
+                                        //           color: Colors.white),
+                                        //       labelStyle: TextStyle(
+                                        //           color: Colors.white)),
+                                        //   // onChanged: (String text) =>
+                                        //   //     OnTextChangedHelper
+                                        //   //         .onChangedBalanceLessPayments(
+                                        //   //             text, controller,
+                                        //   //             index: index),
+                                        // ),
                                         TextField(
                                           controller: FinanceController
                                               .to.monthlyPaymentAmount,
@@ -974,7 +974,7 @@ class FinanceView extends GetView<FinanceController> {
                                         controller.saveBank(
                                             controller.bankName,
                                             controller.totalDebt,
-                                            controller.balanceLessPayments,
+                                            // controller.balanceLessPayments,
                                             controller.monthlyPaymentAmount,
                                             controller
                                                 .plusToMonthlyPaymentAmount,

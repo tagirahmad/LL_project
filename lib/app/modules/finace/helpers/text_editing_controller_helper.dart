@@ -178,21 +178,21 @@ class TextEditingControllerHelper {
     }
   }
 
-  static String showBalanceLessPaymentsToTextEditingController(
-      FinanceController controller,
-      {int? index}) {
-    if (controller.finance.value!.banks != null && index != null) {
-      var balance = controller.finance.value!.banks![index].balanceLessPayments;
+  // static String showBalanceLessPaymentsToTextEditingController(
+  //     FinanceController controller,
+  //     {int? index}) {
+  //   if (controller.finance.value!.banks != null && index != null) {
+  //     var balance = controller.finance.value!.banks![index].balanceLessPayments;
 
-      if (balance != 0) {
-        return balance.toString();
-      } else {
-        return '';
-      }
-    } else {
-      return '';
-    }
-  }
+  //     if (balance != 0) {
+  //       return balance.toString();
+  //     } else {
+  //       return '';
+  //     }
+  //   } else {
+  //     return '';
+  //   }
+  // }
 
   static String showTotalDebtToTextEditingController(
       FinanceController controller,

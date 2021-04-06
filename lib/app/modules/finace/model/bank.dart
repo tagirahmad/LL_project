@@ -6,7 +6,7 @@ part 'bank.g.dart';
 class Bank {
   Bank(
       {this.name = '',
-      this.balanceLessPayments = 0,
+      // this.balanceLessPayments = 0,
       this.totalDebt = 0,
       this.monthlyPaymentAmount = 0,
       this.paymentDate,
@@ -16,13 +16,13 @@ class Bank {
   String name;
   @HiveField(1)
   double totalDebt;
+  // @HiveField(2)
+  // double balanceLessPayments; // Остаток за вычетом платежей
   @HiveField(2)
-  double balanceLessPayments; // Остаток за вычетом платежей
-  @HiveField(3)
   double monthlyPaymentAmount;
-  @HiveField(4)
+  @HiveField(3)
   DateTime? paymentDate;
-  @HiveField(5)
+  @HiveField(4)
   double plusToMonthlyPaymentAmount;
 
   double get sum => monthlyPaymentAmount + plusToMonthlyPaymentAmount;

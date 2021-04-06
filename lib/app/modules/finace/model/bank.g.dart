@@ -18,29 +18,26 @@ class BankAdapter extends TypeAdapter<Bank> {
     };
     return Bank(
       name: fields[0] as String,
-      balanceLessPayments: fields[2] as double,
       totalDebt: fields[1] as double,
-      monthlyPaymentAmount: fields[3] as double,
-      paymentDate: fields[4] as DateTime?,
-      plusToMonthlyPaymentAmount: fields[5] as double,
+      monthlyPaymentAmount: fields[2] as double,
+      paymentDate: fields[3] as DateTime?,
+      plusToMonthlyPaymentAmount: fields[4] as double,
     );
   }
 
   @override
   void write(BinaryWriter writer, Bank obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.totalDebt)
       ..writeByte(2)
-      ..write(obj.balanceLessPayments)
-      ..writeByte(3)
       ..write(obj.monthlyPaymentAmount)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.paymentDate)
-      ..writeByte(5)
+      ..writeByte(4)
       ..write(obj.plusToMonthlyPaymentAmount);
   }
 
