@@ -580,6 +580,12 @@ class FinanceView extends GetView<FinanceController> {
                           return BankCard(
                             name: '${index + 1}. '
                                 '${controller.finance.value!.banks![index].name}',
+                            day: controller
+                                .finance.value!.banks![index].paymentDate?.day
+                                .toString(),
+                            paymentAmount: controller.finance.value!
+                                .banks![index].monthlyPaymentAmount
+                                .toStringAsFixed(1),
                             onTap: () {
                               showDialog<Widget>(
                                       context: context,
@@ -614,7 +620,7 @@ class FinanceView extends GetView<FinanceController> {
                                                       MaterialStateProperty
                                                           .all<Color>(AppColors
                                                               .LIGHT_BLUE)),
-                                              child: const Text('Закрыть',
+                                              child: const Text('ОК',
                                                   style: TextStyle(
                                                       color: Colors.white)),
                                             ),

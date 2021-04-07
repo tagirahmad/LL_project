@@ -53,7 +53,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.APP,
-      page: () => const AppView(),
+      page: () => AppView(),
       binding: AppBinding(),
     ),
   ];
