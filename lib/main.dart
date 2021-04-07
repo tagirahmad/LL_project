@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'app/constants/colors.dart';
 import 'app/modules/finace/model/bank.dart' show Bank, BankAdapter;
@@ -33,7 +34,18 @@ void main() async {
   await Hive.openBox<Profile>('profile');
   await Hive.openBox<Finance>('finance');
 
-  await LocalNotifications().init();
+  //Remove this method to stop OneSignal Debugging
+  OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+
+  OneSignal.shared.init("36858e5c-ff3e-492e-a202-1de3a4c6a336", iOSSettings: {
+    OSiOSSettings.autoPrompt: false,
+    OSiOSSettings.inAppLaunchUrl: false
+  });
+  OneSignal.shared
+      .setInFocusDisplayType(OSNotificationDisplayType.notification);
+
+  await OneSignal.shared
+      .promptUserForPushNotificationPermission(fallbackToSettings: true);
 
   runApp(
     GetMaterialApp(

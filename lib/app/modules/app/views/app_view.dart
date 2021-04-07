@@ -31,7 +31,7 @@ class AppView extends GetView<AppController> {
     },
     {
       "backgroundColor": AppColors.LIGHT_PINK,
-      "duration": 'на месяц',
+      "duration": 'на год',
       "price": '1500 р.',
       "subtitle": 'Выгодный',
       "title": 'Тариф',
