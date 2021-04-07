@@ -37,32 +37,30 @@ class BankCard extends StatelessWidget {
               .copyWith(color: Colors.white),
         ),
         subtitle: paymentAmount != null || day != null
-            ? FittedBox(
-                child: Row(
-                  children: [
-                    if (paymentAmount != null)
-                      Container(
-                        child: Text("${paymentAmount!}р.  /  ",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2!
-                                .copyWith(color: Colors.white)),
-                      )
-                    else
-                      const SizedBox(),
-                    if (day != null)
-                      Container(
-                        child: Text("Дата платежа ${day!} числа",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2!
-                                .copyWith(color: Colors.white)),
-                      )
-                    else
-                      const SizedBox()
-                  ],
-                ),
-              )
+            ? Row(
+              children: [
+                if (paymentAmount != null)
+                  Container(
+                    child: Text("${paymentAmount!}р.  /  ",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(color: Colors.white)),
+                  )
+                else
+                  const SizedBox(),
+                if (day != null)
+                  Container(
+                    child: Text("Дата платежа ${day!} числа",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(color: Colors.white)),
+                  )
+                else
+                  const SizedBox()
+              ],
+            )
             : null,
         trailing: RoundButton(
           onPressed: onTap,
