@@ -773,7 +773,7 @@ class FinanceView extends GetView<FinanceController> {
                                                       initState: (_) {},
                                                       builder: (controller) {
                                                         return Text(
-                                                            '${controller.finance.value!.banks![index].paymentDate?.day ?? 'День'}.${controller.finance.value!.banks![index].paymentDate?.month ?? 'месяц'}.${controller.finance.value!.banks![index].paymentDate?.year ?? 'год'}');
+                                                            '${controller.finance.value!.banks?[index].paymentDate?.day ?? 'День'}.${controller.finance.value!.banks?[index].paymentDate?.month ?? 'месяц'}.${controller.finance.value!.banks?[index].paymentDate?.year ?? 'год'}');
                                                       },
                                                     )),
                                                 // '${controller.pickedDate.value?.day ?? 'День'}.${controller.pickedDate.value?.month ?? 'месяц'}.${controller.pickedDate.value?.year ?? 'год'}'))),
@@ -781,16 +781,16 @@ class FinanceView extends GetView<FinanceController> {
                                                   height:
                                                       Dimensions.ITEM_INDENT,
                                                 ),
-                                                Text(
-                                                  'Вам придет оповещение за 5 дней',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .subtitle2!
-                                                      .copyWith(
-                                                          color: Colors.white,
-                                                          fontStyle:
-                                                              FontStyle.italic),
-                                                ),
+                                                // Text(
+                                                //   'Вам придет оповещение за 5 дней',
+                                                //   style: Theme.of(context)
+                                                //       .textTheme
+                                                //       .subtitle2!
+                                                //       .copyWith(
+                                                //           color: Colors.white,
+                                                //           fontStyle:
+                                                //               FontStyle.italic),
+                                                // ),
                                                 TextField(
                                                   controller: FinanceController
                                                       .to
@@ -876,7 +876,7 @@ class FinanceView extends GetView<FinanceController> {
                                               color: Colors.white),
                                           decoration: const InputDecoration(
                                               labelText:
-                                                  'Общая сумма задолжности',
+                                                  'Общая сумма задолженности',
                                               hintText: 'руб',
                                               hintStyle: TextStyle(
                                                   color: Colors.white),

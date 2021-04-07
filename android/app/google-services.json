@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1062495637955",
+    "project_id": "ll-app-bf623",
+    "storage_bucket": "ll-app-bf623.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062495637955:android:3866953999b9c61747ad76",
+        "android_client_info": {
+          "package_name": "com.ll.l_l_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062495637955-460ota8g28d20ous4r3pd527ar2tfu9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdvdVInlZGgL7AvXgsiChzUwhw7b3djmE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062495637955-460ota8g28d20ous4r3pd527ar2tfu9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

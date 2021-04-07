@@ -146,7 +146,7 @@ class FinanceController extends GetxController {
       // TextEditingController balanceLessPayments,
       TextEditingController monthlyPaymentAmount,
       TextEditingController plusToMonthlyPaymentAmount,
-      DateTime paymentDate) {
+      DateTime? paymentDate) {
     var finance = getFinance();
 
     // if (finance.banks != null) {
@@ -165,12 +165,12 @@ class FinanceController extends GetxController {
         paymentDate: paymentDate));
     finance.banks = banks;
     setToFinance(hiveFinanceService, finance);
-    if (subscriptionStatus.value! == true) {
-      LocalNotifications()
-          .showNotificationPeriodically(banks.length - 1,
-              'Не забудьте оплатить долг/кредит!', paymentDate)
-          .then((value) => value);
-    }
+    // if (subscriptionStatus.value! == true) {
+    //   LocalNotifications()
+    //       .showNotificationPeriodically(banks.length - 1,
+    //           'Не забудьте оплатить долг/кредит!', paymentDate)
+    //       .then((value) => value);
+    // }
   }
 
   void removeBankFromStore(int index) {
@@ -179,8 +179,8 @@ class FinanceController extends GetxController {
     banks.removeAt(index);
     finance.banks = banks;
     setToFinance(hiveFinanceService, finance);
-    if (subscriptionStatus.value! == true) {
-      LocalNotifications().cancelNotification(index);
-    }
+    // if (subscriptionStatus.value! == true) {
+    //   LocalNotifications().cancelNotification(index);
+    // }
   }
 }
