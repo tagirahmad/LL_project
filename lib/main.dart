@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 import 'app/constants/colors.dart';
 import 'app/modules/finace/model/bank.dart' show Bank, BankAdapter;
@@ -16,7 +17,11 @@ import 'app/modules/questionnaire/models/life_aim.dart';
 import 'app/modules/questionnaire/models/profile.dart';
 import 'app/modules/questionnaire/models/year_aim.dart';
 import 'app/routes/app_pages.dart';
-import 'app/services/local_notifications.dart';
+
+Future<void> initPlatformState() async {
+  await Purchases.setDebugLogsEnabled(true);
+  await Purchases.setup("ReFvQPswttHGKToQFvCuLQTOHFpPbsTA");
+}
 
 // ignore: avoid_void_async
 void main() async {
