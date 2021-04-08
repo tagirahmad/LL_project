@@ -91,7 +91,9 @@ class AppView extends GetView<AppController> {
                             subtitle: _tariffs[index]['subtitle'] as String,
                             title: _tariffs[index]['title'] as String,
                           );
-                        })
+                        }),
+                    TextButton(
+                        onPressed: () {}, child: Text('Восстановить покупки'))
                   ]),
             ))));
   }
