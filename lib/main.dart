@@ -53,9 +53,11 @@ void main() async {
   await OneSignal.shared
       .promptUserForPushNotificationPermission(fallbackToSettings: true);
 
+  await initPlatformState();
+
   runApp(
     GetMaterialApp(
-        title: 'Application',
+        title: 'Курс на достаток и свободу',
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
         localizationsDelegates: [

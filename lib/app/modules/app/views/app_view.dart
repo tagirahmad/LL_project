@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:l_l_app/app/services/purchase_service.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
@@ -15,8 +17,11 @@ class AppView extends GetView<AppController> {
       "price": '150 р.',
       "subtitle": 'Старт',
       "title": 'Тариф',
-      "onTap": () {
-        print('item pressed');
+      "onTap": () async {
+        var offerings = await Purchases.getOfferings();
+        print(offerings.current!.monthly);
+        PurchaseService.makePurchase(offerings.current!.monthly!,
+            'monthly_pro');
       }
     },
     {
