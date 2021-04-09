@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -57,6 +58,15 @@ void main() async {
         title: 'Application',
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('ru', ''), // Russian, no country code
+          // const Locale('en', ''), // English, no country code
+        ],
         theme: ThemeData(
             textTheme: const TextTheme(),
             primaryColor: AppColors.BACKGROUND_COLOR,
