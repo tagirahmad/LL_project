@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:l_l_app/app/routes/app_pages.dart';
+import 'package:l_l_app/app/services/url_launcher_service.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
@@ -88,8 +89,7 @@ class WorkView extends GetView<WorkController> {
                         WorkCard(
                             color: AppColors.CYAN,
                             onPress: () {
-                              URLHelper.launchURL(Links.hh);
-                              print('pressed');
+                              UrlLauncherService.launchURL(Links.hh);
                             },
                             title: 'Вакансии',
                             iconPath: 'assets/images/vacancy.svg')

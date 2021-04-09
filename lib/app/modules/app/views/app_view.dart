@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/services/purchase_service.dart';
+import 'package:l_l_app/app/services/url_launcher_service.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
+import '../../../constants/links.dart';
+import '../../../services/purchase_service.dart';
 import '../controllers/app_controller.dart';
 
 class AppView extends GetView<AppController> {
@@ -20,8 +23,8 @@ class AppView extends GetView<AppController> {
       "onTap": () async {
         var offerings = await Purchases.getOfferings();
         print(offerings.current!.monthly);
-        PurchaseService.makePurchase(offerings.current!.monthly!,
-            'monthly_pro');
+        PurchaseService.makePurchase(
+            offerings.current!.monthly!, 'monthly_pro');
       }
     },
     {
@@ -65,12 +68,12 @@ class AppView extends GetView<AppController> {
                 )
               ];
             },
-            body: SingleChildScrollView(
-                child: Padding(
+            body: Padding(
               padding: const EdgeInsets.all(Dimensions.SIDE_INDENT),
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(children: [
                     Text(
                       'Доступ к функционалу - уведомления о дате платежей, сохранение данных разделов платежи, банки',
                       style: Theme.of(context).textTheme.headline6,
@@ -100,7 +103,26 @@ class AppView extends GetView<AppController> {
                     TextButton(
                         onPressed: () {}, child: Text('Восстановить покупки'))
                   ]),
-            ))));
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                            'Подписывайся на наш инстаграмм - тут много полезного'),
+                      ),
+                      GestureDetector(
+                        onTap: () =>
+                            UrlLauncherService.launchURL(Links.instagram),
+                        child: Image.asset(
+                          'assets/images/instagram.png',
+                          height: 40,
+                          width: 40,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )));
   }
 }
 
