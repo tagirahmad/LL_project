@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../services/hive_finance_service.dart';
-import '../../../services/local_notifications.dart';
 import '../../../services/subscription_status.dart';
 import '../model/bank.dart';
 import '../model/finance.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/constants/finance_articles.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
+import '../../../constants/finance_articles.dart';
 import '../../../widgets/bank_card.dart';
 import '../../../widgets/card_button.dart';
 import '../../../widgets/finance_popup.dart';

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/services/url_launcher_service.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
 import '../../../constants/links.dart';
 import '../../../services/purchase_service.dart';
+import '../../../services/url_launcher_service.dart';
 import '../controllers/app_controller.dart';
 
 class AppView extends GetView<AppController> {

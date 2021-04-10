@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/routes/app_pages.dart';
-import 'package:l_l_app/app/services/url_launcher_service.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
 import '../../../constants/links.dart';
 import '../../../constants/work_articles.dart';
+import '../../../routes/app_pages.dart';
+import '../../../services/url_launcher_service.dart';
 import '../../../widgets/work_card.dart';
 import '../controllers/work_controller.dart';
-import '../helpers/url_helper.dart';
 import '../models/article.dart';
 
 class WorkView extends GetView<WorkController> {

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/constants/additional_Income_articles.dart';
-import 'package:l_l_app/app/modules/work/models/article.dart';
-import 'package:l_l_app/app/routes/app_pages.dart';
-import 'package:l_l_app/app/widgets/card_button.dart';
-import 'package:l_l_app/app/widgets/finance_popup.dart';
+
+import '../../../constants/additional_Income_articles.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
-
+import '../../../widgets/card_button.dart';
+import '../../../widgets/finance_popup.dart';
 import '../controllers/additional_income_controller.dart';
 
 class AdditionalIncomeView extends GetView<AdditionalIncomeController> {

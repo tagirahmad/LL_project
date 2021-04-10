@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
-import 'package:l_l_app/app/modules/app/bindings/app_binding.dart';
-import 'package:l_l_app/app/modules/app/views/app_view.dart';
-import 'package:l_l_app/app/modules/work/views/work_article_view.dart';
 
 import '../modules/additional_income/bindings/additional_income_binding.dart';
 import '../modules/additional_income/views/additional_income_view.dart';
+import '../modules/app/bindings/app_binding.dart';
+import '../modules/app/views/app_view.dart';
 import '../modules/finace/bindings/finace_binding.dart';
 import '../modules/finace/views/finace_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -12,6 +11,7 @@ import '../modules/home/views/home_view.dart';
 import '../modules/questionnaire/bindings/questionnaire_binding.dart';
 import '../modules/questionnaire/views/questionnaire_view.dart';
 import '../modules/work/bindings/work_binding.dart';
+import '../modules/work/views/work_article_view.dart';
 import '../modules/work/views/work_view.dart';
 
 part 'app_routes.dart';
