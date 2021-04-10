@@ -8,8 +8,12 @@ import '../modules/finace/bindings/finace_binding.dart';
 import '../modules/finace/views/finace_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/intro/bindings/intro_binding.dart';
+import '../modules/intro/views/intro_view.dart';
 import '../modules/questionnaire/bindings/questionnaire_binding.dart';
 import '../modules/questionnaire/views/questionnaire_view.dart';
+import '../modules/splash/bindings/splash_binding.dart';
+import '../modules/splash/views/splash_view.dart';
 import '../modules/work/bindings/work_binding.dart';
 import '../modules/work/views/work_article_view.dart';
 import '../modules/work/views/work_view.dart';
@@ -18,7 +22,7 @@ part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  static const String INITIAL = Routes.HOME;
+  static const String INITIAL = Routes.SPLASH;
 
   static final List<GetPage> routes = <GetPage>[
     GetPage(
@@ -55,6 +59,16 @@ class AppPages {
       name: _Paths.APP,
       page: () => AppView(),
       binding: AppBinding(),
+    ),
+    GetPage(
+      name: _Paths.INTRO,
+      page: () => IntroView(),
+      binding: IntroBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => SplashView(),
+      binding: SplashBinding(),
     ),
   ];
 }

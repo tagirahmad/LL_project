@@ -12,36 +12,39 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              title: Text('Курс на достаток и свободу',
-                  style: Theme.of(context).textTheme.headline6),
-              pinned: false,
-              floating: true,
-              forceElevated: innerBoxIsScrolled,
-              backgroundColor: AppColors.BACKGROUND_COLOR,
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: SvgPicture.asset(
-                  'assets/images/logo.svg',
-                  semanticsLabel: 'App Logo',
-                  height: Dimensions.LOGO_SIZE,
-                  width: Dimensions.LOGO_SIZE,
-                  // color: AppColors.LOGO_INNER_COLOR,
-                  // colorBlendMode: BlendMode.color,
-                  // cacheColorFilter: true,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                title: Text('Курс на достаток и свободу',
+                    style: Theme.of(context).textTheme.headline6),
+                pinned: false,
+                floating: true,
+                forceElevated: innerBoxIsScrolled,
+                backgroundColor: AppColors.BACKGROUND_COLOR,
+                leading: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: SvgPicture.asset(
+                    'assets/images/logo.svg',
+                    semanticsLabel: 'App Logo',
+                    height: Dimensions.LOGO_SIZE,
+                    width: Dimensions.LOGO_SIZE,
+                    // color: AppColors.LOGO_INNER_COLOR,
+                    // colorBlendMode: BlendMode.color,
+                    // cacheColorFilter: true,
+                  ),
                 ),
-              ),
-              toolbarHeight: 80.0,
-            )
-          ];
-        },
-        body: const SafeArea(
-          child: SingleChildScrollView(
-            child: MainContent(),
+                toolbarHeight: 80.0,
+              )
+            ];
+          },
+          body: const SafeArea(
+            child: SingleChildScrollView(
+              child: MainContent(),
+            ),
           ),
         ),
       ),
