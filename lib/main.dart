@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -18,10 +19,28 @@ import 'app/modules/questionnaire/models/life_aim.dart';
 import 'app/modules/questionnaire/models/profile.dart';
 import 'app/modules/questionnaire/models/year_aim.dart';
 import 'app/routes/app_pages.dart';
+import 'app/services/subscription_status.dart';
 
 Future<void> initPlatformState() async {
+  isPro.isPro = false;
+
   await Purchases.setDebugLogsEnabled(true);
   await Purchases.setup("ReFvQPswttHGKToQFvCuLQTOHFpPbsTA");
+
+  PurchaserInfo purchaserInfo;
+  try {
+    purchaserInfo = await Purchases.getPurchaserInfo();
+    print(purchaserInfo.toString());
+    if (purchaserInfo.entitlements.all['pro'] != null) {
+      isPro.isPro = purchaserInfo.entitlements.all['pro']!.isActive;
+    } else {
+      isPro.isPro = false;
+    }
+  } on PlatformException catch (e) {
+    print(e);
+  }
+
+  print('#### is user pro? ${isPro.isPro}');
 }
 
 // ignore: avoid_void_async

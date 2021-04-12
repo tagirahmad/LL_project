@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:l_l_app/app/modules/finace/controllers/finance_controller.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../../constants/colors.dart';
@@ -21,9 +23,7 @@ class AppView extends GetView<AppController> {
       "title": 'Тариф',
       "onTap": () async {
         var offerings = await Purchases.getOfferings();
-        print(offerings.current!.monthly);
-        PurchaseService.makePurchase(
-            offerings.current!.monthly!, 'monthly_pro');
+        PurchaseService.makePurchase(offerings.current!.monthly!, 'pro');
       }
     },
     {
@@ -32,8 +32,9 @@ class AppView extends GetView<AppController> {
       "price": '500 р.',
       "subtitle": 'Комфорт',
       "title": 'Тариф',
-      "onTap": () {
-        print('item pressed');
+      "onTap": () async {
+        var offerings = await Purchases.getOfferings();
+        PurchaseService.makePurchase(offerings.current!.sixMonth!, 'pro');
       }
     },
     {
@@ -42,14 +43,17 @@ class AppView extends GetView<AppController> {
       "price": '990 р.',
       "subtitle": 'Выгодный',
       "title": 'Тариф',
-      "onTap": () {
-        print('item pressed');
+      "onTap": () async {
+        var offerings = await Purchases.getOfferings();
+        PurchaseService.makePurchase(offerings.current!.lifetime!, 'pro');
       }
     }
   ];
 
   @override
   Widget build(BuildContext context) {
+    Get.put(FinanceController());
+
     return Scaffold(
         body: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -72,36 +76,58 @@ class AppView extends GetView<AppController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(children: [
-                    Text(
-                      'Доступ к функционалу - уведомления о дате платежей, сохранение данных разделов платежи, банки',
-                      style: Theme.of(context).textTheme.headline6,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      height: Dimensions.ITEM_INDENT * 3,
-                    ),
-                    GridView.builder(
-                        shrinkWrap: true,
-                        itemCount: 3,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 8.0 / 10.0,
-                          crossAxisCount: 3,
+                  Obx(() {
+                    if (FinanceController.to.subscriptionStatus.value!) {
+                      return Text(
+                        'Спасибо за покупку!',
+                        style: Theme.of(context).textTheme.headline4,
+                      );
+                    } else {
+                      return Column(children: [
+                        Text(
+                          'Доступ к функционалу - уведомления о дате платежей, сохранение данных разделов платежи, банки',
+                          style: Theme.of(context).textTheme.headline6,
+                          textAlign: TextAlign.center,
                         ),
-                        itemBuilder: (context, index) {
-                          return TariffCard(
-                            backgroundColor:
-                                _tariffs[index]['backgroundColor'] as Color,
-                            duration: _tariffs[index]['duration'] as String,
-                            price: _tariffs[index]['price'] as String,
-                            onTap: _tariffs[index]['onTap'] as Function(),
-                            subtitle: _tariffs[index]['subtitle'] as String,
-                            title: _tariffs[index]['title'] as String,
-                          );
+                        const SizedBox(
+                          height: Dimensions.ITEM_INDENT * 3,
+                        ),
+                        Obx(() {
+                          if (FinanceController.to.subscriptionStatus.value!) {
+                            return Text('Спасибо за покупку!');
+                          } else {
+                            return GridView.builder(
+                                shrinkWrap: true,
+                                itemCount: 3,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 8.0 / 10.0,
+                                  crossAxisCount: 3,
+                                ),
+                                itemBuilder: (context, index) {
+                                  return TariffCard(
+                                    backgroundColor: _tariffs[index]
+                                        ['backgroundColor'] as Color,
+                                    duration:
+                                        _tariffs[index]['duration'] as String,
+                                    price: _tariffs[index]['price'] as String,
+                                    onTap:
+                                        _tariffs[index]['onTap'] as Function(),
+                                    subtitle:
+                                        _tariffs[index]['subtitle'] as String,
+                                    title: _tariffs[index]['title'] as String,
+                                  );
+                                });
+                          }
                         }),
-                    TextButton(
-                        onPressed: () {}, child: Text('Восстановить покупки'))
-                  ]),
+                        TextButton(
+                            onPressed: () async {
+                              await PurchaseService.restorePurchases();
+                            },
+                            child: Text('Восстановить покупки'))
+                      ]);
+                    }
+                  }),
                   Row(
                     children: [
                       Expanded(

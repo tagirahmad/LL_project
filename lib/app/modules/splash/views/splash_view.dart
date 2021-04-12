@@ -19,10 +19,7 @@ class SplashViewState extends State<SplashView>
     if (_seen) {
       Get.toNamed(Routes.HOME);
     } else {
-      // await prefs.setBool('seen', true);
       Get.toNamed(Routes.INTRO);
-      // Navigator.of(context).pushReplacement(
-      //     new MaterialPageRoute(builder: (context) => new IntroScreen()));
     }
   }
 

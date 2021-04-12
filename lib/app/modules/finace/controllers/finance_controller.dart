@@ -55,7 +55,7 @@ class FinanceController extends GetxController {
     monthlyPaymentAmount = TextEditingController();
     plusToMonthlyPaymentAmount = TextEditingController();
     // hiveFinanceService.financeBox.clear();
-    subscriptionStatus.value = SubscriptionStatus.subscriptionStatus();
+    subscriptionStatus.value = isPro.isPro;
     super.onInit();
   }
 
@@ -81,10 +81,15 @@ class FinanceController extends GetxController {
   }
 
   void setToFinance(HiveFinanceService hiveFinanceService, Finance finance) {
-    var isPurchased = SubscriptionStatus.subscriptionStatus();
+    var isPurchased = isPro.isPro;
     if (isPurchased) {
       hiveFinanceService.putFinance(finance);
       this.finance.value = finance;
+      print('successfully saved because user is pro');
+    } else {
+      hiveFinanceService.financeBox.clear();
+      this.finance.value = finance;
+      print('is not saved because user is not pro');
     }
 
     update();
@@ -94,9 +99,17 @@ class FinanceController extends GetxController {
   Finance getFinance() {
     var fromStore = hiveFinanceService.getFinanceFromStore();
 
+    var isPurchased = isPro.isPro;
+    if (isPurchased) {
+      finance.value = fromStore;
+      return fromStore;
+    } else {
+      hiveFinanceService.financeBox.clear();
+      return Finance(fund: Fund(), pocketMoney: PocketMoney());
+    }
+
     // if (fromStore != null) {
-    finance.value = fromStore;
-    return fromStore;
+
     // } else {
     //   finance.value = Finance(fund: Fund(), pocketMoney: PocketMoney());
     //   return Finance(fund: Fund(), pocketMoney: PocketMoney());

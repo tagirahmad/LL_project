@@ -1,11 +1,14 @@
 class SubscriptionStatus {
-  static bool _getPurchaseStatus() {
-    var purchased = true;
-    return purchased;
+  static final SubscriptionStatus _subscriptionStatus =
+      SubscriptionStatus._internal();
+
+  late bool isPro;
+
+  factory SubscriptionStatus() {
+    return _subscriptionStatus;
   }
 
-  static bool subscriptionStatus() {
-    var purchased = _getPurchaseStatus();
-    return purchased;
-  }
+  SubscriptionStatus._internal();
 }
+
+final isPro = SubscriptionStatus();

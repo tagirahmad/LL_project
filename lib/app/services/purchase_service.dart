@@ -1,5 +1,10 @@
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:l_l_app/app/constants/subscription_list.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+
+import '../modules/finace/controllers/finance_controller.dart';
+import 'subscription_status.dart';
 
 class PurchaseService {
   static final PurchaseService _singleton = PurchaseService._internal();
@@ -12,16 +17,81 @@ class PurchaseService {
 
   static Future<void> makePurchase(Package package, String identifier) async {
     try {
-      var purchaserInfo = await Purchases.purchasePackage(package);
-      var isPro = purchaserInfo.entitlements.all[identifier]!.isActive;
-      if (isPro) {
-        // Unlock that great "pro" content
+      var pInfo = await Purchases.getPurchaserInfo();
+
+      var subscriptions = subscriptionsList
+          .where((element) => element != package.identifier)
+          .toList();
+
+      // if (pInfo.activeSubscriptions.contains(element)) {
+      // } else {}
+
+      for (var item in subscriptions) {
+        if (pInfo.activeSubscriptions.contains(item)) {
+          var purchaserInfo;
+          if (
+              package.identifier != "\$rc_lifetime") {
+            purchaserInfo = await Purchases.purchasePackage(package,
+                upgradeInfo: UpgradeInfo(item));
+          } else {
+            // purchaserInfo = await Purchases.purchaseProduct(package.identifier,
+            //     upgradeInfo: UpgradeInfo(item));
+            // purchaserInfo = await Purchases.purchasePackage(package,
+            //     upgradeInfo: UpgradeInfo(item));
+            print(pInfo.entitlements.all[identifier]);
+            purchaserInfo = await Purchases.purchasePackage(package);
+          }
+
+          var isProInfo = purchaserInfo.entitlements.all[identifier]?.isActive;
+
+          if (isProInfo != null && isProInfo == true) {
+            // Unlock that great "pro" content
+            isPro.isPro = true;
+            Get.put(FinanceController());
+            FinanceController.to.subscriptionStatus.value = true;
+          }
+        }
       }
+
+      pInfo = await Purchases.getPurchaserInfo();
+      if (pInfo.entitlements.all[identifier]!.isActive) {
+        isPro.isPro = true;
+        Get.put(FinanceController());
+        FinanceController.to.subscriptionStatus.value = true;
+      } else {
+        var purchaserInfo = await Purchases.purchasePackage(package);
+        var isProInfo = purchaserInfo.entitlements.all[identifier]?.isActive;
+        if (isProInfo != null && isProInfo == true) {
+          // Unlock that great "pro" content
+          isPro.isPro = true;
+          FinanceController.to.subscriptionStatus.value = true;
+        }
+      }
+      // var purchaserInfo = await Purchases.purchasePackage(package);
+      // print(purchaserInfo);
+      // var isProInfo = purchaserInfo.entitlements.all[identifier]?.isActive;
+      // if (isProInfo != null && isProInfo == true) {
+      //   // Unlock that great "pro" content
+      //   print("UNLOCK pro content");
+      //   isPro.isPro = true;
+      // Get.put(FinanceController());
+      // FinanceController.to.subscriptionStatus.value = true;
+      // }
     } on PlatformException catch (e) {
       var errorCode = PurchasesErrorHelper.getErrorCode(e);
       if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
         // showError(e);
       }
+      // Purchases.
+    }
+  }
+
+  static Future<void> restorePurchases() async {
+    try {
+      var restoredInfo = await Purchases.restoreTransactions();
+      print(restoredInfo);
+    } on PlatformException catch (e) {
+      print(e);
     }
   }
 }
