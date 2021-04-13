@@ -29,15 +29,10 @@ class PurchaseService {
       for (var item in subscriptions) {
         if (pInfo.activeSubscriptions.contains(item)) {
           var purchaserInfo;
-          if (
-              package.identifier != "\$rc_lifetime") {
+          if (package.identifier != "\$rc_lifetime") {
             purchaserInfo = await Purchases.purchasePackage(package,
                 upgradeInfo: UpgradeInfo(item));
           } else {
-            // purchaserInfo = await Purchases.purchaseProduct(package.identifier,
-            //     upgradeInfo: UpgradeInfo(item));
-            // purchaserInfo = await Purchases.purchasePackage(package,
-            //     upgradeInfo: UpgradeInfo(item));
             print(pInfo.entitlements.all[identifier]);
             purchaserInfo = await Purchases.purchasePackage(package);
           }

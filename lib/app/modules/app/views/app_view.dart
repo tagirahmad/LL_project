@@ -92,39 +92,38 @@ class AppView extends GetView<AppController> {
                         const SizedBox(
                           height: Dimensions.ITEM_INDENT * 3,
                         ),
-                        Obx(() {
-                          if (FinanceController.to.subscriptionStatus.value!) {
-                            return Text('Спасибо за покупку!');
-                          } else {
-                            return GridView.builder(
-                                shrinkWrap: true,
-                                itemCount: 3,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: 8.0 / 10.0,
-                                  crossAxisCount: 3,
-                                ),
-                                itemBuilder: (context, index) {
-                                  return TariffCard(
-                                    backgroundColor: _tariffs[index]
-                                        ['backgroundColor'] as Color,
-                                    duration:
-                                        _tariffs[index]['duration'] as String,
-                                    price: _tariffs[index]['price'] as String,
-                                    onTap:
-                                        _tariffs[index]['onTap'] as Function(),
-                                    subtitle:
-                                        _tariffs[index]['subtitle'] as String,
-                                    title: _tariffs[index]['title'] as String,
-                                  );
-                                });
-                          }
-                        }),
+                        GridView.builder(
+                            shrinkWrap: true,
+                            itemCount: 3,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              childAspectRatio: 8.0 / 10.0,
+                              crossAxisCount: 3,
+                            ),
+                            itemBuilder: (context, index) {
+                              return TariffCard(
+                                backgroundColor:
+                                    _tariffs[index]['backgroundColor'] as Color,
+                                duration: _tariffs[index]['duration'] as String,
+                                price: _tariffs[index]['price'] as String,
+                                onTap: _tariffs[index]['onTap'] as Function(),
+                                subtitle: _tariffs[index]['subtitle'] as String,
+                                title: _tariffs[index]['title'] as String,
+                              );
+                            }),
                         TextButton(
                             onPressed: () async {
                               await PurchaseService.restorePurchases();
                             },
-                            child: Text('Восстановить покупки'))
+                            child: Text('Восстановить покупки')),
+                        Text(
+                          'В случае подписки, она будет автоматически продляться на эквивалентный период, пока вы не отмените ее',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(fontStyle: FontStyle.italic),
+                          textAlign: TextAlign.center,
+                        ),
                       ]);
                     }
                   }),
