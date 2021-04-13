@@ -33,8 +33,12 @@ Future<void> initPlatformState() async {
     print(purchaserInfo.toString());
     if (purchaserInfo.entitlements.all['pro'] != null) {
       isPro.isPro = purchaserInfo.entitlements.all['pro']!.isActive;
+      isPro.isPro
+          ? OneSignal.shared.sendTag('pro', true)
+          : OneSignal.shared.sendTag('pro', false);
     } else {
       isPro.isPro = false;
+      OneSignal.shared.sendTag('pro', false);
     }
   } on PlatformException catch (e) {
     print(e);

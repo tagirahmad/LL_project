@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:l_l_app/app/constants/subscription_list.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../modules/finace/controllers/finance_controller.dart';
@@ -23,18 +24,17 @@ class PurchaseService {
           .where((element) => element != package.identifier)
           .toList();
 
-      // if (pInfo.activeSubscriptions.contains(element)) {
-      // } else {}
-
       for (var item in subscriptions) {
         if (pInfo.activeSubscriptions.contains(item)) {
           var purchaserInfo;
           if (package.identifier != "\$rc_lifetime") {
             purchaserInfo = await Purchases.purchasePackage(package,
                 upgradeInfo: UpgradeInfo(item));
+            OneSignal.shared.sendTag('pro', true);
           } else {
             print(pInfo.entitlements.all[identifier]);
             purchaserInfo = await Purchases.purchasePackage(package);
+            OneSignal.shared.sendTag('pro', true);
           }
 
           var isProInfo = purchaserInfo.entitlements.all[identifier]?.isActive;
@@ -44,6 +44,7 @@ class PurchaseService {
             isPro.isPro = true;
             Get.put(FinanceController());
             FinanceController.to.subscriptionStatus.value = true;
+            OneSignal.shared.sendTag('pro', true);
           }
         }
       }
@@ -53,6 +54,7 @@ class PurchaseService {
         isPro.isPro = true;
         Get.put(FinanceController());
         FinanceController.to.subscriptionStatus.value = true;
+        OneSignal.shared.sendTag('pro', true);
       } else {
         var purchaserInfo = await Purchases.purchasePackage(package);
         var isProInfo = purchaserInfo.entitlements.all[identifier]?.isActive;
@@ -60,18 +62,9 @@ class PurchaseService {
           // Unlock that great "pro" content
           isPro.isPro = true;
           FinanceController.to.subscriptionStatus.value = true;
+          OneSignal.shared.sendTag('pro', true);
         }
       }
-      // var purchaserInfo = await Purchases.purchasePackage(package);
-      // print(purchaserInfo);
-      // var isProInfo = purchaserInfo.entitlements.all[identifier]?.isActive;
-      // if (isProInfo != null && isProInfo == true) {
-      //   // Unlock that great "pro" content
-      //   print("UNLOCK pro content");
-      //   isPro.isPro = true;
-      // Get.put(FinanceController());
-      // FinanceController.to.subscriptionStatus.value = true;
-      // }
     } on PlatformException catch (e) {
       var errorCode = PurchasesErrorHelper.getErrorCode(e);
       if (errorCode != PurchasesErrorCode.purchaseCancelledError) {

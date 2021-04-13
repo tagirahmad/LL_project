@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/modules/finace/controllers/finance_controller.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../../constants/colors.dart';
@@ -9,6 +7,7 @@ import '../../../constants/dimensions.dart';
 import '../../../constants/links.dart';
 import '../../../services/purchase_service.dart';
 import '../../../services/url_launcher_service.dart';
+import '../../finace/controllers/finance_controller.dart';
 import '../controllers/app_controller.dart';
 
 class AppView extends GetView<AppController> {
