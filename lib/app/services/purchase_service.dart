@@ -50,7 +50,8 @@ class PurchaseService {
       }
 
       pInfo = await Purchases.getPurchaserInfo();
-      if (pInfo.entitlements.all[identifier]!.isActive) {
+      if (pInfo.entitlements.all[identifier]?.isActive != null &&
+          pInfo.entitlements.all[identifier]?.isActive == true) {
         isPro.isPro = true;
         Get.put(FinanceController());
         FinanceController.to.subscriptionStatus.value = true;

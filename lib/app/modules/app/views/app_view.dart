@@ -76,7 +76,8 @@ class AppView extends GetView<AppController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Obx(() {
-                    if (FinanceController.to.subscriptionStatus.value!) {
+                    if (FinanceController.to.subscriptionStatus.value! ==
+                        true) {
                       return Text(
                         'Спасибо за покупку!',
                         style: Theme.of(context).textTheme.headline4,
@@ -111,9 +112,8 @@ class AppView extends GetView<AppController> {
                               );
                             }),
                         TextButton(
-                            onPressed: () async {
-                              await PurchaseService.restorePurchases();
-                            },
+                            onPressed: () async =>
+                                await PurchaseService.restorePurchases(),
                             child: Text('Восстановить покупки')),
                         Text(
                           'В случае подписки, она будет автоматически продляться на эквивалентный период, пока вы не отмените ее',

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import 'app/constants/colors.dart';
@@ -25,7 +26,8 @@ Future<void> initPlatformState() async {
   isPro.isPro = false;
 
   await Purchases.setDebugLogsEnabled(true);
-  await Purchases.setup("ReFvQPswttHGKToQFvCuLQTOHFpPbsTA");
+  await Purchases.setup("ReFvQPswttHGKToQFvCuLQTOHFpPbsTA",
+      appUserId: await PlatformDeviceId.getDeviceId);
 
   PurchaserInfo purchaserInfo;
   try {
@@ -50,6 +52,7 @@ Future<void> initPlatformState() async {
 // ignore: avoid_void_async
 void main() async {
   await Hive.initFlutter();
+  await initPlatformState();
   Hive.registerAdapter<YearAim>(YearAimAdapter());
   Hive.registerAdapter<LifeAim>(LifeAimAdapter());
   Hive.registerAdapter<AimAction>(AimActionAdapter());
@@ -75,8 +78,6 @@ void main() async {
 
   await OneSignal.shared
       .promptUserForPushNotificationPermission(fallbackToSettings: true);
-
-  await initPlatformState();
 
   runApp(
     GetMaterialApp(
