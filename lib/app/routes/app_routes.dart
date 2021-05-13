@@ -11,6 +11,7 @@ abstract class Routes {
   static const String APP = _Paths.APP;
   static const INTRO = _Paths.INTRO;
   static const SPLASH = _Paths.SPLASH;
+  static const AIM_MAP = _Paths.AIM_MAP;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const String APP = '/app';
   static const INTRO = '/intro';
   static const SPLASH = '/splash';
+  static const AIM_MAP = '/aim-map';
 }

@@ -46,6 +46,9 @@ dependencies:
   after_layout: ^1.1.0
   shared_preferences: ^2.0.5
   platform_device_id: ^1.0.1
+  screenshot: ^1.0.0-nullsafety.1
+  image_gallery_saver: ^1.6.9
+  davinci: ^1.0.3
 
 dev_dependencies:
   flutter_test:

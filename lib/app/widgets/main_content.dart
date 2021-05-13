@@ -43,6 +43,12 @@ class MainContent extends StatelessWidget {
             text: 'Приложение',
             onTap: () => Get.toNamed<dynamic>(Routes.APP),
           ),
+          const SizedBox(height: Dimensions.ITEM_INDENT),
+          MainContentItem(
+            icon: 'assets/images/cart.svg',
+            text: 'Карта идей',
+            onTap: () => Get.toNamed<dynamic>(Routes.AIM_MAP),
+          ),
         ],
       ),
     );

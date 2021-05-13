@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 
+import 'package:l_l_app/app/modules/aim_map/bindings/aim_map_binding.dart';
+import 'package:l_l_app/app/modules/aim_map/views/aim_map_view.dart';
+
 import '../modules/additional_income/bindings/additional_income_binding.dart';
 import '../modules/additional_income/views/additional_income_view.dart';
 import '../modules/app/bindings/app_binding.dart';
@@ -69,6 +72,11 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.AIM_MAP,
+      page: () => AimMapView(),
+      binding: AimMapBinding(),
     ),
   ];
 }
