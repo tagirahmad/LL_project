@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:l_l_app/app/modules/aim_map/models/aim_map.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -63,8 +64,10 @@ void main() async {
   Hive.registerAdapter<Expenses>(ExpensesAdapter());
   Hive.registerAdapter<PocketMoney>(PocketMoneyAdapter());
   Hive.registerAdapter<Bank>(BankAdapter());
+  Hive.registerAdapter<AimMap>(AimMapAdapter());
   await Hive.openBox<Profile>('profile');
   await Hive.openBox<Finance>('finance');
+  await Hive.openBox<AimMap>('aimMap');
 
   //Remove this method to stop OneSignal Debugging
   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);

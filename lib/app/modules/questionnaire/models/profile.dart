@@ -14,7 +14,7 @@ class Profile {
       List<LifeAim>? lifeAims,
       List<YearAim>? yearAims,
       List<AimAction>? aimActions,
-      this.profileImagePath})
+      this.profileImagePath,})
       : lifeAims = lifeAims ?? <LifeAim>[],
         yearAims = yearAims ?? <YearAim>[],
         aimActions = aimActions ?? <AimAction>[];
