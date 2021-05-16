@@ -4,10 +4,10 @@ import 'package:davinci/core/davinci_core.dart';
 import 'package:davinci/davinci.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/services/subscription_status.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
+import '../../../services/subscription_status.dart';
 import '../controllers/aim_map_controller.dart';
 import '../models/aim_map.dart';
 
@@ -305,7 +305,6 @@ class YourPhoto extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
                   ),
                 ),
               ),
@@ -346,7 +345,7 @@ class AimMapItem extends StatelessWidget {
             ? const EdgeInsets.all(Dimensions.SIDE_INDENT)
             : null,
         child: imageFile != null && imageFile?.path != ''
-            ? Image.file(imageFile!, fit: BoxFit.fill)
+            ? Image.file(imageFile!, fit: BoxFit.cover)
             : Stack(
                 children: [
                   Positioned.fill(
@@ -361,14 +360,12 @@ class AimMapItem extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
                             ),
                           ),
                           Text(
                             'Добавить фото',
                             style: TextStyle(
                               fontSize: 10.0,
-                              color: Colors.white,
                             ),
                           ),
                         ],

@@ -18,16 +18,18 @@ class MainContentItem extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Dimensions.BORDER_RADIUS),
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              tileMode: TileMode.mirror,
-              colors: <Color>[
-                Colors.white.withOpacity(0.19),
-                Colors.white,
-                Colors.white.withOpacity(0.4),
-              ])),
+        borderRadius: BorderRadius.circular(Dimensions.BORDER_RADIUS),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          tileMode: TileMode.mirror,
+          colors: <Color>[
+            Colors.white.withOpacity(0.19),
+            Colors.white,
+            Colors.white.withOpacity(0.4),
+          ],
+        ),
+      ),
       child: Material(
         // color: color,
         shape: RoundedRectangleBorder(
