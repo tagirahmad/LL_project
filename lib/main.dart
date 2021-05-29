@@ -1,14 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:l_l_app/app/services/credentials_service.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
-import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -25,6 +21,7 @@ import 'app/modules/questionnaire/models/life_aim.dart';
 import 'app/modules/questionnaire/models/profile.dart';
 import 'app/modules/questionnaire/models/year_aim.dart';
 import 'app/routes/app_pages.dart';
+import 'app/services/credentials_service.dart';
 import 'app/services/subscription_status.dart';
 
 Future<void> initPlatformState(String revenueCatApiKey) async {

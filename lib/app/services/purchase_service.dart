@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:l_l_app/app/constants/subscription_list.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
+import '../constants/subscription_list.dart';
 import '../modules/finace/controllers/finance_controller.dart';
 import 'subscription_status.dart';
 
