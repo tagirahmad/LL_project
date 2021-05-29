@@ -89,9 +89,6 @@ Future<void> initOneSignal(String oneSignalAppId) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final directory = await pathProvider.getApplicationDocumentsDirectory();
-  final credentialsPath = "${directory.path}/assets/credentials.json";
-  // final credentials = Credentials.fromFile('credentials.json');
   final credentials = await Credentials.fromFile('credentials.json');
 
   await initPlatformState(credentials.revenueCatApiKey);
