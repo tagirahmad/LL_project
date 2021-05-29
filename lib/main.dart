@@ -4,12 +4,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:l_l_app/app/modules/aim_map/models/aim_map.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import 'app/constants/colors.dart';
+import 'app/modules/aim_map/models/aim_map.dart';
 import 'app/modules/finace/model/bank.dart' show Bank, BankAdapter;
 import 'app/modules/finace/model/expenses.dart';
 import 'app/modules/finace/model/finance.dart';
@@ -50,10 +50,8 @@ Future<void> initPlatformState() async {
   print('#### is user pro? ${isPro.isPro}');
 }
 
-// ignore: avoid_void_async
-void main() async {
+Future<void> initHiveDb() async {
   await Hive.initFlutter();
-  await initPlatformState();
   Hive.registerAdapter<YearAim>(YearAimAdapter());
   Hive.registerAdapter<LifeAim>(LifeAimAdapter());
   Hive.registerAdapter<AimAction>(AimActionAdapter());
@@ -68,6 +66,12 @@ void main() async {
   await Hive.openBox<Profile>('profile');
   await Hive.openBox<Finance>('finance');
   await Hive.openBox<AimMap>('aimMap');
+}
+
+// ignore: avoid_void_async
+void main() async {
+  await initPlatformState();
+  await initHiveDb();
 
   //Remove this method to stop OneSignal Debugging
   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
@@ -84,28 +88,32 @@ void main() async {
 
   runApp(
     GetMaterialApp(
-        title: 'Курс на достаток и свободу',
-        initialRoute: AppPages.INITIAL,
-        getPages: AppPages.routes,
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [
-          const Locale('ru', ''), // Russian, no country code
-          // const Locale('en', ''), // English, no country code
-        ],
-        theme: ThemeData(
-            textTheme: const TextTheme(),
-            primaryColor: AppColors.BACKGROUND_COLOR,
-            accentColor: AppColors.BACKGROUND_COLOR,
-            scaffoldBackgroundColor: AppColors.BACKGROUND_COLOR,
-            textButtonTheme: TextButtonThemeData(
-                style: ButtonStyle(
-                    overlayColor: MaterialStateProperty.all<Color>(
-                        AppColors.BACKGROUND_COLOR))),
-            appBarTheme: const AppBarTheme(
-                backgroundColor: AppColors.BACKGROUND_COLOR))),
+      title: 'Курс на достаток и свободу',
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('ru', ''), // Russian, no country code
+        // const Locale('en', ''), // English, no country code
+      ],
+      theme: ThemeData(
+        textTheme: const TextTheme(),
+        primaryColor: AppColors.BACKGROUND_COLOR,
+        accentColor: AppColors.BACKGROUND_COLOR,
+        scaffoldBackgroundColor: AppColors.BACKGROUND_COLOR,
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            overlayColor:
+                MaterialStateProperty.all<Color>(AppColors.BACKGROUND_COLOR),
+          ),
+        ),
+        appBarTheme:
+            const AppBarTheme(backgroundColor: AppColors.BACKGROUND_COLOR),
+      ),
+    ),
   );
 }

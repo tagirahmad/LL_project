@@ -13,7 +13,6 @@ class CustomBanner extends StatelessWidget {
     return Container(
       color: const Color(0xFF5EB4F9),
       width: MediaQuery.of(context).size.width,
-      // height:  MediaQuery.of(context).size.width * .2,
       padding: const EdgeInsets.all(10.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

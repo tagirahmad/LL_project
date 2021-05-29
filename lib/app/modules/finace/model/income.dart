@@ -4,8 +4,11 @@ part 'income.g.dart';
 
 @HiveType(typeId: 6)
 class Income {
-  Income(
-      {this.additionalIncome = 0, this.husbandIncome = 0, this.wifeIncome = 0});
+  Income({
+    this.additionalIncome = 0,
+    this.husbandIncome = 0,
+    this.wifeIncome = 0,
+  });
 
   @HiveField(0)
   int? wifeIncome;

@@ -11,8 +11,10 @@ class OnTextChangedHelper {
     finance.income ??= Income(husbandIncome: 0);
     finance.income!.husbandIncome = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedWifeIncome(String text, FinanceController controller) {
@@ -21,8 +23,10 @@ class OnTextChangedHelper {
     finance.income ??= Income(wifeIncome: 0);
     finance.income!.wifeIncome = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedAdditionalIncome(
@@ -32,8 +36,10 @@ class OnTextChangedHelper {
     finance.income ??= Income(additionalIncome: 0);
     finance.income!.additionalIncome = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedAdditionalPaymentsExpenses(
@@ -43,8 +49,10 @@ class OnTextChangedHelper {
     finance.expenses ??= Expenses(additionalPayments: 0);
     finance.expenses!.additionalPayments = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedEntertainmentExpenses(
@@ -54,8 +62,10 @@ class OnTextChangedHelper {
     finance.expenses ??= Expenses(entertainment: 0);
     finance.expenses!.entertainment = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedFoodExpenses(String text, FinanceController controller) {
@@ -64,8 +74,10 @@ class OnTextChangedHelper {
     finance.expenses ??= Expenses(food: 0);
     finance.expenses!.food = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedFoodOutExpenses(
@@ -75,8 +87,10 @@ class OnTextChangedHelper {
     finance.expenses ??= Expenses(foodOut: 0);
     finance.expenses!.foodOut = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedHousingExpenses(
@@ -86,8 +100,10 @@ class OnTextChangedHelper {
     finance.expenses ??= Expenses(housing: 0);
     finance.expenses!.housing = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedServicesExpenses(
@@ -97,8 +113,10 @@ class OnTextChangedHelper {
     finance.expenses ??= Expenses(services: 0);
     finance.expenses!.services = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedTransportExpenses(
@@ -108,8 +126,10 @@ class OnTextChangedHelper {
     finance.expenses ??= Expenses(transport: 0);
     finance.expenses!.transport = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedUnexpectedExpenses(
@@ -119,8 +139,10 @@ class OnTextChangedHelper {
     finance.expenses ??= Expenses(unexpectedExpenses: 0);
     finance.expenses!.unexpectedExpenses = int.tryParse(text) ?? 0;
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedBankName(String text, FinanceController controller,
@@ -136,22 +158,6 @@ class OnTextChangedHelper {
         .setToFinance(FinanceController.to.hiveFinanceService, finance);
   }
 
-  // static void onChangedBalanceLessPayments(
-  //     String text, FinanceController controller,
-  //     {int? index}) {
-  //   var finance = controller.getFinance();
-
-  //   var parsedText = double.tryParse(text) ?? 0;
-
-  //   finance.banks ??= <Bank>[Bank(balanceLessPayments: parsedText)];
-  //   if (index != null) {
-  //     finance.banks![index].balanceLessPayments = parsedText;
-  //   }
-
-  //   FinanceController.to
-  //       .setToFinance(FinanceController.to.hiveFinanceService, finance);
-  // }
-
   static void onChangedTotalDebt(String text, FinanceController controller,
       {int? index}) {
     var finance = controller.getFinance();
@@ -163,8 +169,10 @@ class OnTextChangedHelper {
       finance.banks![index].totalDebt = parsedText;
     }
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedMonthlyPaymentAmount(
@@ -179,8 +187,10 @@ class OnTextChangedHelper {
       finance.banks![index].monthlyPaymentAmount = parsedText;
     }
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 
   static void onChangedPlusToMonthlyPaymentAmountt(
@@ -195,7 +205,9 @@ class OnTextChangedHelper {
       finance.banks![index].plusToMonthlyPaymentAmount = parsedText;
     }
 
-    FinanceController.to
-        .setToFinance(FinanceController.to.hiveFinanceService, finance);
+    FinanceController.to.setToFinance(
+      FinanceController.to.hiveFinanceService,
+      finance,
+    );
   }
 }

@@ -54,36 +54,37 @@ class AppView extends GetView<AppController> {
     Get.put(FinanceController());
 
     return Scaffold(
-        body: NestedScrollView(
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return <Widget>[
-                SliverAppBar(
-                  title: Text(
-                    'Приложение',
-                    style: Theme.of(context).textTheme.headline6!,
-                  ),
-                  leading: const BackButton(color: Colors.black),
-                  pinned: false,
-                  floating: true,
-                  snap: true,
-                  backgroundColor: AppColors.BACKGROUND_COLOR,
-                )
-              ];
-            },
-            body: Padding(
-              padding: const EdgeInsets.all(Dimensions.SIDE_INDENT),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Obx(() {
-                    if (FinanceController.to.subscriptionStatus.value! ==
-                        true) {
-                      return Text(
-                        'Спасибо за покупку!',
-                        style: Theme.of(context).textTheme.headline4,
-                      );
-                    } else {
-                      return Column(children: [
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              title: Text(
+                'Приложение',
+                style: Theme.of(context).textTheme.headline6!,
+              ),
+              leading: const BackButton(color: Colors.black),
+              pinned: false,
+              floating: true,
+              snap: true,
+              backgroundColor: AppColors.BACKGROUND_COLOR,
+            )
+          ];
+        },
+        body: Padding(
+          padding: const EdgeInsets.all(Dimensions.SIDE_INDENT),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Obx(
+                () {
+                  if (FinanceController.to.subscriptionStatus.value! == true) {
+                    return Text(
+                      'Спасибо за покупку!',
+                      style: Theme.of(context).textTheme.headline4,
+                    );
+                  } else {
+                    return Column(
+                      children: [
                         Text(
                           'Доступ к функционалу - уведомления о дате платежей, сохранение данных разделов платежи, банки',
                           style: Theme.of(context).textTheme.headline6,
@@ -93,24 +94,25 @@ class AppView extends GetView<AppController> {
                           height: Dimensions.ITEM_INDENT * 3,
                         ),
                         GridView.builder(
-                            shrinkWrap: true,
-                            itemCount: 3,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: 8.0 / 10.0,
-                              crossAxisCount: 3,
-                            ),
-                            itemBuilder: (context, index) {
-                              return TariffCard(
-                                backgroundColor:
-                                    _tariffs[index]['backgroundColor'] as Color,
-                                duration: _tariffs[index]['duration'] as String,
-                                price: _tariffs[index]['price'] as String,
-                                onTap: _tariffs[index]['onTap'] as Function(),
-                                subtitle: _tariffs[index]['subtitle'] as String,
-                                title: _tariffs[index]['title'] as String,
-                              );
-                            }),
+                          shrinkWrap: true,
+                          itemCount: 3,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: 8.0 / 10.0,
+                            crossAxisCount: 3,
+                          ),
+                          itemBuilder: (context, index) {
+                            return TariffCard(
+                              backgroundColor:
+                                  _tariffs[index]['backgroundColor'] as Color,
+                              duration: _tariffs[index]['duration'] as String,
+                              price: _tariffs[index]['price'] as String,
+                              onTap: _tariffs[index]['onTap'] as Function(),
+                              subtitle: _tariffs[index]['subtitle'] as String,
+                              title: _tariffs[index]['title'] as String,
+                            );
+                          },
+                        ),
                         TextButton(
                             onPressed: () async =>
                                 await PurchaseService.restorePurchases(),
@@ -123,29 +125,32 @@ class AppView extends GetView<AppController> {
                               .copyWith(fontStyle: FontStyle.italic),
                           textAlign: TextAlign.center,
                         ),
-                      ]);
-                    }
-                  }),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                            'Подписывайся на наш инстаграмм - тут много полезного'),
-                      ),
-                      GestureDetector(
-                        onTap: () =>
-                            UrlLauncherService.launchURL(Links.instagram),
-                        child: Image.asset(
-                          'assets/images/instagram.png',
-                          height: 40,
-                          width: 40,
-                        ),
-                      )
-                    ],
+                      ],
+                    );
+                  }
+                },
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                        'Подписывайся на наш инстаграмм - тут много полезного'),
+                  ),
+                  GestureDetector(
+                    onTap: () => UrlLauncherService.launchURL(Links.instagram),
+                    child: Image.asset(
+                      'assets/images/instagram.png',
+                      height: 40,
+                      width: 40,
+                    ),
                   )
                 ],
-              ),
-            )));
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -209,7 +214,7 @@ class TariffCard extends StatelessWidget {
             ),
             const SizedBox(
               height: Dimensions.ITEM_INDENT,
-            )
+            ),
           ],
         ),
       ),

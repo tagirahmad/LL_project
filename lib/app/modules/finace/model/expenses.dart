@@ -4,15 +4,16 @@ part 'expenses.g.dart';
 
 @HiveType(typeId: 8)
 class Expenses {
-  Expenses(
-      {this.additionalPayments = 0,
-      this.entertainment = 0,
-      this.food = 0,
-      this.foodOut = 0,
-      this.housing = 0,
-      this.services = 0,
-      this.transport = 0,
-      this.unexpectedExpenses = 0});
+  Expenses({
+    this.additionalPayments = 0,
+    this.entertainment = 0,
+    this.food = 0,
+    this.foodOut = 0,
+    this.housing = 0,
+    this.services = 0,
+    this.transport = 0,
+    this.unexpectedExpenses = 0,
+  });
 
   @HiveField(0)
   int? additionalPayments;

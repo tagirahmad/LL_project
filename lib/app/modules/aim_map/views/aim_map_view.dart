@@ -42,178 +42,183 @@ class AimMapView extends GetView<AimMapController> {
                   onPressed: () => saveAimMap(context, controller),
                 ),
               ),
-              Davinci(builder: (key) {
-                controller.imageKey.value = key;
-                return Container(
-                  child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Obx(
-                                () => AimMapItem(
-                                  imageFile: File(
-                                      controller.aimMap.value!.moneyImg ?? ''),
-                                  alignment: Alignment.centerLeft,
-                                  color: Color(0xFFE8E8A0),
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 200,
-                                  title: 'Деньги,\nбогатство,\nпроцветание\n',
-                                  onTap: () => controller.pickImg(
-                                      controller.moneyImg, AimMapImg.moneyImg),
+              Davinci(
+                builder: (key) {
+                  controller.imageKey.value = key;
+                  return Container(
+                    child: Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Obx(
+                                  () => AimMapItem(
+                                    imageFile: File(
+                                        controller.aimMap.value!.moneyImg ??
+                                            ''),
+                                    alignment: Alignment.centerLeft,
+                                    color: Color(0xFFE8E8A0),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    height: 200,
+                                    title: 'Деньги,\nбогатство,\nпроцветание\n',
+                                    onTap: () => controller.pickImg(
+                                        controller.moneyImg,
+                                        AimMapImg.moneyImg),
+                                  ),
                                 ),
-                              ),
-                              Obx(
-                                () => AimMapItem(
-                                  imageFile: File(
-                                      controller.aimMap.value!.loveImg ?? ''),
-                                  alignment: Alignment.centerRight,
-                                  color: Color(0xFFF3ABD1),
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 200,
-                                  title: 'Любовь,\nбрак,\nотношения\n',
-                                  onTap: () => controller.pickImg(
-                                      controller.loveImg, AimMapImg.loveImg),
+                                Obx(
+                                  () => AimMapItem(
+                                    imageFile: File(
+                                        controller.aimMap.value!.loveImg ?? ''),
+                                    alignment: Alignment.centerRight,
+                                    color: Color(0xFFF3ABD1),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    height: 200,
+                                    title: 'Любовь,\nбрак,\nотношения\n',
+                                    onTap: () => controller.pickImg(
+                                        controller.loveImg, AimMapImg.loveImg),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Obx(
-                                () => AimMapItem(
-                                  imageFile: File(
-                                      controller.aimMap.value!.homeImg ?? ''),
-                                  alignment: Alignment.centerLeft,
-                                  color: Color(0xFF83DDCE),
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 180,
-                                  title: 'Дом,\nсемья,\nродственники\n',
-                                  onTap: () => controller.pickImg(
-                                      controller.homeImg, AimMapImg.homeImg),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Obx(
+                                  () => AimMapItem(
+                                    imageFile: File(
+                                        controller.aimMap.value!.homeImg ?? ''),
+                                    alignment: Alignment.centerLeft,
+                                    color: Color(0xFF83DDCE),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    height: 180,
+                                    title: 'Дом,\nсемья,\nродственники\n',
+                                    onTap: () => controller.pickImg(
+                                        controller.homeImg, AimMapImg.homeImg),
+                                  ),
                                 ),
-                              ),
-                              Obx(
-                                () => AimMapItem(
-                                  imageFile: File(
-                                      controller.aimMap.value!.kidsImg ?? ''),
-                                  alignment: Alignment.centerRight,
-                                  color: Color(0xFFF4B190),
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 180,
-                                  title: 'Дети,\nпроекты,\nтворчество\n',
-                                  onTap: () => controller.pickImg(
-                                      controller.kidsImg, AimMapImg.kidsImg),
+                                Obx(
+                                  () => AimMapItem(
+                                    imageFile: File(
+                                        controller.aimMap.value!.kidsImg ?? ''),
+                                    alignment: Alignment.centerRight,
+                                    color: Color(0xFFF4B190),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    height: 180,
+                                    title: 'Дети,\nпроекты,\nтворчество\n',
+                                    onTap: () => controller.pickImg(
+                                        controller.kidsImg, AimMapImg.kidsImg),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Obx(
-                                () => AimMapItem(
-                                  imageFile: File(
-                                      controller.aimMap.value!.knowledgeImg ??
-                                          ''),
-                                  color: Color(0xFFBD95D1),
-                                  alignment: Alignment.centerLeft,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 200,
-                                  title: 'Знание,\nобразование,\nмудрость\n',
-                                  onTap: () => controller.pickImg(
-                                      controller.knowledgeImg,
-                                      AimMapImg.knowledgeImg),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Obx(
+                                  () => AimMapItem(
+                                    imageFile: File(
+                                        controller.aimMap.value!.knowledgeImg ??
+                                            ''),
+                                    color: Color(0xFFBD95D1),
+                                    alignment: Alignment.centerLeft,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    height: 200,
+                                    title: 'Знание,\nобразование,\nмудрость\n',
+                                    onTap: () => controller.pickImg(
+                                        controller.knowledgeImg,
+                                        AimMapImg.knowledgeImg),
+                                  ),
                                 ),
-                              ),
-                              Obx(
-                                () => AimMapItem(
-                                  imageFile: File(
-                                      controller.aimMap.value!.helpersImg ??
-                                          ''),
-                                  alignment: Alignment.centerRight,
-                                  color: Color(0xFF55C8DF),
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 200,
-                                  title:
-                                      'Помощники,\nпутешествия,\nнаставники\n',
-                                  onTap: () => controller.pickImg(
-                                      controller.helpersImg,
-                                      AimMapImg.helpersImg),
+                                Obx(
+                                  () => AimMapItem(
+                                    imageFile: File(
+                                        controller.aimMap.value!.helpersImg ??
+                                            ''),
+                                    alignment: Alignment.centerRight,
+                                    color: Color(0xFF55C8DF),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    height: 200,
+                                    title:
+                                        'Помощники,\nпутешествия,\nнаставники\n',
+                                    onTap: () => controller.pickImg(
+                                        controller.helpersImg,
+                                        AimMapImg.helpersImg),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Positioned.fill(
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Obx(
-                                () => AimMapItem(
-                                  imageFile: File(
-                                      controller.aimMap.value!.notorietyImg ??
-                                          ''),
-                                  alignment: Alignment.center,
-                                  color: Color(0xFFF5A6B2),
-                                  height: 130,
-                                  width: 160,
-                                  title:
-                                      // ignore: lines_longer_than_80_chars
-                                      'Известность,\nдостижения,\nсамореализация\n',
-                                  onTap: () => controller.pickImg(
-                                      controller.notorietyImg,
-                                      AimMapImg.notorietyImg),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Positioned.fill(
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Obx(
+                                  () => AimMapItem(
+                                    imageFile: File(
+                                        controller.aimMap.value!.notorietyImg ??
+                                            ''),
+                                    alignment: Alignment.center,
+                                    color: Color(0xFFF5A6B2),
+                                    height: 130,
+                                    width: 160,
+                                    title:
+                                        // ignore: lines_longer_than_80_chars
+                                        'Известность,\nдостижения,\nсамореализация\n',
+                                    onTap: () => controller.pickImg(
+                                        controller.notorietyImg,
+                                        AimMapImg.notorietyImg),
+                                  ),
                                 ),
-                              ),
-                              Obx(
-                                () => YourPhoto(
-                                  imageFile: File(
-                                      controller.aimMap.value!.yourImg ?? ''),
-                                  width: 130.0,
-                                  height: 130.0,
-                                  onTap: () => controller.pickImg(
-                                      controller.yourImg, AimMapImg.yourImg),
+                                Obx(
+                                  () => YourPhoto(
+                                    imageFile: File(
+                                        controller.aimMap.value!.yourImg ?? ''),
+                                    width: 130.0,
+                                    height: 130.0,
+                                    onTap: () => controller.pickImg(
+                                        controller.yourImg, AimMapImg.yourImg),
+                                  ),
                                 ),
-                              ),
-                              Obx(
-                                () => AimMapItem(
-                                  imageFile: File(
-                                      controller.aimMap.value!.careerImg ?? ''),
-                                  alignment: Alignment.center,
-                                  color: Color(0xFFC366F2),
-                                  height: 130,
-                                  width: 160,
-                                  title: 'Карьера,\nпрофессия,\nбизнес\n',
-                                  onTap: () => controller.pickImg(
-                                      controller.careerImg,
-                                      AimMapImg.careerImg),
+                                Obx(
+                                  () => AimMapItem(
+                                    imageFile: File(
+                                        controller.aimMap.value!.careerImg ??
+                                            ''),
+                                    alignment: Alignment.center,
+                                    color: Color(0xFFC366F2),
+                                    height: 130,
+                                    width: 160,
+                                    title: 'Карьера,\nпрофессия,\nбизнес\n',
+                                    onTap: () => controller.pickImg(
+                                        controller.careerImg,
+                                        AimMapImg.careerImg),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -260,9 +265,10 @@ class SaveAimMapButton extends StatelessWidget {
         foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
       ),
       label: Center(
-          child: Text(
-        'Сохранить карту целей',
-      )),
+        child: Text(
+          'Сохранить карту целей',
+        ),
+      ),
     );
   }
 }

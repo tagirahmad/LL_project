@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 
 class FinancePopup extends StatelessWidget {
-  const FinancePopup(
-      {Key? key,
-      required this.title,
-      required this.content,
-      this.backgroundColor,
-      this.actions,
-      this.titleStyle})
-      : super(key: key);
+  const FinancePopup({
+    Key? key,
+    required this.title,
+    required this.content,
+    this.backgroundColor,
+    this.actions,
+    this.titleStyle,
+  }) : super(key: key);
 
   final String title;
   final TextStyle? titleStyle;
@@ -33,10 +33,13 @@ class FinancePopup extends StatelessWidget {
                 Navigator.of(context).pop();
               },
               style: ButtonStyle(
-                  overlayColor:
-                      MaterialStateProperty.all<Color>(AppColors.LIGHT_BLUE)),
-              child: Text('ОК',
-                  style: titleStyle ?? const TextStyle(color: Colors.white)),
+                overlayColor:
+                    MaterialStateProperty.all<Color>(AppColors.LIGHT_BLUE),
+              ),
+              child: Text(
+                'ОК',
+                style: titleStyle ?? const TextStyle(color: Colors.white),
+              ),
             ),
           ],
     );

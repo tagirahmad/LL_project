@@ -21,17 +21,21 @@ class ProfileImage extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           gradient: const LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              tileMode: TileMode.mirror,
-              colors: <Color>[Colors.white, AppColors.BACKGROUND_COLOR]),
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            tileMode: TileMode.mirror,
+            colors: <Color>[Colors.white, AppColors.BACKGROUND_COLOR],
+          ),
           border: Border.all(color: Colors.white, width: 1.0),
         ),
         child: CircleAvatar(
           radius: Dimensions.CIRCLE_RADIUS,
           backgroundColor: Colors.transparent,
-          backgroundImage:
-              imagePath == null ? null : FileImage(File(imagePath!)),
+          backgroundImage: imagePath == null
+              ? null
+              : FileImage(
+                  File(imagePath!),
+                ),
           foregroundColor: Colors.black,
           child: imagePath == null
               ? const Text(

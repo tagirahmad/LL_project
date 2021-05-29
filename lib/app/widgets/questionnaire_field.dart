@@ -6,13 +6,13 @@ import '../constants/dimensions.dart';
 import '../modules/questionnaire/models/questionnaire_type.dart';
 
 class QuestionnaireField extends StatelessWidget {
-  const QuestionnaireField(
-      {Key? key,
-      this.title,
-      required this.type,
-      required this.onPressed,
-      this.questionnaireField})
-      : super(key: key);
+  const QuestionnaireField({
+    Key? key,
+    this.title,
+    required this.type,
+    required this.onPressed,
+    this.questionnaireField,
+  }) : super(key: key);
 
   final String? title;
   final String? questionnaireField;

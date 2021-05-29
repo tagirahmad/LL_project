@@ -26,7 +26,6 @@ class FinanceController extends GetxController {
 
   late TextEditingController bankName;
   late TextEditingController totalDebt;
-  // late TextEditingController balanceLessPayments;
   late TextEditingController monthlyPaymentAmount;
   late TextEditingController plusToMonthlyPaymentAmount;
   Rx<DateTime> pickedDate = DateTime.now().obs;
@@ -51,7 +50,6 @@ class FinanceController extends GetxController {
     unexpectedExpensesController = TextEditingController();
     bankName = TextEditingController();
     totalDebt = TextEditingController();
-    // balanceLessPayments = TextEditingController();
     monthlyPaymentAmount = TextEditingController();
     plusToMonthlyPaymentAmount = TextEditingController();
     // hiveFinanceService.financeBox.clear();
@@ -74,7 +72,6 @@ class FinanceController extends GetxController {
     unexpectedExpensesController.dispose();
     bankName.dispose();
     totalDebt.dispose();
-    // balanceLessPayments.dispose();
     monthlyPaymentAmount.dispose();
     plusToMonthlyPaymentAmount.dispose();
     super.onClose();
@@ -93,7 +90,6 @@ class FinanceController extends GetxController {
     }
 
     update();
-    // refresh();
   }
 
   Finance getFinance() {
@@ -120,13 +116,11 @@ class FinanceController extends GetxController {
     var parsedValue = int.parse(value.replaceAll(RegExp(r'.$'), ''));
 
     var fund = Fund(percents: parsedValue);
-    // this.finance.value!.fund = fund;
 
     var finance = getFinance();
     finance.fund = fund;
 
     setToFinance(hiveFinanceService, finance);
-    // update();
   }
 
   void changePocketMoney(String value) {
@@ -137,7 +131,6 @@ class FinanceController extends GetxController {
     finance.pocketMoney = pocket;
 
     setToFinance(hiveFinanceService, finance);
-    // update();
   }
 
   void changePaymentDate(DateTime dateTime, {int? index}) {
@@ -145,44 +138,34 @@ class FinanceController extends GetxController {
 
     if (index != null) {
       finance.banks![index].paymentDate = dateTime;
-      // this.finance.value!.banks![index].paymentDate = dateTime;
     }
 
     setToFinance(hiveFinanceService, finance);
-    // update();
   }
 
   void saveBank(
       TextEditingController bankName,
       TextEditingController totalDebt,
-      // TextEditingController balanceLessPayments,
       TextEditingController monthlyPaymentAmount,
       TextEditingController plusToMonthlyPaymentAmount,
       DateTime? paymentDate) {
     var finance = getFinance();
 
-    // if (finance.banks != null) {
-
-    // }
     finance.banks ??= <Bank>[Bank()];
     var banks = finance.banks!.toList();
 
-    banks.add(Bank(
-        name: bankName.text,
-        // balanceLessPayments: double.tryParse(balanceLessPayments.text) ?? 0,
-        monthlyPaymentAmount: double.tryParse(monthlyPaymentAmount.text) ?? 0,
-        plusToMonthlyPaymentAmount:
-            double.tryParse(plusToMonthlyPaymentAmount.text) ?? 0,
-        totalDebt: double.tryParse(totalDebt.text) ?? 0,
-        paymentDate: paymentDate));
+    final bank = Bank(
+      name: bankName.text,
+      monthlyPaymentAmount: double.tryParse(monthlyPaymentAmount.text) ?? 0,
+      plusToMonthlyPaymentAmount:
+          double.tryParse(plusToMonthlyPaymentAmount.text) ?? 0,
+      totalDebt: double.tryParse(totalDebt.text) ?? 0,
+      paymentDate: paymentDate,
+    );
+
+    banks.add(bank);
     finance.banks = banks;
     setToFinance(hiveFinanceService, finance);
-    // if (subscriptionStatus.value! == true) {
-    //   LocalNotifications()
-    //       .showNotificationPeriodically(banks.length - 1,
-    //           'Не забудьте оплатить долг/кредит!', paymentDate)
-    //       .then((value) => value);
-    // }
   }
 
   void removeBankFromStore(int index) {
@@ -191,8 +174,5 @@ class FinanceController extends GetxController {
     banks.removeAt(index);
     finance.banks = banks;
     setToFinance(hiveFinanceService, finance);
-    // if (subscriptionStatus.value! == true) {
-    //   LocalNotifications().cancelNotification(index);
-    // }
   }
 }

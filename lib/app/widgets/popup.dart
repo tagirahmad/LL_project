@@ -22,8 +22,6 @@ class Popup extends StatelessWidget {
       onTapSave;
   final QuestionnaireType questionnaireType;
   final int? index;
-  // final Function(String keyboardValue, Rx<Profile> profile, int index)?
-  //     onUpdate;
   final VoidCallback? onDelete;
   final Function(String?)? onChanged;
 
@@ -93,7 +91,8 @@ class Popup extends StatelessWidget {
         if (index != null && onDelete != null)
           TextButton(
             style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.red)),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
+            ),
             onPressed: () {
               if (ProfileController.to.textEditingController.value.text !=
                       null &&

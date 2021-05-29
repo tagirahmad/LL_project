@@ -47,7 +47,8 @@ class TextEditingControllerHelper {
   }
 
   static String showAdditionalPaymentsExpensesToTextEditingController(
-      FinanceController controller) {
+    FinanceController controller,
+  ) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.additionalPayments != null) {
       var sum = controller.finance.value!.expenses!.additionalPayments;
@@ -77,7 +78,8 @@ class TextEditingControllerHelper {
   }
 
   static String showFoodExpensesToTextEditingController(
-      FinanceController controller) {
+    FinanceController controller,
+  ) {
     if (controller.finance.value!.expenses != null) {
       var sum = controller.finance.value!.expenses!.food;
       if (sum != 0) {
@@ -91,7 +93,8 @@ class TextEditingControllerHelper {
   }
 
   static String showFoodOutExpensesToTextEditingController(
-      FinanceController controller) {
+    FinanceController controller,
+  ) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.foodOut != null) {
       var sum = controller.finance.value!.expenses!.foodOut;
@@ -106,7 +109,8 @@ class TextEditingControllerHelper {
   }
 
   static String showHousingExpensesToTextEditingController(
-      FinanceController controller) {
+    FinanceController controller,
+  ) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.housing != null) {
       var sum = controller.finance.value!.expenses!.housing;
@@ -121,7 +125,8 @@ class TextEditingControllerHelper {
   }
 
   static String showServicesExpensesToTextEditingController(
-      FinanceController controller) {
+    FinanceController controller,
+  ) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.services != null) {
       var sum = controller.finance.value!.expenses!.services;
@@ -136,7 +141,8 @@ class TextEditingControllerHelper {
   }
 
   static String showTransportExpensesToTextEditingController(
-      FinanceController controller) {
+    FinanceController controller,
+  ) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.transport != null) {
       var sum = controller.finance.value!.expenses!.transport;
@@ -151,7 +157,8 @@ class TextEditingControllerHelper {
   }
 
   static String showUnexpectedExpensesToTextEditingController(
-      FinanceController controller) {
+    FinanceController controller,
+  ) {
     if (controller.finance.value!.expenses != null &&
         controller.finance.value!.expenses!.unexpectedExpenses != null) {
       var sum = controller.finance.value!.expenses!.unexpectedExpenses;
@@ -177,22 +184,6 @@ class TextEditingControllerHelper {
       return '';
     }
   }
-
-  // static String showBalanceLessPaymentsToTextEditingController(
-  //     FinanceController controller,
-  //     {int? index}) {
-  //   if (controller.finance.value!.banks != null && index != null) {
-  //     var balance = controller.finance.value!.banks![index].balanceLessPayments;
-
-  //     if (balance != 0) {
-  //       return balance.toString();
-  //     } else {
-  //       return '';
-  //     }
-  //   } else {
-  //     return '';
-  //   }
-  // }
 
   static String showTotalDebtToTextEditingController(
       FinanceController controller,

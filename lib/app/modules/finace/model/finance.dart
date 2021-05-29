@@ -11,14 +11,14 @@ part 'finance.g.dart';
 
 @HiveType(typeId: 5)
 class Finance {
-  Finance(
-      {this.dream,
-      this.income,
-      this.expenses,
-      this.fund,
-      List<Bank>? banks,
-      this.pocketMoney})
-      : banks = banks ?? <Bank>[Bank()];
+  Finance({
+    this.dream,
+    this.income,
+    this.expenses,
+    this.fund,
+    List<Bank>? banks,
+    this.pocketMoney,
+  }) : banks = banks ?? <Bank>[Bank()];
 
   @HiveField(0)
   Income? income;
@@ -32,6 +32,4 @@ class Finance {
   PocketMoney? pocketMoney;
   @HiveField(5)
   List<Bank>? banks;
-
-  // set income(Income? income) => this.income = income;
 }

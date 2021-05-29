@@ -3,13 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../constants/dimensions.dart';
 
 class RoundButton extends StatelessWidget {
-  const RoundButton(
-      {Key? key,
-      required this.onPressed,
-      required this.iconPath,
-      required this.color,
-      this.hasBorder})
-      : super(key: key);
+  const RoundButton({
+    Key? key,
+    required this.onPressed,
+    required this.iconPath,
+    required this.color,
+    this.hasBorder,
+  }) : super(key: key);
 
   final Function() onPressed;
   final String iconPath;
@@ -21,9 +21,10 @@ class RoundButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape: CircleBorder(
-              side: hasBorder != null && hasBorder == true
-                  ? const BorderSide(width: 1.0, color: Colors.white)
-                  : BorderSide.none),
+            side: hasBorder != null && hasBorder == true
+                ? const BorderSide(width: 1.0, color: Colors.white)
+                : BorderSide.none,
+          ),
           primary: color,
           padding: EdgeInsets.zero),
       onPressed: onPressed,

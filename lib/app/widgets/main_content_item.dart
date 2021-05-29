@@ -5,9 +5,12 @@ import '../constants/colors.dart';
 import '../constants/dimensions.dart';
 
 class MainContentItem extends StatelessWidget {
-  const MainContentItem(
-      {Key? key, required this.text, required this.icon, required this.onTap})
-      : super(key: key);
+  const MainContentItem({
+    Key? key,
+    required this.text,
+    required this.icon,
+    required this.onTap,
+  }) : super(key: key);
 
   final String text;
   final String icon;
@@ -33,7 +36,8 @@ class MainContentItem extends StatelessWidget {
       child: Material(
         // color: color,
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Dimensions.BORDER_RADIUS)),
+          borderRadius: BorderRadius.circular(Dimensions.BORDER_RADIUS),
+        ),
         child: InkWell(
           customBorder: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(Dimensions.BORDER_RADIUS),

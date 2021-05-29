@@ -46,22 +46,26 @@ class BankCard extends StatelessWidget {
                   if (paymentAmount != null && paymentAmount != "0.0")
                     Container(
                       padding: EdgeInsets.only(top: 8.0),
-                      child: Text("${paymentAmount!}р. ",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(color: Colors.white)),
+                      child: Text(
+                        "${paymentAmount!}р. ",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(color: Colors.white),
+                      ),
                     )
                   else
                     const SizedBox(),
                   if (day != null)
                     Container(
                       padding: EdgeInsets.only(top: 8.0),
-                      child: Text("Дата платежа ${day!} числа",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(color: Colors.white)),
+                      child: Text(
+                        "Дата платежа ${day!} числа",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(color: Colors.white),
+                      ),
                     )
                   else
                     const SizedBox()
