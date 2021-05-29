@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:l_l_app/app/services/credentials_service.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -23,11 +27,11 @@ import 'app/modules/questionnaire/models/year_aim.dart';
 import 'app/routes/app_pages.dart';
 import 'app/services/subscription_status.dart';
 
-Future<void> initPlatformState() async {
+Future<void> initPlatformState(String revenueCatApiKey) async {
   isPro.isPro = false;
 
   await Purchases.setDebugLogsEnabled(true);
-  await Purchases.setup("ReFvQPswttHGKToQFvCuLQTOHFpPbsTA",
+  await Purchases.setup(revenueCatApiKey,
       appUserId: await PlatformDeviceId.getDeviceId);
 
   PurchaserInfo purchaserInfo;
@@ -68,15 +72,11 @@ Future<void> initHiveDb() async {
   await Hive.openBox<AimMap>('aimMap');
 }
 
-// ignore: avoid_void_async
-void main() async {
-  await initPlatformState();
-  await initHiveDb();
-
+Future<void> initOneSignal(String oneSignalAppId) async {
   //Remove this method to stop OneSignal Debugging
   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
 
-  OneSignal.shared.init("36858e5c-ff3e-492e-a202-1de3a4c6a336", iOSSettings: {
+  OneSignal.shared.init(oneSignalAppId, iOSSettings: {
     OSiOSSettings.autoPrompt: false,
     OSiOSSettings.inAppLaunchUrl: false
   });
@@ -85,6 +85,18 @@ void main() async {
 
   await OneSignal.shared
       .promptUserForPushNotificationPermission(fallbackToSettings: true);
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final directory = await pathProvider.getApplicationDocumentsDirectory();
+  final credentialsPath = "${directory.path}/assets/credentials.json";
+  // final credentials = Credentials.fromFile('credentials.json');
+  final credentials = await Credentials.fromFile('credentials.json');
+
+  await initPlatformState(credentials.revenueCatApiKey);
+  await initHiveDb();
+  await initOneSignal(credentials.oneSignalAppId);
 
   runApp(
     GetMaterialApp(
@@ -98,7 +110,6 @@ void main() async {
       ],
       supportedLocales: [
         const Locale('ru', ''), // Russian, no country code
-        // const Locale('en', ''), // English, no country code
       ],
       theme: ThemeData(
         textTheme: const TextTheme(),
